@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+
+# Media / binarios pesados
+analisis/videos/
+*.mp4
+*.ogg
+*.mov
+*.avi
+
+# ZIPs (generados/temporales)
+analisis/cambios propuestas/DAMICH.zip
+analisis/cambios propuestas/files.zip
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
