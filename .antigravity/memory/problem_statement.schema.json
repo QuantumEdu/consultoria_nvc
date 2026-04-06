@@ -1,0 +1,375 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Problem Statement",
+  "description": "Definición estructurada del problema real identificado a través del proceso de discovery",
+  "type": "object",
+  "required": [
+    "problem_id",
+    "engagement_id",
+    "created_at",
+    "perceived_problem",
+    "real_problem",
+    "validation_status"
+  ],
+  "properties": {
+    "problem_id": {
+      "type": "string",
+      "description": "Identificador único del problema",
+      "pattern": "^PROB-[0-9]{8}-[A-Z0-9]{6}$",
+      "example": "PROB-20250119-X7Y8Z9"
+    },
+    "engagement_id": {
+      "type": "string",
+      "description": "ID del engagement al que pertenece este problema"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "perceived_problem": {
+      "type": "object",
+      "description": "Problema tal como lo describe inicialmente el cliente",
+      "required": ["statement", "source"],
+      "properties": {
+        "statement": {
+          "type": "string",
+          "description": "Descripción del problema percibido",
+          "example": "Necesitamos un ERP para gestionar mejor la clínica"
+        },
+        "source": {
+          "type": "string",
+          "description": "Quién expresó este problema",
+          "example": "Director General"
+        },
+        "expressed_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "real_problem": {
+      "type": "object",
+      "description": "Problema real identificado tras discovery",
+      "required": ["statement", "root_causes", "evidence"],
+      "properties": {
+        "statement": {
+          "type": "string",
+          "description": "Descripción clara y concisa del problema real",
+          "example": "Pérdida de control sobre inventario médico y desconocimiento de rentabilidad por paciente debido a registro manual y disperso"
+        },
+        "root_causes": {
+          "type": "array",
+          "description": "Causas raíz identificadas (resultado de 5 Whys, Fishbone, etc)",
+          "items": {
+            "type": "object",
+            "properties": {
+              "cause": {"type": "string"},
+              "evidence": {"type": "string"},
+              "impact": {
+                "type": "string",
+                "enum": ["low", "medium", "high", "critical"]
+              }
+            }
+          }
+        },
+        "evidence": {
+          "type": "array",
+          "description": "Evidencia del dolor operativo",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["time_waste", "money_loss", "quality_issue", "control_loss", "risk", "customer_impact"]
+              },
+              "description": {"type": "string"},
+              "quantification": {
+                "type": "string",
+                "description": "Cuantificación del impacto",
+                "example": "15 horas/semana en conciliaciones manuales"
+              },
+              "source": {
+                "type": "string",
+                "description": "Fuente de la evidencia (entrevista, observación, datos)"
+              }
+            }
+          }
+        },
+        "confidence_level": {
+          "type": "string",
+          "enum": ["low", "medium", "high", "validated"],
+          "description": "Nivel de confianza en que este es el problema real"
+        }
+      }
+    },
+    "stakeholders_affected": {
+      "type": "array",
+      "description": "Personas y roles afectados por el problema",
+      "items": {
+        "type": "object",
+        "required": ["role", "impact_description"],
+        "properties": {
+          "name": {"type": "string"},
+          "role": {"type": "string"},
+          "department": {"type": "string"},
+          "impact_description": {
+            "type": "string",
+            "description": "Cómo les afecta el problema"
+          },
+          "pain_level": {
+            "type": "string",
+            "enum": ["low", "medium", "high", "critical"]
+          },
+          "interviewed": {
+            "type": "boolean",
+            "description": "Si esta persona fue entrevistada"
+          },
+          "quotes": {
+            "type": "array",
+            "description": "Citas textuales relevantes",
+            "items": {"type": "string"}
+          }
+        }
+      }
+    },
+    "current_workarounds": {
+      "type": "array",
+      "description": "Soluciones temporales o workarounds actuales",
+      "items": {
+        "type": "object",
+        "properties": {
+          "workaround": {"type": "string"},
+          "effectiveness": {
+            "type": "string",
+            "enum": ["ineffective", "partially_effective", "effective_but_costly"]
+          },
+          "cost": {
+            "type": "string",
+            "description": "Costo del workaround (tiempo, dinero, recursos)"
+          }
+        }
+      }
+    },
+    "impact_analysis": {
+      "type": "object",
+      "description": "Análisis del impacto del problema",
+      "properties": {
+        "operational_impact": {
+          "type": "object",
+          "properties": {
+            "time_lost": {
+              "type": "string",
+              "description": "Tiempo perdido por el problema",
+              "example": "60 horas/mes"
+            },
+            "money_lost": {
+              "type": "string",
+              "description": "Pérdida monetaria estimada",
+              "example": "$5,000/mes en errores de inventario"
+            },
+            "quality_degradation": {
+              "type": "string",
+              "description": "Impacto en calidad de servicio/producto"
+            },
+            "customer_satisfaction": {
+              "type": "string",
+              "description": "Impacto en satisfacción de clientes"
+            }
+          }
+        },
+        "strategic_impact": {
+          "type": "object",
+          "properties": {
+            "growth_blocker": {
+              "type": "boolean",
+              "description": "¿El problema bloquea crecimiento?"
+            },
+            "competitive_disadvantage": {
+              "type": "boolean",
+              "description": "¿Genera desventaja competitiva?"
+            },
+            "risk_exposure": {
+              "type": "string",
+              "enum": ["low", "medium", "high", "critical"],
+              "description": "Nivel de exposición a riesgo"
+            }
+          }
+        },
+        "human_impact": {
+          "type": "object",
+          "properties": {
+            "employee_frustration": {
+              "type": "string",
+              "enum": ["low", "medium", "high"]
+            },
+            "burnout_risk": {
+              "type": "boolean"
+            },
+            "turnover_contributor": {
+              "type": "boolean",
+              "description": "¿Contribuye a rotación de personal?"
+            }
+          }
+        }
+      }
+    },
+    "scope": {
+      "type": "object",
+      "description": "Alcance del problema",
+      "properties": {
+        "departments_affected": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "processes_affected": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "systems_involved": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "geographic_scope": {
+          "type": "string",
+          "enum": ["single_location", "multiple_locations", "regional", "national", "global"]
+        },
+        "frequency": {
+          "type": "string",
+          "description": "Con qué frecuencia ocurre el problema",
+          "example": "Diario, múltiples veces"
+        }
+      }
+    },
+    "measurability": {
+      "type": "object",
+      "description": "Cómo se puede medir el problema",
+      "properties": {
+        "current_metrics": {
+          "type": "array",
+          "description": "Métricas actuales (si existen)",
+          "items": {
+            "type": "object",
+            "properties": {
+              "metric_name": {"type": "string"},
+              "current_value": {"type": "string"},
+              "measurement_frequency": {"type": "string"},
+              "data_source": {"type": "string"}
+            }
+          }
+        },
+        "proposed_kpis": {
+          "type": "array",
+          "description": "KPIs propuestos para medir mejora",
+          "items": {
+            "type": "object",
+            "properties": {
+              "kpi_name": {"type": "string"},
+              "definition": {"type": "string"},
+              "target_value": {"type": "string"},
+              "measurement_method": {"type": "string"}
+            }
+          }
+        },
+        "is_measurable": {
+          "type": "boolean",
+          "description": "¿El problema es medible objetivamente?"
+        }
+      }
+    },
+    "validation_status": {
+      "type": "object",
+      "required": ["validated", "validation_method"],
+      "properties": {
+        "validated": {
+          "type": "boolean",
+          "description": "¿El problema real ha sido validado?"
+        },
+        "validation_method": {
+          "type": "array",
+          "description": "Métodos usados para validar",
+          "items": {
+            "type": "string",
+            "enum": [
+              "interviews",
+              "observations",
+              "data_analysis",
+              "process_mapping",
+              "5_whys",
+              "fishbone_diagram",
+              "stakeholder_workshop"
+            ]
+          }
+        },
+        "validated_by": {
+          "type": "array",
+          "description": "Stakeholders que validaron el problema",
+          "items": {"type": "string"}
+        },
+        "validated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "validation_confidence": {
+          "type": "string",
+          "enum": ["low", "medium", "high"],
+          "description": "Nivel de confianza en la validación"
+        }
+      }
+    },
+    "discovery_artifacts": {
+      "type": "object",
+      "description": "Artefactos generados durante discovery",
+      "properties": {
+        "interview_notes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "interviewee": {"type": "string"},
+              "date": {"type": "string", "format": "date"},
+              "file_path": {"type": "string"}
+            }
+          }
+        },
+        "observation_notes": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "diagrams": {
+          "type": "array",
+          "description": "Fishbone, 5 Whys, etc",
+          "items": {
+            "type": "object",
+            "properties": {
+              "diagram_type": {"type": "string"},
+              "file_path": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    "next_steps": {
+      "type": "object",
+      "description": "Próximos pasos tras validar el problema",
+      "properties": {
+        "recommended_phase": {
+          "type": "string",
+          "description": "Siguiente fase recomendada"
+        },
+        "prerequisites": {
+          "type": "array",
+          "description": "Prerequisitos antes de continuar",
+          "items": {"type": "string"}
+        },
+        "estimated_effort": {
+          "type": "string",
+          "description": "Esfuerzo estimado para resolver"
+        }
+      }
+    }
+  }
+}

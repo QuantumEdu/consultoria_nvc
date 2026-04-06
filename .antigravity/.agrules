@@ -1,0 +1,496 @@
+# 📜 PROBLEM DISCOVERY & SOLUTION DESIGN AUTOPILOT
+# GLOBAL RULES - .agrules v1.0
+
+## ═══════════════════════════════════════════════════════════════════
+## 🛡️ ETHICAL RULES (NON-NEGOTIABLE)
+## ═══════════════════════════════════════════════════════════════════
+
+ethical_rules:
+  
+  # Principio fundamental: Problema primero, solución después
+  - rule: "NUNCA proponer tecnología o solución antes de entender el problema real"
+    rationale: "La digitalización sin entendimiento genera desperdicio y frustración"
+    enforcement: "BLOCKING - El sistema debe rechazar requests que salten discovery"
+  
+  - rule: "SIEMPRE validar problema real vs. problema percibido"
+    rationale: "Los clientes a menudo expresan síntomas, no causas raíz"
+    enforcement: "MANDATORY - Discovery Agent debe hacer al menos 3 niveles de '¿Por qué?'"
+  
+  - rule: "NUNCA asumir que digitalización/automatización es la respuesta"
+    rationale: "A veces la solución es simplificación, capacitación, o cambio de proceso"
+    enforcement: "WARNING - Solution Architect debe considerar alternativas no-tech"
+  
+  - rule: "SIEMPRE incluir usuarios operativos en el descubrimiento"
+    rationale: "Los directivos ven distinto que quienes sufren el proceso diario"
+    enforcement: "MANDATORY - Discovery debe incluir al menos 2 perfiles: directivo + operativo"
+  
+  - rule: "NUNCA omitir modelado AS-IS (proceso actual)"
+    rationale: "No se puede mejorar lo que no se entiende"
+    enforcement: "BLOCKING - TO-BE requiere AS-IS completado como prerequisito"
+  
+  - rule: "SIEMPRE respetar la madurez organizacional del cliente"
+    rationale: "Proponer soluciones fuera de capacidad genera fracaso"
+    enforcement: "MANDATORY - Depth Assessor valida capacidad antes de recomendar complejidad"
+  
+  - rule: "NUNCA digitalizar un proceso roto"
+    rationale: "Automatizar ineficiencia solo la hace más rápida"
+    enforcement: "BLOCKING - Redesign Agent debe validar TO-BE antes de Architecture"
+  
+  - rule: "SIEMPRE obtener aprobación explícita del cliente antes de avanzar de fase"
+    rationale: "El cliente debe entender y aprobar cada paso"
+    enforcement: "BLOCKING - Quality Gates requieren confirmación explícita"
+
+## ═══════════════════════════════════════════════════════════════════
+## 🧭 METHODOLOGICAL RULES (Framework Integration)
+## ═══════════════════════════════════════════════════════════════════
+
+methodological_rules:
+
+  # Frameworks por fase
+  discovery_phase:
+    primary_framework: "Design Thinking (Discovery mode)"
+    supporting_tools:
+      - "5 Whys (root cause analysis)"
+      - "Fishbone Diagram (cause-effect)"
+      - "Stakeholder Mapping"
+      - "Pain Point Canvas"
+    key_principle: "Empatía y observación antes que soluciones"
+  
+  as_is_modeling:
+    primary_framework: "BPMN 2.0 (Business Process Model and Notation)"
+    supporting_tools:
+      - "Value Stream Mapping"
+      - "Process Mining techniques"
+      - "Swim Lane diagrams"
+    key_principle: "Mapear la realidad, no el ideal"
+    validation: "Usuarios deben reconocer el proceso como 'así lo hacemos'"
+  
+  redesign_phase:
+    primary_framework: "Lean Thinking"
+    supporting_tools:
+      - "Waste Identification (7+1 Mudas)"
+      - "Process Simplification principles"
+      - "5S methodology (cuando aplique)"
+    key_principle: "Simplicidad antes que sofisticación"
+    validation: "TO-BE debe ser más simple que AS-IS (menos pasos, menos handoffs)"
+  
+  mvp_definition:
+    primary_framework: "Lean Startup + Agile MVP"
+    supporting_tools:
+      - "MoSCoW Prioritization"
+      - "Kano Model (customer satisfaction)"
+      - "Impact/Effort Matrix"
+    key_principle: "20% de funcionalidad que genera 80% del valor"
+  
+  architecture_phase:
+    primary_framework: "TOGAF (Architecture Development Method - simplificado)"
+    supporting_tools:
+      - "Layered Architecture patterns"
+      - "Integration patterns"
+      - "Build vs Buy decision matrix"
+    key_principle: "Flexibilidad y desacoplamiento sobre dependencia"
+  
+  implementation:
+    primary_framework: "Agile (Scrum/Kanban adaptado)"
+    supporting_tools:
+      - "Sprint Planning"
+      - "Retrospectives"
+      - "Change Management (Kotter, ADKAR)"
+    key_principle: "Iteración y feedback continuo"
+
+## ═══════════════════════════════════════════════════════════════════
+## 🔄 PIPELINE RULES (Workflow Governance)
+## ═══════════════════════════════════════════════════════════════════
+
+pipeline_rules:
+
+  # Secuencia obligatoria (core workflow)
+  mandatory_sequence:
+    - phase: "INTAKE"
+      gate: "Problem clarity checkpoint"
+      cannot_skip: true
+    
+    - phase: "DISCOVERY"
+      gate: "Real problem validation"
+      cannot_skip: true
+    
+    - phase: "DEPTH_ASSESSMENT"
+      gate: "Engagement profiling"
+      cannot_skip: true
+    
+    - phase: "AS-IS_MODELING"
+      gate: "Current state documented"
+      can_skip_if: "Process is greenfield (no existe proceso actual)"
+    
+    - phase: "TO-BE_DESIGN"
+      gate: "Improved process validated"
+      cannot_skip: true
+    
+    - phase: "MVP_DEFINITION"
+      gate: "Scope agreed"
+      cannot_skip: true
+    
+    - phase: "ARCHITECTURE"
+      gate: "Solution designed"
+      can_skip_if: "Solution is non-technical (proceso manual mejorado)"
+    
+    - phase: "ROADMAP"
+      gate: "Implementation plan approved"
+      cannot_skip: true
+
+  # Quality Gates (validaciones entre fases)
+  quality_gates:
+    
+    gate_discovery:
+      name: "Real Problem Validation"
+      checks:
+        - "¿Se identificó el problema real (no solo el percibido)?"
+        - "¿Se entrevistaron al menos 2 perfiles diferentes (directivo + operativo)?"
+        - "¿Se tiene evidencia del dolor operativo (tiempo, dinero, control)?"
+        - "¿El problema es medible?"
+      on_fail: "BLOCK - No se puede avanzar sin problema real identificado"
+      approval_required: "Consultant + Client"
+    
+    gate_as_is:
+      name: "Current State Documented"
+      checks:
+        - "¿El proceso AS-IS está mapeado en BPMN o diagrama equivalente?"
+        - "¿Los usuarios reconocen el mapeo como 'así lo hacemos'?"
+        - "¿Se identificaron cuellos de botella y puntos de dolor?"
+        - "¿Se tienen métricas actuales (tiempo, costo, errores)?"
+      on_fail: "BLOCK - No se puede rediseñar sin entender el actual"
+      approval_required: "Operational users"
+    
+    gate_to_be:
+      name: "Improved Process Validated"
+      checks:
+        - "¿El proceso TO-BE es más simple que AS-IS?"
+        - "¿Se eliminó waste identificado?"
+        - "¿Se validó factibilidad con usuarios?"
+        - "¿Se tienen métricas objetivo claras?"
+      on_fail: "WARN - Revisar si realmente mejora el proceso"
+      approval_required: "Client"
+    
+    gate_mvp:
+      name: "Scope Agreed"
+      checks:
+        - "¿Se definió el 20% de funcionalidad que genera 80% valor?"
+        - "¿Está claro qué NO entra en MVP?"
+        - "¿El MVP es demostrable en < 3 meses?"
+        - "¿Cliente aprobó el alcance?"
+      on_fail: "BLOCK - MVP muy ambicioso tiende a fallar"
+      approval_required: "Client + Budget owner"
+    
+    gate_architecture:
+      name: "Solution Designed"
+      checks:
+        - "¿La arquitectura soporta cambios futuros?"
+        - "¿Se evaluó Build vs Buy?"
+        - "¿No crea dependencia crítica de un solo proveedor/persona?"
+        - "¿Cliente entiende la propuesta técnica?"
+      on_fail: "WARN - Riesgo de deuda técnica"
+      approval_required: "Client + Technical lead (si existe)"
+    
+    gate_roadmap:
+      name: "Implementation Plan Approved"
+      checks:
+        - "¿El roadmap tiene fases incrementales?"
+        - "¿Hay plan de change management?"
+        - "¿Se identificaron riesgos principales?"
+        - "¿Cliente tiene capacidad para ejecutar?"
+      on_fail: "WARN - Plan puede ser demasiado agresivo"
+      approval_required: "Client (all stakeholders)"
+
+## ═══════════════════════════════════════════════════════════════════
+## 📏 DEPTH CRITERIA (Complexity & Maturity Assessment)
+## ═══════════════════════════════════════════════════════════════════
+
+depth_criteria:
+
+  # Niveles de profundidad
+  quick_track:
+    duration: "< 2 semanas"
+    complexity: "BAJA"
+    scope: "Problema específico y acotado"
+    maturity_required: "No crítico"
+    use_cases:
+      - "Validación rápida de hipótesis"
+      - "Quick win identificado"
+      - "Proceso muy simple (< 5 pasos)"
+    deliverables:
+      - "Problem statement"
+      - "Quick recommendations"
+      - "Action plan (1 página)"
+    cost_estimate: "$2K - $8K USD"
+  
+  standard_track:
+    duration: "4-8 semanas"
+    complexity: "MEDIA"
+    scope: "Proceso de 1-2 áreas funcionales"
+    maturity_required: "Media (capacidad de cambio)"
+    use_cases:
+      - "Digitalización de proceso departamental"
+      - "Mejora de proceso existente"
+      - "Implementación de herramienta nueva"
+    deliverables:
+      - "Full discovery report"
+      - "AS-IS + TO-BE processes"
+      - "MVP definition"
+      - "Architecture design"
+      - "Implementation roadmap (3-6 meses)"
+    cost_estimate: "$15K - $50K USD"
+  
+  deep_dive_track:
+    duration: "8+ semanas"
+    complexity: "ALTA"
+    scope: "Proceso end-to-end multi-área o transformación"
+    maturity_required: "Alta (sponsors + budget + capacidad)"
+    use_cases:
+      - "Transformación digital completa"
+      - "Rediseño end-to-end de proceso core"
+      - "Integración de múltiples sistemas"
+    deliverables:
+      - "Comprehensive assessment"
+      - "Current state analysis (multiple processes)"
+      - "Future state architecture"
+      - "Detailed implementation plan (6-18 meses)"
+      - "Change management strategy"
+      - "Governance model"
+    cost_estimate: "$50K - $250K+ USD"
+
+  # Factores de complejidad (scoring 1-5)
+  complexity_factors:
+    technical:
+      name: "Complejidad técnica"
+      weight: 0.25
+      criteria:
+        1: "Proceso manual simple"
+        2: "1-2 sistemas involucrados"
+        3: "3-4 sistemas con integraciones básicas"
+        4: "5+ sistemas con integraciones complejas"
+        5: "Múltiples sistemas legacy + alta regulación"
+    
+    organizational:
+      name: "Complejidad organizacional"
+      weight: 0.25
+      criteria:
+        1: "1 departamento, < 10 personas"
+        2: "2 departamentos, < 30 personas"
+        3: "3-4 departamentos, < 100 personas"
+        4: "5+ departamentos, múltiples ubicaciones"
+        5: "Cross-empresa, múltiples países"
+    
+    change_impact:
+      name: "Impacto del cambio"
+      weight: 0.30
+      criteria:
+        1: "Mejora incremental, low risk"
+        2: "Cambio moderado en procesos"
+        3: "Cambio significativo, requiere capacitación"
+        4: "Transformación de roles y estructura"
+        5: "Cambio cultural profundo"
+    
+    data_quality:
+      name: "Calidad de datos/procesos"
+      weight: 0.20
+      criteria:
+        1: "Datos limpios, procesos documentados"
+        2: "Algunos gaps en documentación"
+        3: "Datos incompletos, procesos informales"
+        4: "Datos inconsistentes, procesos ad-hoc"
+        5: "Caos total, tribal knowledge"
+  
+  # Factores de madurez organizacional (scoring 1-5)
+  maturity_factors:
+    change_readiness:
+      name: "Preparación para el cambio"
+      criteria:
+        1: "Resistencia alta, sin sponsor"
+        2: "Resistencia moderada"
+        3: "Neutral, sponsor débil"
+        4: "Positiva, sponsor comprometido"
+        5: "Cultura de mejora continua"
+    
+    process_maturity:
+      name: "Madurez de procesos"
+      criteria:
+        1: "Ad-hoc, tribal knowledge"
+        2: "Algunos procesos documentados"
+        3: "Procesos definidos pero no seguidos"
+        4: "Procesos estandarizados y medidos"
+        5: "Optimización continua"
+    
+    technical_capability:
+      name: "Capacidad técnica interna"
+      criteria:
+        1: "Sin equipo IT, todo outsourced"
+        2: "IT básico (soporte)"
+        3: "IT intermedio (puede mantener)"
+        4: "IT avanzado (puede desarrollar)"
+        5: "IT estratégico (innovación)"
+    
+    budget_availability:
+      name: "Disponibilidad presupuestal"
+      criteria:
+        1: "Sin presupuesto definido"
+        2: "Presupuesto muy limitado"
+        3: "Presupuesto moderado"
+        4: "Presupuesto adecuado"
+        5: "Presupuesto abundante + ROI claro"
+
+## ═══════════════════════════════════════════════════════════════════
+## 🚫 PROHIBITED ACTIONS (Red Lines)
+## ═══════════════════════════════════════════════════════════════════
+
+prohibited_actions:
+
+  # Acciones absolutamente prohibidas
+  red_lines:
+    - action: "Saltar directamente a propuesta de tecnología sin discovery"
+      consequence: "Sistema rechaza el request"
+      exception: "Ninguna"
+    
+    - action: "Ignorar o minimizar el mapeo del proceso actual (AS-IS)"
+      consequence: "Workflow bloqueado en Quality Gate"
+      exception: "Proceso greenfield (no existe proceso actual)"
+    
+    - action: "Proponer digitalización de proceso sin antes simplificarlo"
+      consequence: "Warning + requerimiento de TO-BE validado"
+      exception: "Proceso ya está optimizado (raro)"
+    
+    - action: "Avanzar sin aprobación explícita del cliente en Quality Gates"
+      consequence: "Workflow pausado hasta obtener aprobación"
+      exception: "Ninguna"
+    
+    - action: "Definir MVP con > 50% de funcionalidad total esperada"
+      consequence: "Warning + requerimiento de re-priorización"
+      exception: "Ninguna (MVP debe ser < 30% idealmente)"
+    
+    - action: "Omitir usuarios operativos en discovery (solo directivos)"
+      consequence: "Discovery incompleto, requiere complementar"
+      exception: "Proceso no involucra operativos (muy raro)"
+    
+    - action: "Proponer solución fuera de la capacidad técnica/presupuestal"
+      consequence: "Warning de Depth Assessor"
+      exception: "Cliente acepta explícitamente el gap + plan de capacitación"
+
+  # Anti-patterns a evitar
+  anti_patterns:
+    - pattern: "Solution in search of a problem"
+      description: "Proponer tecnología cool sin problema real"
+      how_to_detect: "Si no se puede explicar el dolor operativo en 2 frases"
+    
+    - pattern: "Technology first"
+      description: "Empezar por 'necesitamos un ERP/CRM/blockchain'"
+      how_to_detect: "Cliente menciona tecnología antes que problema"
+    
+    - pattern: "Boiling the ocean"
+      description: "Intentar resolver todo a la vez"
+      how_to_detect: "MVP con > 10 historias de usuario críticas"
+    
+    - pattern: "Copy-paste solution"
+      description: "Replicar solución de otro cliente sin adaptación"
+      how_to_detect: "No hay discovery específico del contexto"
+    
+    - pattern: "Over-engineering"
+      description: "Arquitectura demasiado compleja para el problema"
+      how_to_detect: "Solución requiere > 2x capacidad técnica actual"
+    
+    - pattern: "Ignoring change management"
+      description: "Enfoque solo técnico, ignorando gente"
+      how_to_detect: "Roadmap sin plan de capacitación o comunicación"
+
+## ═══════════════════════════════════════════════════════════════════
+## 📊 METRICS & SUCCESS CRITERIA
+## ═══════════════════════════════════════════════════════════════════
+
+success_metrics:
+
+  # Métricas de calidad del engagement
+  engagement_quality:
+    discovery_completeness:
+      metric: "% de stakeholders clave entrevistados"
+      target: "> 80%"
+      critical_threshold: "< 50% = RIESGO ALTO"
+    
+    problem_clarity:
+      metric: "Scoring de claridad del problema (1-10)"
+      target: "> 8"
+      calculation: "Average de: medible, específico, validado, con dolor operativo"
+    
+    client_alignment:
+      metric: "Aprobaciones obtenidas vs requeridas"
+      target: "100%"
+      critical_threshold: "< 100% = BLOCKER"
+  
+  # Métricas de efectividad del proceso
+  process_effectiveness:
+    simplification_ratio:
+      metric: "Reducción de pasos AS-IS → TO-BE"
+      target: "> 20% menos pasos"
+      formula: "(AS-IS steps - TO-BE steps) / AS-IS steps"
+    
+    automation_opportunity:
+      metric: "% de pasos automatizables identificados"
+      target: "> 30%"
+      note: "No todos deben automatizarse, pero deben identificarse"
+    
+    mvp_focus:
+      metric: "Ratio MVP / Total features"
+      target: "< 30%"
+      critical_threshold: "> 50% = Re-priorizar"
+  
+  # Métricas de valor entregado
+  value_delivered:
+    time_saved:
+      metric: "Horas/mes ahorradas (estimado)"
+      target: "> 10% del tiempo actual del proceso"
+    
+    error_reduction:
+      metric: "% reducción de errores (estimado)"
+      target: "> 25%"
+    
+    roi_potential:
+      metric: "ROI estimado a 12 meses"
+      target: "> 200%"
+      note: "Solo para soluciones que requieren inversión > $10K"
+
+## ═══════════════════════════════════════════════════════════════════
+## 🔐 VERSIONING & AUDIT
+## ═══════════════════════════════════════════════════════════════════
+
+versioning:
+  system_version: "1.0.0"
+  agrules_version: "1.0.0"
+  last_updated: "2025-01-19"
+  changelog:
+    - version: "1.0.0"
+      date: "2025-01-19"
+      changes: "Initial release - Core rules for Problem Discovery System"
+
+audit_requirements:
+  - "Todas las decisiones de agentes deben loggearse en memory/decision_log.json"
+  - "Todas las aprobaciones de cliente deben registrarse con timestamp"
+  - "Quality Gates deben tener evidencia de validación"
+  - "Cambios de scope deben documentarse en engagement_profile.json"
+
+## ═══════════════════════════════════════════════════════════════════
+## 📝 NOTES
+## ═══════════════════════════════════════════════════════════════════
+
+# Este archivo define las reglas que TODOS los agentes deben seguir.
+# Estas reglas son NON-NEGOTIABLE y están basadas en mejores prácticas
+# de nivel mundial para descubrimiento de problemas y diseño de soluciones.
+#
+# Principio rector:
+# "Primero resuelves el problema. Luego profesionalizas la solución.
+#  Después la sistematizas. Al final la gobiernas."
+#
+# Basado en:
+# - Design Thinking (IDEO, Stanford d.school)
+# - Lean Thinking (Toyota Production System)
+# - BPMN 2.0 (OMG standard)
+# - TOGAF (The Open Group)
+# - Agile Manifesto
+
+# END OF .agrules

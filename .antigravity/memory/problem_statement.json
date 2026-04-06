@@ -1,0 +1,101 @@
+{
+    "problem_id": "PROB-20260213-NVC001",
+    "engagement_id": "ENG-20260213-NVC001",
+    "created_at": "2026-02-13T20:45:00Z",
+    "updated_at": "2026-02-13T20:50:00Z",
+    "perceived_problem": {
+        "statement": "El negocio requiere sistemas centralizados, manuales de procesos y una estructura administrativa profesional para poder crecer de 5 a 10 sucursales sin perder control, además de lanzar una nueva línea de puntos de venta.",
+        "source": "Documento neogcio.md / Gerente General"
+    },
+    "real_problem": {
+        "statement": "La dependencia crítica de la gestión manual y del conocimiento centralizado en el Dueño impide la escalabilidad eficiente y provoca una pérdida del 50% del potencial de ventas actual y costos de oportunidad de $1.44M anuales por retraso en la expansión.",
+        "root_causes": [
+            {
+                "cause": "Falta de estandarización documental (Manuales inexistentes)",
+                "evidence": "Declarado explícitamente: 'no tiene manuales de procesos'",
+                "impact": "critical"
+            },
+            {
+                "cause": "Ausencia de sistema de información integrado (Silos de datos)",
+                "evidence": "Falta sistema POS, administración no robusta",
+                "impact": "high"
+            },
+            {
+                "cause": "Carencia de mandos medios especializados",
+                "evidence": "Falta gerente administrativo, marketing, ventas especializadas",
+                "impact": "high"
+            }
+        ],
+        "evidence": [
+            {
+                "type": "opportunity_loss",
+                "description": "Retraso en apertura de nuevas sucursales por falta de estructura.",
+                "quantification": "$120,000/mes ($1,440,000 anuales)",
+                "source": "Gerente General (cuantificación)"
+            },
+            {
+                "type": "control_loss",
+                "description": "Pérdida de ventas por falta de administración y organigrama (no solo stock).",
+                "quantification": "50% del potencial de ventas actual (Monto exacto pendiente de calcular con base de ventas)",
+                "source": "Gerente General (cuantificación)"
+            },
+            {
+                "type": "time_waste",
+                "description": "Tiempo dedicado a tareas manuales/administrativas por Gerencia.",
+                "quantification": "20 horas/semana (1,040 horas anuales)",
+                "source": "Gerente General (cuantificación)"
+            },
+            {
+                "type": "money_loss",
+                "description": "Cartera vencida no identificada y mermas diversas.",
+                "quantification": "Monto variable (no cuantificado con precisión aún)",
+                "source": "Gerente General (cuantificación)"
+            }
+        ],
+        "confidence_level": "high"
+    },
+    "stakeholders_affected": [
+        {
+            "name": "Gerente General",
+            "role": "General Manager",
+            "impact_description": "Desviación de 20hrs/sem en tareas operativas vs estratégicas. Sobrecarga.",
+            "pain_level": "critical"
+        },
+        {
+            "name": "Personal de Sucursales",
+            "role": "Operational Staff",
+            "impact_description": "Ineficiencia operativa y pérdida de ventas por falta de herramientas.",
+            "pain_level": "medium"
+        }
+    ],
+    "impact_analysis": {
+        "operational_impact": {
+            "time_lost": "1,040 horas/año",
+            "money_lost": "> $1,440,000 MXN/año (Solo considerando expansión)",
+            "quality_degradation": "Alta (Pérdida de 50% de ventas potenciales)"
+        },
+        "strategic_impact": {
+            "growth_blocker": true,
+            "competitive_disadvantage": true,
+            "risk_exposure": "high"
+        }
+    },
+    "validation_status": {
+        "validated": true,
+        "validation_method": [
+            "data_analysis",
+            "stakeholder_interview"
+        ],
+        "validated_by": [
+            "Gerente General"
+        ],
+        "validation_confidence": "high"
+    },
+    "next_steps": {
+        "recommended_phase": "depth_assessment",
+        "prerequisites": [
+            "base_sales_data_for_full_calculation"
+        ],
+        "estimated_effort": "High (Deep Dive Track)"
+    }
+}

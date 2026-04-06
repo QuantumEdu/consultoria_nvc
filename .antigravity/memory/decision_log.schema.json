@@ -1,0 +1,170 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Decision Log",
+  "description": "Registro de todas las decisiones tomadas por agentes durante el engagement",
+  "type": "object",
+  "required": ["engagement_id", "decisions"],
+  "properties": {
+    "engagement_id": {
+      "type": "string",
+      "description": "ID del engagement"
+    },
+    "decisions": {
+      "type": "array",
+      "description": "Lista de decisiones registradas",
+      "items": {
+        "type": "object",
+        "required": [
+          "decision_id",
+          "timestamp",
+          "agent",
+          "phase",
+          "decision_type",
+          "decision",
+          "rationale"
+        ],
+        "properties": {
+          "decision_id": {
+            "type": "string",
+            "description": "ID único de la decisión",
+            "pattern": "^DEC-[0-9]{8}-[0-9]{6}$"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Cuándo se tomó la decisión"
+          },
+          "agent": {
+            "type": "string",
+            "description": "Agente que tomó la decisión",
+            "examples": [
+              "Intake Agent",
+              "Discovery Orchestrator",
+              "Depth Assessor",
+              "Process Intelligence Agent",
+              "Redesign Agent",
+              "Solution Architect",
+              "Roadmap Agent",
+              "Methodology Advisor"
+            ]
+          },
+          "phase": {
+            "type": "string",
+            "description": "Fase del workflow en la que se tomó",
+            "examples": ["intake", "discovery", "as_is", "to_be", "mvp", "architecture", "roadmap"]
+          },
+          "decision_type": {
+            "type": "string",
+            "enum": [
+              "workflow_selection",
+              "methodology_recommendation",
+              "depth_assessment",
+              "scope_definition",
+              "prioritization",
+              "technology_selection",
+              "risk_mitigation",
+              "quality_gate",
+              "escalation",
+              "other"
+            ],
+            "description": "Tipo de decisión"
+          },
+          "decision": {
+            "type": "string",
+            "description": "Qué se decidió"
+          },
+          "rationale": {
+            "type": "string",
+            "description": "Por qué se tomó esta decisión"
+          },
+          "alternatives_considered": {
+            "type": "array",
+            "description": "Alternativas que se consideraron",
+            "items": {
+              "type": "object",
+              "properties": {
+                "alternative": {"type": "string"},
+                "pros": {"type": "array", "items": {"type": "string"}},
+                "cons": {"type": "array", "items": {"type": "string"}},
+                "why_not_selected": {"type": "string"}
+              }
+            }
+          },
+          "impact": {
+            "type": "string",
+            "enum": ["low", "medium", "high", "critical"],
+            "description": "Impacto de la decisión en el engagement"
+          },
+          "reversible": {
+            "type": "boolean",
+            "description": "¿La decisión es reversible?"
+          },
+          "approved_by": {
+            "type": "string",
+            "description": "Quién aprobó la decisión (si aplica)"
+          },
+          "dependencies": {
+            "type": "array",
+            "description": "Otras decisiones de las que depende esta",
+            "items": {"type": "string"}
+          },
+          "context": {
+            "type": "object",
+            "description": "Contexto adicional relevante",
+            "properties": {
+              "data_used": {
+                "type": "array",
+                "description": "Datos usados para la decisión",
+                "items": {"type": "string"}
+              },
+              "stakeholders_consulted": {
+                "type": "array",
+                "items": {"type": "string"}
+              },
+              "constraints_considered": {
+                "type": "array",
+                "items": {"type": "string"}
+              }
+            }
+          },
+          "outcome": {
+            "type": "object",
+            "description": "Resultado de la decisión (se llena después)",
+            "properties": {
+              "status": {
+                "type": "string",
+                "enum": ["pending", "implemented", "revised", "cancelled"]
+              },
+              "actual_impact": {
+                "type": "string",
+                "description": "Impacto real observado"
+              },
+              "lessons_learned": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "description": "Resumen del log de decisiones",
+      "properties": {
+        "total_decisions": {"type": "integer"},
+        "decisions_by_phase": {
+          "type": "object",
+          "additionalProperties": {"type": "integer"}
+        },
+        "decisions_by_agent": {
+          "type": "object",
+          "additionalProperties": {"type": "integer"}
+        },
+        "high_impact_decisions": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      }
+    }
+  }
+}

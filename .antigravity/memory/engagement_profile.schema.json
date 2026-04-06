@@ -1,0 +1,353 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Engagement Profile",
+  "description": "Configuración completa del engagement con el cliente, incluyendo contexto, profundidad, y tracking",
+  "type": "object",
+  "required": [
+    "engagement_id",
+    "created_at",
+    "client_info",
+    "problem_context",
+    "depth_assessment",
+    "workflow_selected",
+    "status"
+  ],
+  "properties": {
+    "engagement_id": {
+      "type": "string",
+      "description": "Identificador único del engagement",
+      "pattern": "^ENG-[0-9]{8}-[A-Z0-9]{6}$",
+      "example": "ENG-20250119-A1B2C3"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp de creación del engagement"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Último timestamp de actualización"
+    },
+    "client_info": {
+      "type": "object",
+      "required": ["organization_name", "industry", "size", "primary_contact"],
+      "properties": {
+        "organization_name": {
+          "type": "string",
+          "description": "Nombre de la organización cliente"
+        },
+        "industry": {
+          "type": "string",
+          "description": "Industria o sector",
+          "examples": ["healthcare", "manufacturing", "retail", "financial_services", "government", "technology"]
+        },
+        "size": {
+          "type": "string",
+          "enum": ["micro", "small", "medium", "large", "enterprise"],
+          "description": "Tamaño de la organización"
+        },
+        "size_details": {
+          "type": "object",
+          "properties": {
+            "employees": {
+              "type": "integer",
+              "description": "Número de empleados"
+            },
+            "revenue_range": {
+              "type": "string",
+              "description": "Rango de ingresos anuales",
+              "examples": ["< $1M", "$1M-$10M", "$10M-$50M", "$50M-$500M", "> $500M"]
+            },
+            "locations": {
+              "type": "integer",
+              "description": "Número de ubicaciones/sucursales"
+            }
+          }
+        },
+        "primary_contact": {
+          "type": "object",
+          "required": ["name", "email", "role"],
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string",
+              "format": "email"
+            },
+            "role": {
+              "type": "string",
+              "description": "Rol en la organización",
+              "examples": ["CEO", "CTO", "Operations Manager", "Process Owner"]
+            },
+            "phone": {
+              "type": "string"
+            }
+          }
+        },
+        "stakeholders": {
+          "type": "array",
+          "description": "Otros stakeholders identificados",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {"type": "string"},
+              "role": {"type": "string"},
+              "email": {"type": "string"},
+              "involvement_level": {
+                "type": "string",
+                "enum": ["sponsor", "decision_maker", "influencer", "user", "informed"]
+              }
+            }
+          }
+        }
+      }
+    },
+    "problem_context": {
+      "type": "object",
+      "description": "Contexto inicial del problema (antes de discovery profundo)",
+      "required": ["domain", "perceived_problem"],
+      "properties": {
+        "domain": {
+          "type": "string",
+          "description": "Dominio del problema",
+          "enum": [
+            "process_digitalization",
+            "conflict_resolution",
+            "risk_assessment",
+            "operational_improvement",
+            "environmental_impact",
+            "organizational_change",
+            "compliance",
+            "customer_experience",
+            "other"
+          ]
+        },
+        "perceived_problem": {
+          "type": "string",
+          "description": "Problema tal como lo describe el cliente inicialmente"
+        },
+        "urgency": {
+          "type": "string",
+          "enum": ["low", "medium", "high", "critical"],
+          "description": "Nivel de urgencia del cliente"
+        },
+        "trigger_event": {
+          "type": "string",
+          "description": "Evento que disparó la necesidad de resolver esto ahora"
+        },
+        "constraints": {
+          "type": "object",
+          "properties": {
+            "budget_range": {
+              "type": "string",
+              "description": "Rango presupuestal disponible"
+            },
+            "timeline": {
+              "type": "string",
+              "description": "Timeline deseado por cliente"
+            },
+            "technical_constraints": {
+              "type": "array",
+              "items": {"type": "string"}
+            },
+            "organizational_constraints": {
+              "type": "array",
+              "items": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    "depth_assessment": {
+      "type": "object",
+      "description": "Resultado del análisis de profundidad y madurez",
+      "required": ["recommended_track", "complexity_score", "maturity_score"],
+      "properties": {
+        "recommended_track": {
+          "type": "string",
+          "enum": ["quick", "standard", "deep_dive"],
+          "description": "Track recomendado basado en análisis"
+        },
+        "complexity_score": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 5,
+          "description": "Score de complejidad (1=simple, 5=muy complejo)"
+        },
+        "complexity_breakdown": {
+          "type": "object",
+          "properties": {
+            "technical": {"type": "number", "minimum": 1, "maximum": 5},
+            "organizational": {"type": "number", "minimum": 1, "maximum": 5},
+            "change_impact": {"type": "number", "minimum": 1, "maximum": 5},
+            "data_quality": {"type": "number", "minimum": 1, "maximum": 5}
+          }
+        },
+        "maturity_score": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 5,
+          "description": "Score de madurez organizacional (1=inmadura, 5=muy madura)"
+        },
+        "maturity_breakdown": {
+          "type": "object",
+          "properties": {
+            "change_readiness": {"type": "number", "minimum": 1, "maximum": 5},
+            "process_maturity": {"type": "number", "minimum": 1, "maximum": 5},
+            "technical_capability": {"type": "number", "minimum": 1, "maximum": 5},
+            "budget_availability": {"type": "number", "minimum": 1, "maximum": 5}
+          }
+        },
+        "rationale": {
+          "type": "string",
+          "description": "Explicación de por qué se recomienda este track"
+        },
+        "risks_identified": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "risk": {"type": "string"},
+              "severity": {"type": "string", "enum": ["low", "medium", "high", "critical"]},
+              "mitigation": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    "workflow_selected": {
+      "type": "object",
+      "required": ["workflow_id", "workflow_name"],
+      "properties": {
+        "workflow_id": {
+          "type": "string",
+          "description": "ID del workflow seleccionado"
+        },
+        "workflow_name": {
+          "type": "string",
+          "description": "Nombre del workflow"
+        },
+        "estimated_duration": {
+          "type": "string",
+          "description": "Duración estimada del workflow"
+        },
+        "estimated_budget": {
+          "type": "string",
+          "description": "Presupuesto estimado"
+        },
+        "phases_included": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Fases del workflow que se ejecutarán"
+        }
+      }
+    },
+    "status": {
+      "type": "object",
+      "required": ["current_phase", "overall_status"],
+      "properties": {
+        "overall_status": {
+          "type": "string",
+          "enum": ["initiated", "in_progress", "on_hold", "completed", "cancelled"],
+          "description": "Estado general del engagement"
+        },
+        "current_phase": {
+          "type": "string",
+          "description": "Fase actual del workflow"
+        },
+        "phase_status": {
+          "type": "string",
+          "enum": ["not_started", "in_progress", "blocked", "completed"],
+          "description": "Estado de la fase actual"
+        },
+        "completion_percentage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Porcentaje de completitud del engagement"
+        },
+        "quality_gates_passed": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Quality gates que han sido aprobados"
+        },
+        "quality_gates_pending": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Quality gates pendientes de aprobación"
+        },
+        "blockers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "blocker_id": {"type": "string"},
+              "description": {"type": "string"},
+              "severity": {"type": "string", "enum": ["low", "medium", "high"]},
+              "raised_at": {"type": "string", "format": "date-time"},
+              "resolution_plan": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    "methodologies_applied": {
+      "type": "array",
+      "description": "Metodologías y frameworks aplicados en este engagement",
+      "items": {
+        "type": "object",
+        "properties": {
+          "methodology": {"type": "string"},
+          "phase": {"type": "string"},
+          "rationale": {"type": "string"}
+        }
+      }
+    },
+    "deliverables": {
+      "type": "array",
+      "description": "Entregables acordados con el cliente",
+      "items": {
+        "type": "object",
+        "properties": {
+          "deliverable_name": {"type": "string"},
+          "description": {"type": "string"},
+          "due_date": {"type": "string", "format": "date"},
+          "status": {"type": "string", "enum": ["pending", "in_progress", "delivered", "approved"]},
+          "file_path": {"type": "string"}
+        }
+      }
+    },
+    "approvals": {
+      "type": "array",
+      "description": "Aprobaciones del cliente en cada quality gate",
+      "items": {
+        "type": "object",
+        "properties": {
+          "gate_name": {"type": "string"},
+          "approved_by": {"type": "string"},
+          "approved_at": {"type": "string", "format": "date-time"},
+          "comments": {"type": "string"}
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "consultant_assigned": {
+          "type": "string",
+          "description": "Consultor o facilitador asignado"
+        },
+        "tags": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "notes": {
+          "type": "string",
+          "description": "Notas adicionales del engagement"
+        }
+      }
+    }
+  }
+}

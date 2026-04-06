@@ -1,0 +1,6 @@
+{
+  "problema_percibido": "Queremos un ERP",
+  "problema_real": "Perdemos control de inventario y no sabemos rentabilidad por paciente",
+  "stakeholders_afectados": ["recepcionista", "contador", "director"],
+  "dolor_operativo": "15 horas/semana en conciliaciones manuales"
+}

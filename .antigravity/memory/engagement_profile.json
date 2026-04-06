@@ -1,0 +1,100 @@
+{
+    "engagement_id": "ENG-20260213-NVC001",
+    "created_at": "2026-02-13T20:40:00Z",
+    "updated_at": "2026-02-13T20:55:00Z",
+    "client_info": {
+        "organization_name": "NVC (Nutrición, Vacunas y Consultoría)",
+        "industry": "Nutrición Animal / Acuacultura",
+        "size": "medium",
+        "size_details": {
+            "locations": 5,
+            "employees": 20
+        },
+        "primary_contact": {
+            "name": "Gerente General",
+            "email": "contacto@nvc.com",
+            "role": "General Manager / Owner",
+            "phone": "+52 000 000 0000"
+        },
+        "stakeholders": [
+            {
+                "name": "Gerente General",
+                "role": "Sponsor / Decision Maker",
+                "involvement_level": "decision_maker"
+            },
+            {
+                "name": "Encargados de Sucursal",
+                "role": "Operational Users",
+                "involvement_level": "user"
+            }
+        ]
+    },
+    "problem_context": {
+        "domain": "process_digitalization",
+        "perceived_problem": "Falta de sistema POS centralizado, carencia de estructura administrativa profesional y manuales de procesos para soportar la expansión de 5 a 10 sucursales.",
+        "urgency": "high",
+        "trigger_event": "Plan estratégico de expansión a 10 sucursales y apertura de punto de venta especializado (mariscos).",
+        "constraints": {
+            "organizational_constraints": [
+                "Falta de estructura administrativa actual (Marketing, IT, Admins)",
+                "Dependencia del Gerente General"
+            ]
+        }
+    },
+    "depth_assessment": {
+        "recommended_track": "deep_dive",
+        "complexity_score": 3.4,
+        "complexity_breakdown": {
+            "technical": 3,
+            "organizational": 3,
+            "change_impact": 4,
+            "data_quality": 3
+        },
+        "maturity_score": 2.6,
+        "maturity_breakdown": {
+            "change_readiness": 4,
+            "process_maturity": 1,
+            "technical_capability": 2,
+            "budget_availability": 4
+        },
+        "rationale": "La transformación es profunda (Change Impact 4): de un modelo centralizado en el dueño a una estructura corporativa para 10 sucursales. La madurez de procesos es baja (Score 1), lo que obliga a un 'Deep Dive' para construir los cimientos (manuales, roles) antes de escalar. Sin embargo, la disposición al cambio y presupuesto (Score 4) permiten ejecutar este track ambicioso.",
+        "risks_identified": [
+            {
+                "risk": "Dependencia del Dueño durante la transición",
+                "severity": "critical",
+                "mitigation": "Delegación progresiva y contratación temprana de Gerente Administrativo"
+            },
+            {
+                "risk": "Brecha de talento técnico (IT/Sistemas)",
+                "severity": "high",
+                "mitigation": "Contratación de proveedor externo de soporte o líder de IT interno"
+            },
+            {
+                "risk": "Resistencia en sucursales a nuevos controles",
+                "severity": "medium",
+                "mitigation": "Programa de capacitación y bonos por adopción de nuevos procesos"
+            }
+        ]
+    },
+    "workflow_selected": {
+        "workflow_id": "WF-001-EXPANSION",
+        "workflow_name": "Expansion & Professionalization Deep Dive",
+        "estimated_duration": "16-20 weeks",
+        "phases_included": [
+            "intake",
+            "discovery",
+            "depth_assessment",
+            "methodology",
+            "as_is_modeling",
+            "to_be_design",
+            "architecture",
+            "roadmap"
+        ]
+    },
+    "status": {
+        "overall_status": "in_progress",
+        "current_phase": "depth_assessment",
+        "phase_status": "completed",
+        "completion_percentage": 25
+    }
+}

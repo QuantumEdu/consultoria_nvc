@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DAMICH — Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --azul:    #1B3A6B;
+    --azul-m:  #2E5FA3;
+    --azul-c:  #D6E4F0;
+    --verde:   #1A6B3A;
+    --verde-c: #D6F0E0;
+    --rojo:    #B40000;
+    --rojo-c:  #FDECEA;
+    --naranja: #C05E00;
+    --nar-c:   #FFF0E0;
+    --morado:  #5B2D8E;
+    --mor-c:   #EDE5F7;
+    --gris-bg: #F4F6FA;
+    --borde:   #DDE3EE;
+    --texto:   #1A2340;
+    --texto-s: #5A6580;
+    --blanco:  #FFFFFF;
+    --sombra:  0 2px 16px rgba(27,58,107,0.09);
+    --api:     'http://localhost:8001';
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'IBM Plex Sans', sans-serif; background: var(--gris-bg); color: var(--texto); }
+
+  /* ── NAV ── */
+  .nav {
+    background: var(--azul);
+    display: flex; align-items: center;
+    padding: 0 16px;
+    position: sticky; top: 0; z-index: 200;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  }
+  .nav-brand { color:#fff; font-size:13px; font-weight:700; letter-spacing:.08em;
+    padding:14px 0; margin-right:8px; white-space:nowrap; flex-shrink:0; text-transform:uppercase; }
+  .nav-brand span { color:#7EB6E8; }
+  .nav-tabs { display:flex; overflow-x:auto; scrollbar-width:none; }
+  .nav-tabs::-webkit-scrollbar { display:none; }
+  .nav-tab {
+    color:rgba(255,255,255,0.6); font-size:11px; font-weight:600;
+    padding:16px 12px 14px; cursor:pointer; white-space:nowrap;
+    border-bottom:3px solid transparent; transition:all .18s; text-transform:uppercase;
+  }
+  .nav-tab:hover { color:#fff; }
+  .nav-tab.active { color:#fff; border-bottom-color:#7EB6E8; }
+  .nav-spacer { flex:1; }
+  .nav-api-status { font-size:10px; font-weight:600; padding:4px 10px; border-radius:20px;
+    margin-left:8px; white-space:nowrap; flex-shrink:0; }
+  .status-ok  { background:rgba(26,107,58,0.3); color:#7EB6E8; }
+  .status-err { background:rgba(180,0,0,0.3);   color:#ff8080; }
+
+  /* ── FILTER BAR ── */
+  .filter-bar {
+    background:var(--blanco); border-bottom:1.5px solid var(--borde);
+    padding:10px 16px; display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+    position:sticky; top:49px; z-index:100;
+  }
+  .filter-bar label { font-size:11px; font-weight:700; color:var(--texto-s);
+    text-transform:uppercase; letter-spacing:.06em; display:flex; flex-direction:column; gap:4px; }
+  .filter-bar select, .filter-bar input {
+    font-family:'IBM Plex Sans',sans-serif; font-size:13px; padding:6px 10px;
+    border:1.5px solid var(--borde); border-radius:7px; background:var(--gris-bg);
+    color:var(--texto); outline:none; appearance:none; -webkit-appearance:none;
+  }
+  .filter-bar select:focus, .filter-bar input:focus { border-color:var(--azul-m); }
+  .btn-aplicar {
+    background:var(--azul); color:#fff; border:none; border-radius:7px;
+    font-family:'IBM Plex Sans',sans-serif; font-size:13px; font-weight:700;
+    padding:8px 18px; cursor:pointer; transition:background .15s; align-self:flex-end;
+  }
+  .btn-aplicar:hover { background:var(--azul-m); }
+
+  /* ── LAYOUT ── */
+  .page { display:none; padding:20px 16px 60px; max-width:1100px; margin:0 auto; }
+  .page.active { display:block; }
+
+  /* ── CARDS ── */
+  .card {
+    background:var(--blanco); border-radius:10px; box-shadow:var(--sombra);
+    padding:20px; margin-bottom:16px;
+  }
+  .card-header { display:flex; align-items:center; justify-content:space-between;
+    margin-bottom:16px; padding-bottom:12px; border-bottom:2px solid var(--borde); }
+  .card-title { font-size:14px; font-weight:700; color:var(--azul); display:flex; align-items:center; gap:8px; }
+  .card-actions { display:flex; gap:8px; }
+
+  /* ── KPI GRID ── */
+  .kpi-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:16px; }
+  .kpi-card {
+    background:var(--blanco); border-radius:10px; box-shadow:var(--sombra);
+    padding:16px; border-left:4px solid var(--azul);
+  }
+  .kpi-card.verde  { border-left-color:var(--verde); }
+  .kpi-card.rojo   { border-left-color:var(--rojo); }
+  .kpi-card.naranja{ border-left-color:var(--naranja); }
+  .kpi-card.morado { border-left-color:var(--morado); }
+  .kpi-label { font-size:11px; color:var(--texto-s); font-weight:700; text-transform:uppercase;
+    letter-spacing:.06em; margin-bottom:6px; }
+  .kpi-value { font-family:'IBM Plex Mono',monospace; font-size:22px; font-weight:700;
+    color:var(--texto); line-height:1.1; }
+  .kpi-sub   { font-size:11px; color:var(--texto-s); margin-top:4px; }
+
+  /* ── CHARTS ── */
+  .charts-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
+  .chart-wrap { position:relative; height:240px; }
+
+  /* ── TABLES ── */
+  .table-wrap { overflow-x:auto; }
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  thead th {
+    background:var(--azul); color:#fff; font-weight:700; font-size:11px;
+    text-transform:uppercase; letter-spacing:.06em;
+    padding:9px 12px; text-align:left; white-space:nowrap;
+  }
+  thead th.r { text-align:right; }
+  tbody tr:nth-child(even) { background:var(--gris-bg); }
+  tbody tr:hover { background:var(--azul-c); }
+  tbody td { padding:8px 12px; color:var(--texto); border-bottom:1px solid var(--borde); }
+  tbody td.r { text-align:right; font-family:'IBM Plex Mono',monospace; }
+  tbody td.mono { font-family:'IBM Plex Mono',monospace; font-size:12px; }
+
+  /* ── CHIPS ── */
+  .chip {
+    display:inline-flex; align-items:center;
+    padding:2px 9px; border-radius:20px; font-size:11px; font-weight:700;
+  }
+  .chip-ok  { background:var(--verde-c); color:var(--verde); }
+  .chip-mal { background:var(--rojo-c);  color:var(--rojo);  }
+  .chip-nar { background:var(--nar-c);   color:var(--naranja); }
+  .chip-mor { background:var(--mor-c);   color:var(--morado); }
+
+  /* ── BOTONES ── */
+  .btn {
+    display:inline-flex; align-items:center; gap:6px;
+    padding:8px 16px; border-radius:7px; border:none; cursor:pointer;
+    font-family:'IBM Plex Sans',sans-serif; font-size:12.5px; font-weight:700;
+    transition:all .18s; text-decoration:none;
+  }
+  .btn-pdf  { background:var(--rojo-c); color:var(--rojo); }
+  .btn-pdf:hover { background:#f8d0cc; }
+  .btn-imp  { background:var(--verde-c); color:var(--verde); }
+  .btn-imp:hover { background:#b7e5c8; }
+  .btn-sec  { background:var(--gris-bg); color:var(--azul); border:1.5px solid var(--borde); }
+  .btn-sec:hover { background:var(--azul-c); }
+
+  /* ── IMPORT ZONE ── */
+  .import-zone {
+    border:2px dashed var(--azul-m); border-radius:10px;
+    padding:24px; text-align:center; cursor:pointer;
+    transition:background .18s; margin-bottom:12px;
+  }
+  .import-zone:hover, .import-zone.drag-over { background:var(--azul-c); }
+  .import-zone p { font-size:13px; color:var(--texto-s); margin-top:8px; }
+  #file-input { display:none; }
+
+  /* ── ALERT ── */
+  .alert {
+    padding:12px 16px; border-radius:8px; font-size:13px;
+    margin-bottom:12px; display:none; align-items:center; gap:10px;
+  }
+  .alert.visible { display:flex; }
+  .alert-ok  { background:var(--verde-c); color:#0d4a24; border:1px solid #8fd4aa; }
+  .alert-err { background:var(--rojo-c);  color:#7a0000; border:1px solid #f5b0b0; }
+  .alert-inf { background:var(--azul-c);  color:#0d2a55; border:1px solid #9dc4e8; }
+
+  /* ── DEUDA PROGRESS ── */
+  .deuda-row { background:var(--gris-bg); border-radius:8px; padding:12px 14px; margin-bottom:8px; }
+  .deuda-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:6px; }
+  .deuda-cliente { font-weight:700; font-size:14px; }
+  .deuda-info { font-size:12px; color:var(--texto-s); margin-bottom:6px; }
+  .progress-bar { background:var(--borde); border-radius:4px; height:6px; overflow:hidden; }
+  .progress-fill { background:var(--verde); height:6px; border-radius:4px; transition:width .4s; }
+
+  /* ── EMPTY STATE ── */
+  .empty { text-align:center; padding:40px 20px; color:var(--texto-s); font-size:13px; }
+  .empty-icon { font-size:32px; display:block; margin-bottom:10px; }
+
+  /* ── LOADING ── */
+  .loading { text-align:center; padding:30px; color:var(--texto-s); font-size:13px; }
+  .spinner {
+    display:inline-block; width:24px; height:24px;
+    border:3px solid var(--borde); border-top-color:var(--azul-m);
+    border-radius:50%; animation:spin .7s linear infinite; margin-bottom:8px;
+  }
+  @keyframes spin { to { transform:rotate(360deg); } }
+
+  /* ── PROD RANK BAR ── */
+  .rank-bar { display:flex; align-items:center; gap:10px; margin-bottom:6px; }
+  .rank-num { font-size:11px; font-weight:700; color:var(--texto-s); width:20px; text-align:right; flex-shrink:0; }
+  .rank-name { font-size:13px; font-weight:600; flex:1; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .rank-track { flex:1; background:var(--borde); border-radius:4px; height:8px; overflow:hidden; }
+  .rank-fill  { background:var(--azul-m); height:8px; border-radius:4px; }
+  .rank-val   { font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--texto-s); white-space:nowrap; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width:700px) {
+    .kpi-grid    { grid-template-columns:1fr 1fr; }
+    .charts-grid { grid-template-columns:1fr; }
+    .nav-brand   { display:none; }
+  }
+  @media (max-width:420px) {
+    .kpi-grid { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-brand">DAMICH <span>Dashboard</span></div>
+  <div class="nav-tabs">
+    <div class="nav-tab active" onclick="showPage('inicio',this)">🏠 Inicio</div>
+    <div class="nav-tab" onclick="showPage('cortes',this)">📊 Cortes</div>
+    <div class="nav-tab" onclick="showPage('egresos',this)">💸 Egresos</div>
+    <div class="nav-tab" onclick="showPage('traspasos',this)">🔄 Traspasos</div>
+    <div class="nav-tab" onclick="showPage('kileados',this)">⚖️ Kileados</div>
+    <div class="nav-tab" onclick="showPage('deudas',this)">📒 Deudas</div>
+    <div class="nav-tab" onclick="showPage('productos',this)">🏆 Productos</div>
+  </div>
+  <div class="nav-spacer"></div>
+  <div class="nav-api-status status-err" id="api-status">● Conectando...</div>
+</nav>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <label>Sucursal
+    <select id="f-tienda" style="min-width:140px">
+      <option value="">Todas</option>
+      <option>APATZINGÁN</option>
+      <option>NUEVA ITALIA</option>
+      <option>SAN SIMÓN</option>
+    </select>
+  </label>
+  <label>Mes
+    <input type="month" id="f-mes" style="min-width:130px">
+  </label>
+  <label>Fecha inicio
+    <input type="date" id="f-inicio" style="min-width:130px">
+  </label>
+  <label>Fecha fin
+    <input type="date" id="f-fin" style="min-width:130px">
+  </label>
+  <button class="btn-aplicar" onclick="aplicarFiltros()">⟳ Aplicar</button>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- PÁGINA: INICIO / DASHBOARD                  -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="page active" id="page-inicio">
+
+  <!-- Import CSV -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">📥 Importar CSV</div>
+    </div>
+    <div class="alert alert-ok"  id="imp-ok"><span>✅</span><span id="imp-ok-msg"></span></div>
+    <div class="alert alert-err" id="imp-err"><span>❌</span><span id="imp-err-msg"></span></div>
+    <div class="import-zone" id="drop-zone" onclick="document.getElementById('file-input').click()"
+         ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropFile(event)">
+      <div style="font-size:32px">📂</div>
+      <p><strong>Clic aquí</strong> o arrastrá el CSV exportado desde el formulario</p>
+      <p style="font-size:11px;margin-top:4px">Archivo: <code>damich_registros_YYYY-MM-DD.csv</code></p>
+    </div>
+    <input type="file" id="file-input" accept=".csv" onchange="importarCSV(this.files[0])">
+    <div id="imp-historial-wrap" style="margin-top:10px"></div>
+  </div>
+
+  <!-- KPIs -->
+  <div class="kpi-grid" id="kpi-grid">
+    <div class="loading"><div class="spinner"></div><br>Cargando...</div>
+  </div>
+
+  <!-- Charts -->
+  <div class="charts-grid">
+    <div class="card">
+      <div class="card-header"><div class="card-title">📅 Ventas por Día de Semana</div></div>
+      <div class="chart-wrap"><canvas id="chart-dias"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-header"><div class="card-title">🏪 Ventas por Sucursal</div></div>
+      <div class="chart-wrap"><canvas id="chart-sucursal"></canvas></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- PÁGINA: CORTES                              -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="page" id="page-cortes">
+  <div class="kpi-grid" id="cortes-kpis"></div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">📊 Cortes de Caja</div>
+      <div class="card-actions">
+        <a class="btn btn-pdf" id="pdf-cortes" href="#" target="_blank">⬇️ PDF</a>
+      </div>
+    </div>
+    <div class="table-wrap" id="cortes-tabla">
+      <div class="loading"><div class="spinner"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- PÁGINA: EGRESOS                             -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="page" id="page-egresos">
+  <div class="kpi-grid" id="egresos-kpis"></div>
+  <div class="charts-grid" style="grid-template-columns:1fr 2fr">
+    <div class="card">
+      <div class="card-header"><div class="card-title">🗂️ Por Categoría</div></div>
+      <div id="egresos-cats"></div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">💸 Detalle Egresos</div>
+        <div class="card-actions">
+          <a class="btn btn-pdf" id="pdf-egresos" href="#" target="_blank">⬇️ PDF</a>
+        </div>
+      </div>
+      <div class="table-wrap" id="egresos-tabla">
+        <div class="loading"><div class="spinner"></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- PÁGINA: TRASPASOS                           -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="page" id="page-traspasos">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">🔄 Traspasos entre Sucursales</div>
+      <div style="font-size:12px;color:var(--texto-s)" id="traspasos-count"></div>
+    </div>
+    <div id="traspasos-lista">
+      <div class="loading"><div class="spinner"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- PÁGINA: KILEADOS                            -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="page" id="page-kileados">
+  <div class="charts-grid" style="grid-template-columns:1fr 1fr">
+    <div class="card">
+      <div class="card-header"><div class="card-title">🏆 Top 15 Productos Kileados</div></div>
+      <div id="kileados-top"></div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">⚖️ Registros Detallados</div>
+        <div style="font-size:12px;color:var(--texto-s)" id="kileados-count"></div>
+      </div>
+      <div class="table-wrap" id="kileados-tabla">
+        <div class="loading"><div class="spinner"></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- PÁGINA: DEUDAS                              -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="page" id="page-deudas">
+  <div class="kpi-grid" id="deudas-kpis"></div>
+  <div class="charts-grid" style="grid-template-columns:1fr 1fr">
+    <div class="card">
+      <div class="card-header"><div class="card-title">🔴 Deudas Abiertas</div></div>
+      <div id="deudas-abiertas">
+        <div class="loading"><div class="spinner"></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">📒 Todas las Deudas</div>
+        <div class="card-actions">
+          <a class="btn btn-pdf" id="pdf-deudas" href="#" target="_blank">⬇️ PDF</a>
+        </div>
+      </div>
+      <div class="table-wrap" id="deudas-tabla">
+        <div class="loading"><div class="spinner"></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- PÁGINA: TOP PRODUCTOS                       -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="page" id="page-productos">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">🏆 Ranking Global de Productos</div>
+      <div class="card-actions">
+        <a class="btn btn-pdf" id="pdf-productos" href="#" target="_blank">⬇️ PDF</a>
+      </div>
+    </div>
+    <div class="table-wrap" id="productos-tabla">
+      <div class="loading"><div class="spinner"></div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════
+// CONFIGURACIÓN
+// ═══════════════════════════════════════════════════════
+const API = 'http://localhost:8001';
+let charts = {};   // instancias Chart.js activas
+let currentPage = 'inicio';
+
+// ═══════════════════════════════════════════════════════
+// UTILIDADES
+// ═══════════════════════════════════════════════════════
+const fmt = n =>
+  new Intl.NumberFormat('es-MX', { style:'currency', currency:'MXN' }).format(n || 0);
+
+const fmtN = n =>
+  new Intl.NumberFormat('es-MX').format(Math.round(n || 0));
+
+function params() {
+  const t  = document.getElementById('f-tienda').value;
+  const m  = document.getElementById('f-mes').value;
+  const fi = document.getElementById('f-inicio').value;
+  const ff = document.getElementById('f-fin').value;
+  const p  = new URLSearchParams();
+  if (t)  p.append('tienda', t);
+  if (m)  p.append('mes', m);
+  if (fi) p.append('fecha_inicio', fi);
+  if (ff) p.append('fecha_fin', ff);
+  return p.toString();
+}
+
+async function api(path) {
+  const r = await fetch(`${API}${path}`);
+  if (!r.ok) throw new Error(`HTTP ${r.status}`);
+  return r.json();
+}
+
+function loading(id) {
+  document.getElementById(id).innerHTML =
+    '<div class="loading"><div class="spinner"></div></div>';
+}
+
+function empty(id, msg = 'Sin datos para mostrar') {
+  document.getElementById(id).innerHTML =
+    `<div class="empty"><span class="empty-icon">📭</span>${msg}</div>`;
+}
+
+function destroyChart(key) {
+  if (charts[key]) { charts[key].destroy(); charts[key] = null; }
+}
+
+// ═══════════════════════════════════════════════════════
+// NAVEGACIÓN
+// ═══════════════════════════════════════════════════════
+function showPage(id, tab) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  if (tab) tab.classList.add('active');
+  currentPage = id;
+  loadPage(id);
+}
+
+function aplicarFiltros() {
+  // Si el mes está puesto, limpia fechas manuales
+  if (document.getElementById('f-mes').value) {
+    document.getElementById('f-inicio').value = '';
+    document.getElementById('f-fin').value = '';
+  }
+  loadPage(currentPage);
+  updatePDFLinks();
+}
+
+function updatePDFLinks() {
+  const p = params();
+  const links = {
+    'pdf-cortes':   `${API}/api/pdf/cortes?${p}`,
+    'pdf-egresos':  `${API}/api/pdf/egresos?${p}`,
+    'pdf-deudas':   `${API}/api/pdf/deudas?${p}`,
+    'pdf-productos':`${API}/api/pdf/productos-top?${p}`,
+  };
+  Object.entries(links).forEach(([id, url]) => {
+    const el = document.getElementById(id);
+    if (el) el.href = url;
+  });
+}
+
+function loadPage(id) {
+  const loaders = {
+    inicio:    loadInicio,
+    cortes:    loadCortes,
+    egresos:   loadEgresos,
+    traspasos: loadTraspasos,
+    kileados:  loadKileados,
+    deudas:    loadDeudas,
+    productos: loadProductos,
+  };
+  if (loaders[id]) loaders[id]();
+}
+
+// ═══════════════════════════════════════════════════════
+// STATUS DE API
+// ═══════════════════════════════════════════════════════
+async function checkAPI() {
+  const el = document.getElementById('api-status');
+  try {
+    await fetch(`${API}/`);
+    el.textContent = '● Conectado';
+    el.className = 'nav-api-status status-ok';
+  } catch {
+    el.textContent = '● Sin conexión';
+    el.className = 'nav-api-status status-err';
+  }
+}
+
+// ═══════════════════════════════════════════════════════
+// INICIO / DASHBOARD
+// ═══════════════════════════════════════════════════════
+async function loadInicio() {
+  loadHistorialImport();
+  try {
+    const d = await api(`/api/reportes/dashboard?${params()}`);
+    renderKPIs(d);
+    renderChartDias(d.ventas_x_dia_semana || {});
+    renderChartSucursal(d.ventas_x_sucursal || []);
+  } catch(e) {
+    document.getElementById('kpi-grid').innerHTML =
+      `<div class="alert alert-err visible" style="grid-column:1/-1">❌ Error al cargar dashboard: ${e.message}</div>`;
+  }
+}
+
+function renderKPIs(d) {
+  document.getElementById('kpi-grid').innerHTML = `
+    <div class="kpi-card">
+      <div class="kpi-label">Ventas Totales</div>
+      <div class="kpi-value">${fmt(d.ventas_totales)}</div>
+      <div class="kpi-sub">${d.n_cortes} cortes registrados</div>
+    </div>
+    <div class="kpi-card verde">
+      <div class="kpi-label">Ingresos Totales</div>
+      <div class="kpi-value">${fmt(d.ingresos_totales)}</div>
+      <div class="kpi-sub">Ventas + Cobranza</div>
+    </div>
+    <div class="kpi-card naranja">
+      <div class="kpi-label">Egresos Registrados</div>
+      <div class="kpi-value">${fmt(d.egresos_registrados)}</div>
+      <div class="kpi-sub">${d.n_egresos} registros</div>
+    </div>
+    <div class="kpi-card rojo">
+      <div class="kpi-label">Saldo Deudas</div>
+      <div class="kpi-value">${fmt(d.saldo_deudas)}</div>
+      <div class="kpi-sub">Pendiente de cobro</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Cobranza</div>
+      <div class="kpi-value">${fmt(d.cobranza_total)}</div>
+    </div>
+    <div class="kpi-card verde">
+      <div class="kpi-label">Valor Kileado</div>
+      <div class="kpi-value">${fmt(d.valor_kileado)}</div>
+      <div class="kpi-sub">${d.n_kileados} registros</div>
+    </div>
+    <div class="kpi-card naranja">
+      <div class="kpi-label">Ventas a Crédito</div>
+      <div class="kpi-value">${fmt(d.credito_total)}</div>
+    </div>
+    <div class="kpi-card morado">
+      <div class="kpi-label">Mejor Día</div>
+      <div class="kpi-value" style="font-size:18px">${d.mejor_dia_semana || '—'}</div>
+    </div>`;
+}
+
+function renderChartDias(datos) {
+  destroyChart('dias');
+  const orden = ['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'];
+  const labels = orden.filter(d => datos[d] !== undefined);
+  const vals   = labels.map(d => datos[d] || 0);
+  const ctx = document.getElementById('chart-dias').getContext('2d');
+  charts.dias = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{
+        label: 'Ventas',
+        data: vals,
+        backgroundColor: labels.map((_, i) => {
+          const max = Math.max(...vals);
+          return vals[i] === max ? '#1B3A6B' : '#7EB6E8';
+        }),
+        borderRadius: 5,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        y: { ticks: { callback: v => '$' + (v/1000).toFixed(0) + 'k', font:{size:10} }, grid:{color:'#eee'} },
+        x: { ticks: { font:{size:10} }, grid:{display:false} }
+      }
+    }
+  });
+}
+
+function renderChartSucursal(datos) {
+  destroyChart('sucursal');
+  if (!datos.length) return;
+  const ctx = document.getElementById('chart-sucursal').getContext('2d');
+  const colors = ['#1B3A6B', '#2E5FA3', '#7EB6E8'];
+  charts.sucursal = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: datos.map(d => d.tienda.split(' ')[0]),
+      datasets: [{
+        label: 'Ventas',
+        data: datos.map(d => d.ventas),
+        backgroundColor: datos.map((_, i) => colors[i % colors.length]),
+        borderRadius: 5,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        y: { ticks: { callback: v => '$' + (v/1000).toFixed(0) + 'k', font:{size:10} }, grid:{color:'#eee'} },
+        x: { ticks: { font:{size:10} }, grid:{display:false} }
+      }
+    }
+  });
+}
+
+// ═══════════════════════════════════════════════════════
+// CORTES
+// ═══════════════════════════════════════════════════════
+async function loadCortes() {
+  loading('cortes-tabla');
+  document.getElementById('cortes-kpis').innerHTML = '';
+  document.getElementById('pdf-cortes').href = `${API}/api/pdf/cortes?${params()}`;
+  try {
+    const d = await api(`/api/reportes/cortes?${params()}`);
+    const t = d.totales || {};
+    document.getElementById('cortes-kpis').innerHTML = `
+      <div class="kpi-card"><div class="kpi-label">Ingresos</div>
+        <div class="kpi-value">${fmt(t.ingresos)}</div></div>
+      <div class="kpi-card verde"><div class="kpi-label">Declarado</div>
+        <div class="kpi-value">${fmt(t.declarado)}</div></div>
+      <div class="kpi-card naranja"><div class="kpi-label">Egresos</div>
+        <div class="kpi-value">${fmt(t.egresos)}</div></div>
+      <div class="kpi-card ${Math.abs(t.diferencia||0) < 1 ? 'verde' : 'rojo'}">
+        <div class="kpi-label">Diferencia Total</div>
+        <div class="kpi-value">${fmt(t.diferencia)}</div>
+        <div class="kpi-sub">${t.n} cortes</div></div>`;
+
+    if (!d.registros?.length) { empty('cortes-tabla'); return; }
+    document.getElementById('cortes-tabla').innerHTML = `
+      <table>
+        <thead><tr>
+          <th>Fecha</th><th>Sucursal</th><th>Folio</th><th>Cajero</th>
+          <th class="r">Ventas</th><th class="r">Cobranza</th>
+          <th class="r">Egresos</th><th class="r">Declarado</th>
+          <th class="r">Diferencia</th>
+        </tr></thead>
+        <tbody>
+          ${d.registros.map(r => {
+            const ok = Math.abs(r.diferencia||0) < 1;
+            return `<tr>
+              <td class="mono">${r.fecha}</td>
+              <td>${r.tienda}</td>
+              <td class="mono">${r.folio}</td>
+              <td>${r.cajero || '—'}</td>
+              <td class="r">${fmt(r.ventas)}</td>
+              <td class="r">${fmt(r.cobranza)}</td>
+              <td class="r">${fmt(r.egresos)}</td>
+              <td class="r">${fmt(r.declarado)}</td>
+              <td class="r">
+                <span class="chip ${ok ? 'chip-ok' : 'chip-mal'}">${fmt(r.diferencia)}</span>
+              </td>
+            </tr>`;
+          }).join('')}
+        </tbody>
+      </table>`;
+  } catch(e) { empty('cortes-tabla', `Error: ${e.message}`); }
+}
+
+// ═══════════════════════════════════════════════════════
+// EGRESOS
+// ═══════════════════════════════════════════════════════
+async function loadEgresos() {
+  loading('egresos-tabla');
+  document.getElementById('egresos-kpis').innerHTML = '';
+  document.getElementById('egresos-cats').innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+  document.getElementById('pdf-egresos').href = `${API}/api/pdf/egresos?${params()}`;
+  try {
+    const d = await api(`/api/reportes/egresos?${params()}`);
+    document.getElementById('egresos-kpis').innerHTML = `
+      <div class="kpi-card naranja"><div class="kpi-label">Total Egresos</div>
+        <div class="kpi-value">${fmt(d.total)}</div>
+        <div class="kpi-sub">${d.n} registros</div></div>`;
+
+    // Categorías
+    const cats = d.por_categoria || [];
+    const maxCat = Math.max(...cats.map(c => c.total), 1);
+    document.getElementById('egresos-cats').innerHTML = cats.length
+      ? cats.map((c, i) => `
+          <div class="rank-bar">
+            <span class="rank-num">${i+1}</span>
+            <span class="rank-name">${c.categoria}</span>
+            <div class="rank-track">
+              <div class="rank-fill" style="width:${Math.round(c.total/maxCat*100)}%;background:var(--naranja)"></div>
+            </div>
+            <span class="rank-val">${fmt(c.total)}</span>
+          </div>`).join('')
+      : '<div class="empty"><span class="empty-icon">📭</span>Sin datos</div>';
+
+    if (!d.registros?.length) { empty('egresos-tabla'); return; }
+    document.getElementById('egresos-tabla').innerHTML = `
+      <table>
+        <thead><tr>
+          <th>Fecha</th><th>Sucursal</th><th>Categoría</th>
+          <th>Concepto</th><th class="r">Monto</th><th>Comprobante</th>
+        </tr></thead>
+        <tbody>
+          ${d.registros.map(r => `<tr>
+            <td class="mono">${r.fecha}</td>
+            <td>${r.tienda}</td>
+            <td><span class="chip chip-nar">${r.categoria || '—'}</span></td>
+            <td>${r.concepto || '—'}</td>
+            <td class="r">${fmt(r.monto)}</td>
+            <td class="mono">${r.comprobante || '—'}</td>
+          </tr>`).join('')}
+        </tbody>
+      </table>`;
+  } catch(e) { empty('egresos-tabla', `Error: ${e.message}`); }
+}
+
+// ═══════════════════════════════════════════════════════
+// TRASPASOS
+// ═══════════════════════════════════════════════════════
+async function loadTraspasos() {
+  document.getElementById('traspasos-lista').innerHTML =
+    '<div class="loading"><div class="spinner"></div></div>';
+  try {
+    const d = await api(`/api/reportes/traspasos?${params()}`);
+    document.getElementById('traspasos-count').textContent =
+      `${d.n_traspasos} traspasos · ${d.n_productos} productos`;
+
+    if (!d.traspasos?.length) { empty('traspasos-lista'); return; }
+
+    document.getElementById('traspasos-lista').innerHTML = d.traspasos.map(t => `
+      <div class="deuda-row">
+        <div class="deuda-top">
+          <div>
+            <div class="deuda-cliente">
+              ${t.origen} → ${t.destino}
+              ${t.responsable ? `<span style="font-weight:400;font-size:12px"> · ${t.responsable}</span>` : ''}
+            </div>
+            <div class="deuda-info">Folio: <strong>${t.folio || '—'}</strong> · ${t.fecha}</div>
+          </div>
+          <span class="chip chip-ok">${t.productos.length} producto(s)</span>
+        </div>
+        ${t.productos.length ? `
+          <table style="width:100%;font-size:12px;border-collapse:collapse">
+            <thead><tr>
+              <th style="text-align:left;padding:4px 8px;background:var(--gris-bg);color:var(--texto-s);font-weight:700;font-size:10px">Producto</th>
+              <th style="text-align:right;padding:4px 8px;background:var(--gris-bg);color:var(--texto-s);font-weight:700;font-size:10px">Cantidad</th>
+              <th style="text-align:left;padding:4px 8px;background:var(--gris-bg);color:var(--texto-s);font-weight:700;font-size:10px">Unidad</th>
+            </tr></thead>
+            <tbody>
+              ${t.productos.map(p => `<tr>
+                <td style="padding:4px 8px;border-bottom:1px solid var(--borde)">${p.producto}</td>
+                <td style="padding:4px 8px;border-bottom:1px solid var(--borde);text-align:right;font-family:monospace">${p.cantidad}</td>
+                <td style="padding:4px 8px;border-bottom:1px solid var(--borde)">${p.unidad || '—'}</td>
+              </tr>`).join('')}
+            </tbody>
+          </table>` : ''}
+        ${t.obs ? `<div style="font-size:11px;color:var(--texto-s);margin-top:6px">📝 ${t.obs}</div>` : ''}
+      </div>`).join('');
+  } catch(e) { empty('traspasos-lista', `Error: ${e.message}`); }
+}
+
+// ═══════════════════════════════════════════════════════
+// KILEADOS
+// ═══════════════════════════════════════════════════════
+async function loadKileados() {
+  loading('kileados-tabla');
+  document.getElementById('kileados-top').innerHTML =
+    '<div class="loading"><div class="spinner"></div></div>';
+  try {
+    const d = await api(`/api/reportes/kileados?${params()}`);
+    document.getElementById('kileados-count').textContent = `${d.n} registros`;
+
+    // Top productos
+    const top15 = (d.top_productos || []).slice(0, 15);
+    const maxQ  = Math.max(...top15.map(p => p.cantidad), 1);
+    document.getElementById('kileados-top').innerHTML = top15.length
+      ? top15.map((p, i) => `
+          <div class="rank-bar">
+            <span class="rank-num">${i+1}</span>
+            <span class="rank-name">${p.producto}</span>
+            <div class="rank-track">
+              <div class="rank-fill" style="width:${Math.round(p.cantidad/maxQ*100)}%"></div>
+            </div>
+            <span class="rank-val">${Math.round(p.cantidad)}</span>
+          </div>`).join('')
+      : '<div class="empty"><span class="empty-icon">📭</span>Sin datos</div>';
+
+    if (!d.registros?.length) { empty('kileados-tabla'); return; }
+    document.getElementById('kileados-tabla').innerHTML = `
+      <table>
+        <thead><tr>
+          <th>Fecha</th><th>Sucursal</th><th>Producto</th>
+          <th>Op.</th><th class="r">Cant.</th><th>Tipo</th><th class="r">Valor</th>
+        </tr></thead>
+        <tbody>
+          ${d.registros.map(r => `<tr>
+            <td class="mono">${r.fecha}</td>
+            <td>${r.tienda}</td>
+            <td style="font-weight:600">${r.producto || '—'}</td>
+            <td>${r.operador || '—'}</td>
+            <td class="r">${r.cantidad}</td>
+            <td><span class="chip ${r.tipo==='K'?'chip-ok':'chip-nar'}">${r.tipo}</span></td>
+            <td class="r">${r.valor ? fmt(r.valor) : '—'}</td>
+          </tr>`).join('')}
+        </tbody>
+      </table>`;
+  } catch(e) { empty('kileados-tabla', `Error: ${e.message}`); }
+}
+
+// ═══════════════════════════════════════════════════════
+// DEUDAS
+// ═══════════════════════════════════════════════════════
+async function loadDeudas() {
+  loading('deudas-tabla');
+  document.getElementById('deudas-abiertas').innerHTML =
+    '<div class="loading"><div class="spinner"></div></div>';
+  document.getElementById('deudas-kpis').innerHTML = '';
+  document.getElementById('pdf-deudas').href = `${API}/api/pdf/deudas?${params()}`;
+  try {
+    const d = await api(`/api/reportes/deudas?${params()}`);
+    document.getElementById('deudas-kpis').innerHTML = `
+      <div class="kpi-card rojo"><div class="kpi-label">Saldo Pendiente</div>
+        <div class="kpi-value">${fmt(d.saldo_pendiente)}</div>
+        <div class="kpi-sub">${d.n_deudas} deudas</div></div>
+      <div class="kpi-card naranja"><div class="kpi-label">Total Adeudado</div>
+        <div class="kpi-value">${fmt(d.total_adeudado)}</div></div>
+      <div class="kpi-card verde"><div class="kpi-label">Total Abonado</div>
+        <div class="kpi-value">${fmt(d.total_abonado)}</div></div>`;
+
+    const abiertas = (d.deudas || []).filter(x => x.estado === 'abierta');
+    document.getElementById('deudas-abiertas').innerHTML = abiertas.length
+      ? abiertas.map(deu => {
+          const pct = Math.round(((deu.abonado || 0) / (deu.monto_total || 1)) * 100);
+          return `
+            <div class="deuda-row">
+              <div class="deuda-top">
+                <div>
+                  <div class="deuda-cliente">${deu.cliente}</div>
+                  <div class="deuda-info">${deu.tienda} · ${deu.fecha} · ${deu.concepto || ''}</div>
+                </div>
+                <span style="font-family:monospace;font-size:13px;font-weight:700;color:var(--rojo)">${fmt(deu.saldo)}</span>
+              </div>
+              <div style="font-size:12px;color:var(--texto-s);margin-bottom:6px">
+                Total: ${fmt(deu.monto_total)} · Abonado: ${fmt(deu.abonado)} (${pct}%)
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width:${pct}%"></div>
+              </div>
+            </div>`;
+        }).join('')
+      : '<div class="empty"><span class="empty-icon">🎉</span>Sin deudas abiertas</div>';
+
+    if (!d.deudas?.length) { empty('deudas-tabla'); return; }
+    document.getElementById('deudas-tabla').innerHTML = `
+      <table>
+        <thead><tr>
+          <th>Fecha</th><th>Sucursal</th><th>Cliente</th><th>Concepto</th>
+          <th class="r">Total</th><th class="r">Abonado</th><th class="r">Saldo</th><th>Estado</th>
+        </tr></thead>
+        <tbody>
+          ${d.deudas.map(deu => `<tr>
+            <td class="mono">${deu.fecha}</td>
+            <td>${deu.tienda}</td>
+            <td style="font-weight:600">${deu.cliente}</td>
+            <td>${deu.concepto || '—'}</td>
+            <td class="r">${fmt(deu.monto_total)}</td>
+            <td class="r">${fmt(deu.abonado)}</td>
+            <td class="r" style="font-weight:700">${fmt(deu.saldo)}</td>
+            <td><span class="chip ${deu.estado==='cerrada'?'chip-ok':'chip-mal'}">${deu.estado}</span></td>
+          </tr>`).join('')}
+        </tbody>
+      </table>`;
+  } catch(e) { empty('deudas-tabla', `Error: ${e.message}`); }
+}
+
+// ═══════════════════════════════════════════════════════
+// TOP PRODUCTOS
+// ═══════════════════════════════════════════════════════
+async function loadProductos() {
+  loading('productos-tabla');
+  document.getElementById('pdf-productos').href = `${API}/api/pdf/productos-top?${params()}`;
+  try {
+    const d = await api(`/api/reportes/productos-top?limite=50&${params()}`);
+    if (!d.productos?.length) { empty('productos-tabla'); return; }
+
+    const maxMov = Math.max(...d.productos.map(p => p.movimiento_total), 1);
+    document.getElementById('productos-tabla').innerHTML = `
+      <table>
+        <thead><tr>
+          <th>#</th><th>Producto</th>
+          <th class="r">Cant. Kileado</th><th class="r">Valor Kileado</th>
+          <th class="r">Cant. Traspaso</th><th class="r">Total Movido</th>
+          <th>Ranking</th>
+        </tr></thead>
+        <tbody>
+          ${d.productos.map((p, i) => `<tr>
+            <td class="r" style="font-weight:700;color:var(--texto-s)">${i+1}</td>
+            <td style="font-weight:600">${p.producto}</td>
+            <td class="r">${Math.round(p.cant_kileado)}</td>
+            <td class="r">${fmt(p.valor_kileado)}</td>
+            <td class="r">${Math.round(p.cant_traspaso)}</td>
+            <td class="r" style="font-weight:700">${Math.round(p.movimiento_total)}</td>
+            <td style="min-width:80px">
+              <div class="rank-track" style="margin-top:4px">
+                <div class="rank-fill" style="width:${Math.round(p.movimiento_total/maxMov*100)}%"></div>
+              </div>
+            </td>
+          </tr>`).join('')}
+        </tbody>
+      </table>`;
+  } catch(e) { empty('productos-tabla', `Error: ${e.message}`); }
+}
+
+// ═══════════════════════════════════════════════════════
+// IMPORT CSV
+// ═══════════════════════════════════════════════════════
+function dragOver(e)  { e.preventDefault(); document.getElementById('drop-zone').classList.add('drag-over'); }
+function dragLeave(e) { document.getElementById('drop-zone').classList.remove('drag-over'); }
+function dropFile(e)  {
+  e.preventDefault();
+  dragLeave(e);
+  const file = e.dataTransfer.files[0];
+  if (file) importarCSV(file);
+}
+
+async function importarCSV(file) {
+  if (!file) return;
+  const okEl  = document.getElementById('imp-ok');
+  const errEl = document.getElementById('imp-err');
+  okEl.classList.remove('visible');
+  errEl.classList.remove('visible');
+
+  const formData = new FormData();
+  formData.append('archivo', file);
+
+  try {
+    const res = await fetch(`${API}/api/importar/csv`, { method:'POST', body:formData });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.detail || `HTTP ${res.status}`);
+
+    const det = data.detalle || {};
+    document.getElementById('imp-ok-msg').textContent =
+      `✅ Importado: ${data.total_filas} filas — ` +
+      Object.entries(det).map(([k,v]) => `${v} ${k}`).join(' · ');
+    okEl.classList.add('visible');
+    loadHistorialImport();
+    if (currentPage === 'inicio') loadInicio();
+  } catch(e) {
+    document.getElementById('imp-err-msg').textContent = e.message;
+    errEl.classList.add('visible');
+  }
+
+  document.getElementById('file-input').value = '';
+}
+
+async function loadHistorialImport() {
+  try {
+    const list = await api('/api/importar/historial');
+    const wrap = document.getElementById('imp-historial-wrap');
+    if (!list.length) { wrap.innerHTML = ''; return; }
+    wrap.innerHTML = `
+      <div style="font-size:11px;font-weight:700;color:var(--texto-s);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px">
+        Últimas importaciones
+      </div>
+      ${list.slice(0,5).map(i => `
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--borde);font-size:12px">
+          <span style="color:var(--texto-s)">${i.fecha.substring(0,16).replace('T',' ')}</span>
+          <span style="font-weight:600">${i.archivo}</span>
+          <span class="chip chip-ok">${i.total_filas} filas</span>
+        </div>`).join('')}`;
+  } catch {}
+}
+
+// ═══════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════
+window.addEventListener('DOMContentLoaded', () => {
+  checkAPI();
+  setInterval(checkAPI, 15000);
+  updatePDFLinks();
+  loadInicio();
+});
+</script>
+</body>
+</html>

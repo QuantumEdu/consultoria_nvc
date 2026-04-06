@@ -1,0 +1,7 @@
+{
+  "complejidad": "MEDIA",
+  "profundidad_recomendada": "STANDARD",
+  "duracion_estimada": "6 semanas",
+  "fases_recomendadas": ["Discovery", "AS-IS", "TO-BE", "MVP Definition"],
+  "metodologias_aplicables": ["Design Thinking", "BPMN", "Lean"]
+}

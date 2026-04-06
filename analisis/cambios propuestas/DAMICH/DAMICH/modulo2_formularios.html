@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema de Captura — Corte de Caja</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --azul: #1B3A6B;
+    --azul-m: #2E5FA3;
+    --azul-c: #D6E4F0;
+    --verde: #1A6B3A;
+    --verde-c: #D6F0E0;
+    --rojo: #B40000;
+    --rojo-c: #FDECEA;
+    --naranja: #C05E00;
+    --naranja-c: #FFF0E0;
+    --gris-bg: #F4F6FA;
+    --gris-borde: #DDE3EE;
+    --texto: #1A2340;
+    --texto-s: #5A6580;
+    --blanco: #FFFFFF;
+    --radio: 10px;
+    --sombra: 0 2px 16px rgba(27,58,107,0.10);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    background: var(--gris-bg);
+    color: var(--texto);
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  .nav {
+    background: var(--azul);
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+  }
+  .nav-brand {
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 14px 0;
+    margin-right: auto;
+    text-transform: uppercase;
+  }
+  .nav-brand span { color: #7EB6E8; }
+  .nav-tabs { display: flex; gap: 2px; }
+  .nav-tab {
+    color: rgba(255,255,255,0.6);
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    padding: 16px 14px 14px;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.18s;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .nav-tab:hover { color: #fff; }
+  .nav-tab.active {
+    color: #fff;
+    border-bottom-color: #7EB6E8;
+  }
+
+  /* LAYOUT */
+  .page { display: none; padding: 28px 20px 60px; max-width: 700px; margin: 0 auto; }
+  .page.active { display: block; }
+
+  /* CARDS */
+  .card {
+    background: var(--blanco);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+    padding: 28px 24px;
+    margin-bottom: 20px;
+  }
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 22px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--gris-borde);
+  }
+  .card-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .icon-azul { background: var(--azul-c); }
+  .icon-verde { background: var(--verde-c); }
+  .icon-naranja { background: var(--naranja-c); }
+  .icon-rojo { background: var(--rojo-c); }
+  .card-title { font-size: 15px; font-weight: 700; color: var(--azul); }
+  .card-sub { font-size: 12px; color: var(--texto-s); margin-top: 2px; }
+
+  /* FORM ELEMENTS */
+  .form-grid { display: grid; gap: 16px; }
+  .form-grid-2 { grid-template-columns: 1fr 1fr; }
+  .form-grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--texto-s);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+  }
+  .field .req { color: var(--rojo); margin-left: 2px; }
+
+  input, select, textarea {
+    width: 100%;
+    padding: 10px 13px;
+    border: 1.5px solid var(--gris-borde);
+    border-radius: 7px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 14px;
+    color: var(--texto);
+    background: var(--blanco);
+    transition: border 0.15s, box-shadow 0.15s;
+    outline: none;
+    appearance: none;
+  }
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--azul-m);
+    box-shadow: 0 0 0 3px rgba(46,95,163,0.12);
+  }
+  input.error, select.error { border-color: var(--rojo); }
+  .field-error { font-size: 11px; color: var(--rojo); margin-top: 2px; display: none; }
+  .field-error.visible { display: block; }
+
+  textarea { resize: vertical; min-height: 80px; line-height: 1.5; }
+  select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235A6580' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 36px; }
+
+  /* MONEY INPUT */
+  .money-wrap { position: relative; }
+  .money-wrap .prefix {
+    position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+    color: var(--texto-s); font-size: 14px; font-weight: 600; pointer-events: none;
+  }
+  .money-wrap input { padding-left: 26px; font-family: 'IBM Plex Mono', monospace; }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px; background: var(--gris-borde);
+    margin: 20px 0;
+  }
+  .section-label {
+    font-size: 11px; font-weight: 700; color: var(--azul-m);
+    text-transform: uppercase; letter-spacing: 0.1em;
+    margin-bottom: 14px;
+  }
+
+  /* BOTONES */
+  .btn {
+    padding: 12px 24px;
+    border-radius: 8px;
+    border: none;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 13.5px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.18s;
+    letter-spacing: 0.04em;
+    display: inline-flex; align-items: center; gap: 7px;
+  }
+  .btn-primary {
+    background: var(--azul);
+    color: #fff;
+    width: 100%;
+    justify-content: center;
+    padding: 14px;
+    font-size: 14px;
+  }
+  .btn-primary:hover { background: var(--azul-m); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(27,58,107,0.25); }
+  .btn-primary:active { transform: translateY(0); }
+  .btn-secondary { background: var(--gris-bg); color: var(--azul); border: 1.5px solid var(--gris-borde); }
+  .btn-secondary:hover { background: var(--azul-c); border-color: var(--azul-m); }
+  .btn-danger { background: var(--rojo-c); color: var(--rojo); border: 1.5px solid #f5c6c6; }
+  .btn-sm { padding: 7px 14px; font-size: 12px; }
+
+  /* PRODUCTO ROWS */
+  .producto-row {
+    display: grid;
+    grid-template-columns: 1fr 90px 80px 32px;
+    gap: 8px;
+    align-items: end;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--gris-borde);
+  }
+  .producto-row:last-child { border-bottom: none; }
+  .btn-remove {
+    width: 32px; height: 36px;
+    background: var(--rojo-c); color: var(--rojo);
+    border: none; border-radius: 7px;
+    font-size: 16px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; transition: background 0.15s;
+  }
+  .btn-remove:hover { background: #f8d0cc; }
+  .btn-add {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: none; border: 1.5px dashed var(--azul-m);
+    color: var(--azul-m); border-radius: 7px;
+    padding: 8px 14px; font-size: 12.5px; font-weight: 600;
+    cursor: pointer; transition: all 0.15s; width: 100%;
+    justify-content: center; margin-top: 10px;
+  }
+  .btn-add:hover { background: var(--azul-c); }
+
+  /* TOTALIZADOR */
+  .totalizador {
+    background: var(--gris-bg);
+    border: 1.5px solid var(--gris-borde);
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 16px;
+  }
+  .total-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 6px 0;
+    font-size: 13px;
+    border-bottom: 1px solid var(--gris-borde);
+  }
+  .total-row:last-child { border-bottom: none; }
+  .total-row .label { color: var(--texto-s); }
+  .total-row .value { font-family: 'IBM Plex Mono', monospace; font-weight: 600; color: var(--texto); }
+  .total-row.highlight .label { color: var(--azul); font-weight: 700; }
+  .total-row.highlight .value { font-size: 15px; color: var(--azul); }
+  .total-row.diferencia-ok .value { color: var(--verde); }
+  .total-row.diferencia-mal .value { color: var(--rojo); }
+
+  /* ALERTAS */
+  .alert {
+    padding: 14px 16px; border-radius: 8px;
+    font-size: 13px; margin-bottom: 16px;
+    display: flex; align-items: flex-start; gap: 10px;
+    line-height: 1.5;
+  }
+  .alert-icon { font-size: 18px; flex-shrink: 0; }
+  .alert-success { background: var(--verde-c); color: #0d4a24; border: 1px solid #8fd4aa; }
+  .alert-warning { background: var(--naranja-c); color: #7a3c00; border: 1px solid #f5c89a; }
+  .alert-info { background: var(--azul-c); color: #0d2a55; border: 1px solid #9dc4e8; }
+  .alert { display: none; }
+  .alert.visible { display: flex; }
+
+  /* HISTORIAL */
+  .registro-item {
+    padding: 14px 16px;
+    border: 1.5px solid var(--gris-borde);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background: var(--blanco);
+    transition: border 0.15s;
+  }
+  .registro-item:hover { border-color: var(--azul-m); }
+  .registro-meta {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 8px;
+  }
+  .registro-fecha { font-size: 12px; font-weight: 700; color: var(--azul); font-family: 'IBM Plex Mono', monospace; }
+  .registro-tienda {
+    font-size: 11px; background: var(--azul-c); color: var(--azul);
+    padding: 2px 9px; border-radius: 20px; font-weight: 700;
+  }
+  .registro-datos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .registro-dato { font-size: 12px; color: var(--texto-s); }
+  .registro-dato span { display: block; font-size: 13px; font-weight: 700; color: var(--texto); font-family: 'IBM Plex Mono', monospace; }
+
+  .empty-state {
+    text-align: center; padding: 40px 20px;
+    color: var(--texto-s); font-size: 13px;
+  }
+  .empty-state .emoji { font-size: 36px; display: block; margin-bottom: 10px; }
+
+  /* INSTRUCCIONES */
+  .instruc-step {
+    display: flex; gap: 14px; align-items: flex-start;
+    margin-bottom: 18px;
+  }
+  .step-num {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--azul); color: #fff;
+    font-size: 12px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .step-content { flex: 1; }
+  .step-title { font-size: 13.5px; font-weight: 700; margin-bottom: 4px; color: var(--texto); }
+  .step-desc { font-size: 12.5px; color: var(--texto-s); line-height: 1.6; }
+  .code-block {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    background: #1A2340;
+    color: #7EB6E8;
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-top: 8px;
+    white-space: pre-wrap;
+    line-height: 1.6;
+  }
+
+  /* CHIPS */
+  .chip {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 4px 10px; border-radius: 20px; font-size: 11.5px; font-weight: 600;
+  }
+  .chip-azul { background: var(--azul-c); color: var(--azul); }
+  .chip-verde { background: var(--verde-c); color: var(--verde); }
+
+  /* RESPONSIVE */
+  @media (max-width: 480px) {
+    .form-grid-2, .form-grid-3 { grid-template-columns: 1fr; }
+    .nav-tab { padding: 14px 10px; font-size: 10px; }
+    .nav-brand { display: none; }
+    .producto-row { grid-template-columns: 1fr 80px 70px 32px; }
+    .registro-datos { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-brand">Sistema <span>Captura</span></div>
+  <div class="nav-tabs">
+    <div class="nav-tab active" onclick="showPage('corte')">📊 Corte Caja</div>
+    <div class="nav-tab" onclick="showPage('traspaso')">🔄 Traspaso</div>
+    <div class="nav-tab" onclick="showPage('kileado')">⚖️ Kileado</div>
+    <div class="nav-tab" onclick="showPage('pedido')">📋 Pedido</div>
+    <div class="nav-tab" onclick="showPage('historial')">🗂️ Historial</div>
+    <div class="nav-tab" onclick="showPage('instrucciones')">❓ Guía</div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- PÁGINA 1: CORTE DE CAJA -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="page active" id="page-corte">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon icon-azul">📊</div>
+      <div>
+        <div class="card-title">Corte de Caja</div>
+        <div class="card-sub">Registro diario — llena al cerrar turno</div>
+      </div>
+    </div>
+
+    <div id="alert-corte" class="alert alert-success">
+      <span class="alert-icon">✅</span>
+      <span id="alert-corte-msg">Corte registrado correctamente.</span>
+    </div>
+
+    <div class="form-grid">
+      <!-- Identificación -->
+      <div class="section-label">Identificación</div>
+      <div class="form-grid form-grid-2">
+        <div class="field">
+          <label>Tienda <span class="req">*</span></label>
+          <select id="c-tienda">
+            <option value="">Seleccionar...</option>
+            <option>APATZINGÁN</option>
+            <option>NUEVA ITALIA</option>
+            <option>SAN SIMÓN</option>
+          </select>
+          <span class="field-error" id="err-c-tienda">Campo requerido</span>
+        </div>
+        <div class="field">
+          <label>Fecha <span class="req">*</span></label>
+          <input type="date" id="c-fecha">
+          <span class="field-error" id="err-c-fecha">Campo requerido</span>
+        </div>
+      </div>
+      <div class="form-grid form-grid-2">
+        <div class="field">
+          <label>Folio N° <span class="req">*</span></label>
+          <input type="number" id="c-folio" placeholder="Ej: 2188">
+          <span class="field-error" id="err-c-folio">Campo requerido</span>
+        </div>
+        <div class="field">
+          <label>Cajero</label>
+          <input type="text" id="c-cajero" value="CAJA" placeholder="Nombre del cajero">
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="section-label">Movimientos</div>
+
+      <div class="form-grid form-grid-2">
+        <div class="field">
+          <label>Ventas <span class="req">*</span></label>
+          <div class="money-wrap"><span class="prefix">$</span>
+            <input type="number" id="c-ventas" placeholder="0.00" step="0.01" min="0" oninput="calcularCorte()">
+          </div>
+          <span class="field-error" id="err-c-ventas">Campo requerido</span>
+        </div>
+        <div class="field">
+          <label>Cobranza</label>
+          <div class="money-wrap"><span class="prefix">$</span>
+            <input type="number" id="c-cobranza" placeholder="0.00" step="0.01" min="0" value="0" oninput="calcularCorte()">
+          </div>
+        </div>
+      </div>
+      <div class="form-grid form-grid-2">
+        <div class="field">
+          <label>Egresos</label>
+          <div class="money-wrap"><span class="prefix">$</span>
+            <input type="number" id="c-egresos" placeholder="0.00" step="0.01" min="0" value="0" oninput="calcularCorte()">
+          </div>
+        </div>
+        <div class="field">
+          <label>Ventas a Crédito</label>
+          <div class="money-wrap"><span class="prefix">$</span>
+            <input type="number" id="c-credito" placeholder="0.00" step="0.01" min="0" value="0" oninput="calcularCorte()">
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="section-label">Declaración</div>
+
+      <div class="field">
+        <label>Monto Declarado <span class="req">*</span></label>
+        <div class="money-wrap"><span class="prefix">$</span>
+          <input type="number" id="c-declarado" placeholder="0.00" step="0.01" min="0" oninput="calcularCorte()">
+        </div>
+        <span class="field-error" id="err-c-declarado">Campo requerido</span>
+      </div>
+
+      <!-- TOTALIZADOR -->
+      <div class="totalizador">
+        <div class="total-row">
+          <span class="label">Ingresos (Ventas + Cobranza)</span>
+          <span class="value" id="t-ingresos">$0.00</span>
+        </div>
+        <div class="total-row">
+          <span class="label">Total (Ingresos − Egresos)</span>
+          <span class="value" id="t-total">$0.00</span>
+        </div>
+        <div class="total-row highlight" id="row-diferencia">
+          <span class="label">⚠️ Diferencia (Total − Declarado)</span>
+          <span class="value" id="t-diferencia">$0.00</span>
+        </div>
+      </div>
+
+      <div class="field" style="margin-top:8px">
+        <label>Observaciones del corte</label>
+        <textarea id="c-obs" placeholder="Ej: Se hizo depósito de $5,000. Diferencia por billete falso..."></textarea>
+      </div>
+
+      <button class="btn btn-primary" onclick="guardarCorte()">
+        💾 Registrar Corte de Caja
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- PÁGINA 2: TRASPASO -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="page" id="page-traspaso">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon icon-verde">🔄</div>
+      <div>
+        <div class="card-title">Traspaso entre Tiendas</div>
+        <div class="card-sub">Registra cada envío de productos entre sucursales</div>
+      </div>
+    </div>
+
+    <div id="alert-traspaso" class="alert alert-success">
+      <span class="alert-icon">✅</span>
+      <span id="alert-traspaso-msg">Traspaso registrado.</span>
+    </div>
+
+    <div class="form-grid">
+      <div class="section-label">Datos del Traspaso</div>
+      <div class="form-grid form-grid-2">
+        <div class="field">
+          <label>Fecha <span class="req">*</span></label>
+          <input type="date" id="tr-fecha">
+          <span class="field-error" id="err-tr-fecha">Campo requerido</span>
+        </div>
+        <div class="field">
+          <label>Folio N° <span class="req">*</span></label>
+          <input type="number" id="tr-folio" placeholder="Ej: 714">
+          <span class="field-error" id="err-tr-folio">Campo requerido</span>
+        </div>
+      </div>
+      <div class="form-grid form-grid-2">
+        <div class="field">
+          <label>Folio Salida</label>
+          <input type="text" id="tr-salida" placeholder="Ej: S:1926">
+        </div>
+        <div class="field">
+          <label>Folio Entrada</label>
+          <input type="text" id="tr-entrada" placeholder="Ej: E:215">
+        </div>
+      </div>
+      <div class="form-grid form-grid-2">
+        <div class="field">
+          <label>Tienda Origen <span class="req">*</span></label>
+          <select id="tr-origen">
+            <option value="">Seleccionar...</option>
+            <option>APATZINGÁN</option>
+            <option>NUEVA ITALIA</option>
+            <option>SAN SIMÓN</option>
+          </select>
+          <span class="field-error" id="err-tr-origen">Campo requerido</span>
+        </div>
+        <div class="field">
+          <label>Tienda Destino <span class="req">*</span></label>
+          <select id="tr-destino">
+            <option value="">Seleccionar...</option>
+            <option>APATZINGÁN</option>
+            <option>NUEVA ITALIA</option>
+            <option>SAN SIMÓN</option>
+          </select>
+          <span class="field-error" id="err-tr-destino">Campo requerido</span>
+        </div>
+      </div>
+      <div class="field">
+        <label>Responsable que entrega</label>
+        <input type="text" id="tr-responsable" placeholder="Nombre de quien entrega">
+      </div>
+
+      <div class="divider"></div>
+      <div class="section-label">Productos Traspasados</div>
+
+      <div id="tr-productos-lista"></div>
+      <button class="btn-add" onclick="agregarProductoTr()">+ Agregar Producto</button>
+
+      <div class="field" style="margin-top:12px">
+        <label>Observaciones</label>
+        <textarea id="tr-obs" placeholder="Notas adicionales del traspaso..."></textarea>
+      </div>
+
+      <button class="btn btn-primary" onclick="guardarTraspaso()">
+        💾 Registrar Traspaso
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- PÁGINA 3: KILEADO -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="page" id="page-kileado">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon icon-naranja">⚖️</div>
+      <div>
+        <div class="card-title">Kileado / Suelto</div>
+        <div class="card-sub">Registro de productos vendidos a granel o por piezas</div>
+      </div>
+    </div>
+
+    <div id="alert-kileado" class="alert alert-success">
+      <span class="alert-icon">✅</span>
+      <span id="alert-kileado-msg">Registro guardado.</span>
+    </div>
+
+    <div class="form-grid">
+      <div class="section-label">Identificación</div>
+      <div class="form-grid form-grid-2">
+        <div class="field">
+          <label>Tienda <span class="req">*</span></label>
+          <select id="k-tienda">
+            <option value="">Seleccionar...</option>
+            <option>APATZINGÁN</option>
+            <option>NUEVA ITALIA</option>
+            <option>SAN SIMÓN</option>
+          </select>
+          <span class="field-error" id="err-k-tienda">Campo requerido</span>
+        </div>
+        <div class="field">
+          <label>Fecha <span class="req">*</span></label>
+          <input type="date" id="k-fecha">
+          <span class="field-error" id="err-k-fecha">Campo requerido</span>
+        </div>
+      </div>
+      <div class="form-grid form-grid-2">
+        <div class="field">
+          <label>Folio Entrada</label>
+          <input type="text" id="k-entrada" placeholder="Ej: E:3796">
+        </div>
+        <div class="field">
+          <label>Folio Salida</label>
+          <input type="text" id="k-salida" placeholder="Ej: S:4722">
+        </div>
+      </div>
+      <div class="field">
+        <label>Operador <span class="req">*</span></label>
+        <select id="k-operador">
+          <option value="">Seleccionar...</option>
+          <option>ROSY</option>
+          <option>CECILIA V.</option>
+          <option>BRISEIDA D.</option>
+          <option>Otro</option>
+        </select>
+        <span class="field-error" id="err-k-operador">Campo requerido</span>
+      </div>
+
+      <div class="divider"></div>
+      <div class="section-label">Producto</div>
+
+      <div class="field">
+        <label>Descripción del Producto <span class="req">*</span></label>
+        <input type="text" id="k-producto" placeholder="Ej: GATIMAR, PRO-STAR, DEVELOPMENT 3.5...">
+        <span class="field-error" id="err-k-producto">Campo requerido</span>
+      </div>
+
+      <div class="form-grid form-grid-3">
+        <div class="field">
+          <label>Cantidad <span class="req">*</span></label>
+          <input type="number" id="k-cantidad" placeholder="0" min="0" step="0.5">
+          <span class="field-error" id="err-k-cantidad">Campo requerido</span>
+        </div>
+        <div class="field">
+          <label>Tipo <span class="req">*</span></label>
+          <select id="k-tipo">
+            <option value="">Seleccionar...</option>
+            <option value="K">K — Kileado</option>
+            <option value="S">S — Suelto</option>
+          </select>
+          <span class="field-error" id="err-k-tipo">Campo requerido</span>
+        </div>
+        <div class="field">
+          <label>Precio Unitario</label>
+          <div class="money-wrap"><span class="prefix">$</span>
+            <input type="number" id="k-precio" placeholder="0.00" step="0.01" min="0">
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Observaciones</label>
+        <textarea id="k-obs" placeholder="Notas adicionales..."></textarea>
+      </div>
+
+      <button class="btn btn-primary" onclick="guardarKileado()">
+        💾 Registrar Kileado
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- PÁGINA 4: PEDIDO -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="page" id="page-pedido">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon icon-rojo">📋</div>
+      <div>
+        <div class="card-title">Pedido a Proveedor</div>
+        <div class="card-sub">Solicitud de productos — se consolida en la central</div>
+      </div>
+    </div>
+
+    <div id="alert-pedido" class="alert alert-success">
+      <span class="alert-icon">✅</span>
+      <span id="alert-pedido-msg">Pedido registrado correctamente.</span>
+    </div>
+
+    <div class="form-grid">
+      <div class="section-label">Datos del Pedido</div>
+      <div class="form-grid form-grid-2">
+        <div class="field">
+          <label>Tienda <span class="req">*</span></label>
+          <select id="p-tienda">
+            <option value="">Seleccionar...</option>
+            <option>APATZINGÁN</option>
+            <option>NUEVA ITALIA</option>
+            <option>SAN SIMÓN</option>
+          </select>
+          <span class="field-error" id="err-p-tienda">Campo requerido</span>
+        </div>
+        <div class="field">
+          <label>Fecha Pedido <span class="req">*</span></label>
+          <input type="date" id="p-fecha">
+          <span class="field-error" id="err-p-fecha">Campo requerido</span>
+        </div>
+      </div>
+      <div class="form-grid form-grid-2">
+        <div class="field">
+          <label>Tipo de Pedido</label>
+          <select id="p-tipo">
+            <option value="ALIMENTO">🌾 Alimento / Forraje</option>
+            <option value="MEDICAMENTO">💊 Medicamento / Veterinario</option>
+            <option value="ACCESORIO">🧰 Accesorio / Equipo</option>
+            <option value="PAPELERIA">📄 Papelería / Insumos</option>
+            <option value="OTRO">Otro</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Urgencia</label>
+          <select id="p-urgencia">
+            <option value="NORMAL">Normal</option>
+            <option value="URGENTE">⚡ Urgente</option>
+            <option value="PUEDE ESPERAR">Puede esperar</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="section-label">Productos Solicitados</div>
+
+      <div id="p-productos-lista"></div>
+      <button class="btn-add" onclick="agregarProductoPed()">+ Agregar Producto</button>
+
+      <div class="field" style="margin-top:12px">
+        <label>Observaciones / Especificaciones</label>
+        <textarea id="p-obs" placeholder="Indicaciones especiales, marcas preferidas, presentaciones específicas..."></textarea>
+      </div>
+
+      <button class="btn btn-primary" onclick="guardarPedido()">
+        💾 Registrar Pedido
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- PÁGINA 5: HISTORIAL -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="page" id="page-historial">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon icon-azul">🗂️</div>
+      <div>
+        <div class="card-title">Historial de Registros</div>
+        <div class="card-sub">Sesión actual — exporta para enviar a la central</div>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:10px; margin-bottom:18px; flex-wrap:wrap;">
+      <select id="filtro-tipo" onchange="renderHistorial()" style="flex:1; min-width:120px; font-size:13px; padding:8px 12px;">
+        <option value="">Todos los tipos</option>
+        <option value="corte">Cortes de Caja</option>
+        <option value="traspaso">Traspasos</option>
+        <option value="kileado">Kileados</option>
+        <option value="pedido">Pedidos</option>
+      </select>
+      <select id="filtro-tienda" onchange="renderHistorial()" style="flex:1; min-width:120px; font-size:13px; padding:8px 12px;">
+        <option value="">Todas las tiendas</option>
+        <option>APATZINGÁN</option>
+        <option>NUEVA ITALIA</option>
+        <option>SAN SIMÓN</option>
+      </select>
+      <button class="btn btn-secondary btn-sm" onclick="exportarCSV()">⬇️ Exportar CSV</button>
+    </div>
+
+    <div id="historial-container">
+      <div class="empty-state">
+        <span class="emoji">📭</span>
+        No hay registros en esta sesión todavía.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- PÁGINA 6: INSTRUCCIONES -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="page" id="page-instrucciones">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon icon-azul">❓</div>
+      <div>
+        <div class="card-title">Guía de Uso — Sistema de Captura</div>
+        <div class="card-sub">Instrucciones para encargados de tienda</div>
+      </div>
+    </div>
+
+    <div class="instruc-step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <div class="step-title">¿Dónde abrir este sistema?</div>
+        <div class="step-desc">Abre este archivo en el navegador de tu celular (Chrome o Safari). No necesitas instalar nada. Solo necesitas tener el archivo descargado o el enlace.</div>
+      </div>
+    </div>
+
+    <div class="instruc-step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <div class="step-title">Corte de Caja — al cerrar turno</div>
+        <div class="step-desc">Ve a la pestaña "📊 Corte Caja". Llena todos los campos marcados con * (requeridos). El sistema calcula automáticamente la diferencia. Toca "Registrar Corte de Caja".</div>
+      </div>
+    </div>
+
+    <div class="instruc-step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <div class="step-title">Traspasos entre tiendas</div>
+        <div class="step-desc">Cuando salga mercancía hacia otra tienda, ve a "🔄 Traspaso". Agrega cada producto con su cantidad. Puedes poner varios productos en un solo traspaso.</div>
+      </div>
+    </div>
+
+    <div class="instruc-step">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <div class="step-title">Kileado y Suelto</div>
+        <div class="step-desc">Cuando se venda un producto a granel o por pieza fuera de lo normal, ve a "⚖️ Kileado". Selecciona K (kileado) o S (suelto). Si sabes el precio, ponlo — ayuda a calcular el valor total.</div>
+      </div>
+    </div>
+
+    <div class="instruc-step">
+      <div class="step-num">5</div>
+      <div class="step-content">
+        <div class="step-title">Pedidos a la Central</div>
+        <div class="step-desc">Para pedir productos, ve a "📋 Pedido". Agrega cada producto con cantidad y unidad. Marca la urgencia. La persona central recibirá el pedido estructurado, no como texto de WhatsApp.</div>
+      </div>
+    </div>
+
+    <div class="instruc-step">
+      <div class="step-num">6</div>
+      <div class="step-content">
+        <div class="step-title">Enviar registros a la central</div>
+        <div class="step-desc">Al final del día o cuando necesites enviar, ve a "🗂️ Historial" y toca "⬇️ Exportar CSV". Se descarga un archivo. Envíalo por WhatsApp a la persona central.</div>
+        <div class="code-block">El archivo se llama: registros_YYYY-MM-DD.csv
+Se abre en Excel directamente.
+No necesitas hacer nada más.</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="alert alert-info visible" style="margin-top:4px">
+      <span class="alert-icon">💡</span>
+      <span><strong>Tip:</strong> Guarda este archivo en favoritos de tu celular para tenerlo siempre a la mano. Los datos se guardan mientras no cierres el navegador.</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon icon-verde">🖥️</div>
+      <div>
+        <div class="card-title">Para la Persona Central</div>
+        <div class="card-sub">Cómo importar los archivos al Excel maestro</div>
+      </div>
+    </div>
+
+    <div class="instruc-step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <div class="step-title">Recibir el CSV por WhatsApp</div>
+        <div class="step-desc">Cuando la tienda envíe el archivo CSV, descárgalo a tu computadora.</div>
+      </div>
+    </div>
+    <div class="instruc-step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <div class="step-title">Abrir en Excel</div>
+        <div class="step-desc">Abre Excel → Datos → Desde Texto/CSV → Selecciona el archivo. Los datos llegan ya organizados en columnas.</div>
+      </div>
+    </div>
+    <div class="instruc-step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <div class="step-title">Generar el informe mensual</div>
+        <div class="step-desc">Una vez que tienes todos los cortes del mes en el Excel, ejecuta el macro "Generar Informe" (Módulo 1). El Word del informe se crea automáticamente.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════
+// ESTADO Y ALMACENAMIENTO EN MEMORIA
+// ═══════════════════════════════════════════════════
+let registros = [];
+let productosTrIdx = 0;
+let productosPedIdx = 0;
+
+// ── Navegación ──
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  event.target.classList.add('active');
+  if (id === 'historial') renderHistorial();
+}
+
+// ── Fecha de hoy por defecto ──
+window.addEventListener('DOMContentLoaded', () => {
+  const hoy = new Date().toISOString().split('T')[0];
+  ['c-fecha','tr-fecha','k-fecha','p-fecha'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = hoy;
+  });
+  agregarProductoTr();
+  agregarProductoPed();
+});
+
+// ═══════════════════════════════════════════════════
+// CORTE DE CAJA
+// ═══════════════════════════════════════════════════
+function calcularCorte() {
+  const v = parseFloat(document.getElementById('c-ventas').value) || 0;
+  const cob = parseFloat(document.getElementById('c-cobranza').value) || 0;
+  const egr = parseFloat(document.getElementById('c-egresos').value) || 0;
+  const decl = parseFloat(document.getElementById('c-declarado').value) || 0;
+
+  const ing = v + cob;
+  const tot = ing - egr;
+  const dif = tot - decl;
+
+  document.getElementById('t-ingresos').textContent = fmt(ing);
+  document.getElementById('t-total').textContent = fmt(tot);
+  document.getElementById('t-diferencia').textContent = fmt(dif);
+
+  const rowDif = document.getElementById('row-diferencia');
+  rowDif.className = 'total-row highlight';
+  if (Math.abs(dif) < 1) {
+    rowDif.classList.add('diferencia-ok');
+    document.getElementById('t-diferencia').style.color = '#1A6B3A';
+  } else if (dif < -1) {
+    rowDif.classList.add('diferencia-mal');
+    document.getElementById('t-diferencia').style.color = '#B40000';
+  } else {
+    document.getElementById('t-diferencia').style.color = '#C05E00';
+  }
+}
+
+function guardarCorte() {
+  const tienda = document.getElementById('c-tienda').value;
+  const fecha = document.getElementById('c-fecha').value;
+  const folio = document.getElementById('c-folio').value;
+  const ventas = parseFloat(document.getElementById('c-ventas').value) || 0;
+  const decl = parseFloat(document.getElementById('c-declarado').value) || 0;
+
+  let ok = true;
+  if (!tienda) { mostrarError('c-tienda'); ok = false; } else ocultarError('c-tienda');
+  if (!fecha) { mostrarError('c-fecha'); ok = false; } else ocultarError('c-fecha');
+  if (!folio) { mostrarError('c-folio'); ok = false; } else ocultarError('c-folio');
+  if (!ventas) { mostrarError('c-ventas'); ok = false; } else ocultarError('c-ventas');
+  if (!decl) { mostrarError('c-declarado'); ok = false; } else ocultarError('c-declarado');
+  if (!ok) return;
+
+  const cob = parseFloat(document.getElementById('c-cobranza').value) || 0;
+  const egr = parseFloat(document.getElementById('c-egresos').value) || 0;
+  const cred = parseFloat(document.getElementById('c-credito').value) || 0;
+  const obs = document.getElementById('c-obs').value;
+  const ing = ventas + cob;
+  const tot = ing - egr;
+  const dif = tot - decl;
+
+  const reg = {
+    tipo: 'corte', id: Date.now(), fecha, tienda,
+    folio, cajero: document.getElementById('c-cajero').value || 'CAJA',
+    ventas, cobranza: cob, ingresos: ing, egresos: egr,
+    total: tot, credito: cred, declarado: decl, diferencia: dif, obs
+  };
+  registros.push(reg);
+
+  mostrarAlerta('corte', `✅ Corte registrado — ${tienda} ${fecha} | Diferencia: ${fmt(dif)}`);
+  document.getElementById('c-folio').value = '';
+  document.getElementById('c-ventas').value = '';
+  document.getElementById('c-cobranza').value = '0';
+  document.getElementById('c-egresos').value = '0';
+  document.getElementById('c-credito').value = '0';
+  document.getElementById('c-declarado').value = '';
+  document.getElementById('c-obs').value = '';
+  calcularCorte();
+}
+
+// ═══════════════════════════════════════════════════
+// TRASPASO
+// ═══════════════════════════════════════════════════
+function agregarProductoTr() {
+  const idx = productosTrIdx++;
+  const lista = document.getElementById('tr-productos-lista');
+  const div = document.createElement('div');
+  div.className = 'producto-row';
+  div.id = 'tr-prod-' + idx;
+  div.innerHTML = `
+    <div class="field">
+      <label style="font-size:10px">Producto</label>
+      <input type="text" placeholder="Ej: DESARROLLO 3.5">
+    </div>
+    <div class="field">
+      <label style="font-size:10px">Cantidad</label>
+      <input type="number" placeholder="0" min="0" step="1">
+    </div>
+    <div class="field">
+      <label style="font-size:10px">Unidad</label>
+      <select>
+        <option>pzas</option><option>kg</option><option>lt</option><option>cajas</option><option>sacos</option>
+      </select>
+    </div>
+    <button class="btn-remove" onclick="quitarProd('tr-prod-${idx}')">×</button>`;
+  lista.appendChild(div);
+}
+
+function quitarProd(id) {
+  const el = document.getElementById(id);
+  if (el) el.remove();
+}
+
+function guardarTraspaso() {
+  const fecha = document.getElementById('tr-fecha').value;
+  const folio = document.getElementById('tr-folio').value;
+  const origen = document.getElementById('tr-origen').value;
+  const destino = document.getElementById('tr-destino').value;
+
+  let ok = true;
+  if (!fecha) { mostrarError('tr-fecha'); ok = false; } else ocultarError('tr-fecha');
+  if (!folio) { mostrarError('tr-folio'); ok = false; } else ocultarError('tr-folio');
+  if (!origen) { mostrarError('tr-origen'); ok = false; } else ocultarError('tr-origen');
+  if (!destino) { mostrarError('tr-destino'); ok = false; } else ocultarError('tr-destino');
+  if (!ok) return;
+
+  const prods = [];
+  document.querySelectorAll('#tr-productos-lista .producto-row').forEach(row => {
+    const inputs = row.querySelectorAll('input, select');
+    if (inputs[0].value.trim()) {
+      prods.push({ producto: inputs[0].value.trim(), cantidad: inputs[1].value, unidad: inputs[2].value });
+    }
+  });
+
+  const reg = {
+    tipo: 'traspaso', id: Date.now(), fecha, folio,
+    salida: document.getElementById('tr-salida').value,
+    entrada: document.getElementById('tr-entrada').value,
+    origen, destino, responsable: document.getElementById('tr-responsable').value,
+    productos: prods, obs: document.getElementById('tr-obs').value
+  };
+  registros.push(reg);
+
+  mostrarAlerta('traspaso', `✅ Traspaso registrado — ${origen} → ${destino} | ${prods.length} producto(s)`);
+  document.getElementById('tr-folio').value = '';
+  document.getElementById('tr-salida').value = '';
+  document.getElementById('tr-entrada').value = '';
+  document.getElementById('tr-responsable').value = '';
+  document.getElementById('tr-obs').value = '';
+  document.getElementById('tr-productos-lista').innerHTML = '';
+  productosTrIdx = 0;
+  agregarProductoTr();
+}
+
+// ═══════════════════════════════════════════════════
+// KILEADO
+// ═══════════════════════════════════════════════════
+function guardarKileado() {
+  const tienda = document.getElementById('k-tienda').value;
+  const fecha = document.getElementById('k-fecha').value;
+  const operador = document.getElementById('k-operador').value;
+  const producto = document.getElementById('k-producto').value.trim();
+  const cantidad = document.getElementById('k-cantidad').value;
+  const tipo = document.getElementById('k-tipo').value;
+
+  let ok = true;
+  if (!tienda) { mostrarError('k-tienda'); ok = false; } else ocultarError('k-tienda');
+  if (!fecha) { mostrarError('k-fecha'); ok = false; } else ocultarError('k-fecha');
+  if (!operador) { mostrarError('k-operador'); ok = false; } else ocultarError('k-operador');
+  if (!producto) { mostrarError('k-producto'); ok = false; } else ocultarError('k-producto');
+  if (!cantidad) { mostrarError('k-cantidad'); ok = false; } else ocultarError('k-cantidad');
+  if (!tipo) { mostrarError('k-tipo'); ok = false; } else ocultarError('k-tipo');
+  if (!ok) return;
+
+  const precio = parseFloat(document.getElementById('k-precio').value) || 0;
+  const reg = {
+    tipo: 'kileado', id: Date.now(), fecha, tienda,
+    entrada: document.getElementById('k-entrada').value,
+    salida: document.getElementById('k-salida').value,
+    operador, producto, cantidad: parseFloat(cantidad), tipo, precio,
+    valor: precio * parseFloat(cantidad),
+    obs: document.getElementById('k-obs').value
+  };
+  registros.push(reg);
+
+  mostrarAlerta('kileado', `✅ Registrado — ${producto} × ${cantidad} (${tipo}) | ${tienda}`);
+  document.getElementById('k-entrada').value = '';
+  document.getElementById('k-salida').value = '';
+  document.getElementById('k-producto').value = '';
+  document.getElementById('k-cantidad').value = '';
+  document.getElementById('k-tipo').value = '';
+  document.getElementById('k-precio').value = '';
+  document.getElementById('k-obs').value = '';
+}
+
+// ═══════════════════════════════════════════════════
+// PEDIDO
+// ═══════════════════════════════════════════════════
+function agregarProductoPed() {
+  const idx = productosPedIdx++;
+  const lista = document.getElementById('p-productos-lista');
+  const div = document.createElement('div');
+  div.className = 'producto-row';
+  div.id = 'p-prod-' + idx;
+  div.innerHTML = `
+    <div class="field">
+      <label style="font-size:10px">Producto</label>
+      <input type="text" placeholder="Ej: ENGORDA 5.5, LAYINA...">
+    </div>
+    <div class="field">
+      <label style="font-size:10px">Cantidad</label>
+      <input type="number" placeholder="0" min="0">
+    </div>
+    <div class="field">
+      <label style="font-size:10px">Unidad</label>
+      <select>
+        <option>sacos</option><option>pzas</option><option>kg</option><option>lt</option>
+        <option>cajas</option><option>dosis</option><option>tabs</option>
+      </select>
+    </div>
+    <button class="btn-remove" onclick="quitarProd('p-prod-${idx}')">×</button>`;
+  lista.appendChild(div);
+}
+
+function guardarPedido() {
+  const tienda = document.getElementById('p-tienda').value;
+  const fecha = document.getElementById('p-fecha').value;
+
+  let ok = true;
+  if (!tienda) { mostrarError('p-tienda'); ok = false; } else ocultarError('p-tienda');
+  if (!fecha) { mostrarError('p-fecha'); ok = false; } else ocultarError('p-fecha');
+  if (!ok) return;
+
+  const prods = [];
+  document.querySelectorAll('#p-productos-lista .producto-row').forEach(row => {
+    const inputs = row.querySelectorAll('input, select');
+    if (inputs[0].value.trim()) {
+      prods.push({ producto: inputs[0].value.trim(), cantidad: inputs[1].value, unidad: inputs[2].value });
+    }
+  });
+
+  if (prods.length === 0) {
+    mostrarAlerta('pedido', '⚠️ Agrega al menos un producto al pedido.', true);
+    return;
+  }
+
+  const reg = {
+    tipo: 'pedido', id: Date.now(), fecha, tienda,
+    tipoPedido: document.getElementById('p-tipo').value,
+    urgencia: document.getElementById('p-urgencia').value,
+    productos: prods, obs: document.getElementById('p-obs').value
+  };
+  registros.push(reg);
+
+  mostrarAlerta('pedido', `✅ Pedido registrado — ${tienda} | ${prods.length} producto(s) | ${reg.urgencia}`);
+  document.getElementById('p-obs').value = '';
+  document.getElementById('p-productos-lista').innerHTML = '';
+  productosPedIdx = 0;
+  agregarProductoPed();
+}
+
+// ═══════════════════════════════════════════════════
+// HISTORIAL
+// ═══════════════════════════════════════════════════
+function renderHistorial() {
+  const filtroTipo = document.getElementById('filtro-tipo').value;
+  const filtroTienda = document.getElementById('filtro-tienda').value;
+
+  let lista = registros.filter(r => {
+    if (filtroTipo && r.tipo !== filtroTipo) return false;
+    const tienda = r.tienda || r.origen || '';
+    if (filtroTienda && tienda !== filtroTienda) return false;
+    return true;
+  });
+
+  const cont = document.getElementById('historial-container');
+  if (lista.length === 0) {
+    cont.innerHTML = `<div class="empty-state"><span class="emoji">📭</span>No hay registros con ese filtro.</div>`;
+    return;
+  }
+
+  cont.innerHTML = lista.slice().reverse().map(r => {
+    const icons = { corte: '📊', traspaso: '🔄', kileado: '⚖️', pedido: '📋' };
+    const names = { corte: 'Corte de Caja', traspaso: 'Traspaso', kileado: 'Kileado', pedido: 'Pedido' };
+    let detalles = '';
+
+    if (r.tipo === 'corte') {
+      detalles = `
+        <div class="registro-datos">
+          <div class="registro-dato">Ingresos<span>${fmt(r.ingresos)}</span></div>
+          <div class="registro-dato">Declarado<span>${fmt(r.declarado)}</span></div>
+          <div class="registro-dato">Diferencia<span style="color:${Math.abs(r.diferencia)<1?'#1A6B3A':'#B40000'}">${fmt(r.diferencia)}</span></div>
+        </div>`;
+    } else if (r.tipo === 'traspaso') {
+      detalles = `<div style="font-size:12px;color:#5A6580;margin-top:4px">${r.origen} → ${r.destino} | ${r.productos.length} producto(s)</div>`;
+    } else if (r.tipo === 'kileado') {
+      detalles = `<div style="font-size:12px;color:#5A6580;margin-top:4px">${r.producto} × ${r.cantidad} (${r.tipo})</div>`;
+    } else if (r.tipo === 'pedido') {
+      detalles = `<div style="font-size:12px;color:#5A6580;margin-top:4px">${r.productos.length} producto(s) | ${r.urgencia}</div>`;
+    }
+
+    return `
+      <div class="registro-item">
+        <div class="registro-meta">
+          <span class="registro-fecha">${icons[r.tipo]} ${r.fecha}</span>
+          <span class="registro-tienda">${r.tienda || r.origen || ''}</span>
+        </div>
+        <div style="font-size:11px;font-weight:700;color:#1B3A6B;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.05em">${names[r.tipo]}</div>
+        ${detalles}
+      </div>`;
+  }).join('');
+}
+
+// ═══════════════════════════════════════════════════
+// EXPORTAR CSV
+// ═══════════════════════════════════════════════════
+function exportarCSV() {
+  if (registros.length === 0) {
+    alert('No hay registros para exportar.');
+    return;
+  }
+
+  let csv = 'TIPO,FECHA,TIENDA,FOLIO,CAJERO,VENTAS,COBRANZA,INGRESOS,EGRESOS,TOTAL,CREDITO,DECLARADO,DIFERENCIA,ORIGEN,DESTINO,PRODUCTO,CANTIDAD,TIPO_MOV,PRECIO,URGENCIA,OBSERVACIONES\n';
+
+  registros.forEach(r => {
+    if (r.tipo === 'corte') {
+      csv += `CORTE,${r.fecha},${r.tienda},${r.folio},${r.cajero},${r.ventas},${r.cobranza},${r.ingresos},${r.egresos},${r.total},${r.credito},${r.declarado},${r.diferencia},,,,,,,"${r.obs}"\n`;
+    } else if (r.tipo === 'traspaso') {
+      r.productos.forEach(p => {
+        csv += `TRASPASO,${r.fecha},,${r.folio},,,,,,,,,,${r.origen},${r.destino},${p.producto},${p.cantidad} ${p.unidad},,,"${r.obs}"\n`;
+      });
+    } else if (r.tipo === 'kileado') {
+      csv += `KILEADO,${r.fecha},${r.tienda},,${r.operador},,,,,,,,,,${r.producto},${r.cantidad},${r.tipo},${r.precio},,"${r.obs}"\n`;
+    } else if (r.tipo === 'pedido') {
+      r.productos.forEach(p => {
+        csv += `PEDIDO,${r.fecha},${r.tienda},,,,,,,,,,,,,,${p.producto},${p.cantidad} ${p.unidad},,${r.urgencia},"${r.obs}"\n`;
+      });
+    }
+  });
+
+  const fecha = new Date().toISOString().split('T')[0];
+  const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `registros_${fecha}.csv`;
+  a.click();
+}
+
+// ═══════════════════════════════════════════════════
+// UTILIDADES
+// ═══════════════════════════════════════════════════
+function fmt(n) {
+  return new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' }).format(n || 0);
+}
+
+function mostrarError(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.add('error');
+  const err = document.getElementById('err-' + id);
+  if (err) err.classList.add('visible');
+}
+
+function ocultarError(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.remove('error');
+  const err = document.getElementById('err-' + id);
+  if (err) err.classList.remove('visible');
+}
+
+function mostrarAlerta(form, msg, esWarning = false) {
+  const al = document.getElementById('alert-' + form);
+  const msgEl = document.getElementById('alert-' + form + '-msg');
+  if (!al || !msgEl) return;
+  al.className = 'alert ' + (esWarning ? 'alert-warning' : 'alert-success') + ' visible';
+  msgEl.textContent = msg;
+  setTimeout(() => { al.classList.remove('visible'); }, 5000);
+}
+</script>
+</body>
+</html>
