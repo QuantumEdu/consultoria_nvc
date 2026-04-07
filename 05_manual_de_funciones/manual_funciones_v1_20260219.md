@@ -1,13 +1,13 @@
 # MANUAL DE FUNCIONES — NVC
-## Versión 1.1 | Nutrición, Vacunas y Consultoría
+## Versión 1.2 | Nutrición, Vacunas y Consultoría
 
 ---
 
 | Campo              | Detalle                                         |
 |--------------------|--------------------------------------------------|
 | **Empresa**        | NVC — Nutrición, Vacunas y Consultoría          |
-| **Documento**      | Manual de Funciones v1.1                        |
-| **Fecha**          | 5 de abril de 2026                              |
+| **Documento**      | Manual de Funciones v1.2                        |
+| **Fecha**          | 7 de abril de 2026                              |
 | **Elaboró**        | Consultor Externo                                |
 | **Estatus**        | Borrador — Pendiente validación con DG          |
 | **Revisión**       | Cada 6 meses o ante cambios organizacionales    |
@@ -219,64 +219,86 @@ Asegurar el control financiero, administrativo y contable de la empresa, garanti
 
 ---
 
-### PUESTO: AUXILIAR ADMINISTRATIVO
+### PUESTO: RESPONSABLE DE LOGÍSTICA Y CARTERA
 
 | Campo | Detalle |
 |-------|---------|
-| **Área** | Administrativa |
-| **Nivel** | N4 |
+| **Área** | Administrativa / Operativa |
+| **Nivel** | N3 |
 | **Reporta a** | Gerente Administrativo (Vianey) |
-| **Supervisa a** | Ninguno directamente |
+| **Supervisa a** | Coordinación con bodegueros y repartidores para logística |
 | **Titular actual** | Rossy |
 | **Horario** | Lunes a viernes, 8:00–17:00; sábado 8:00–13:00 |
 
-> **Nota de actualización (v1.1 — 05/04/2026):** Rossy desempeñaba funciones de cajera al momento del Diagnóstico 01 (feb 2026). Para abril 2026 su rol evolucionó a auxiliar administrativo de Vianey, asumiendo funciones de cobranza, pedidos, facturación, inventario y traspasos. Las funciones de caja en Apatzingán requieren confirmación de quién las asumió (pendiente Diagnóstico 02).
+> **Historial del puesto:**
+> - **Feb 2026 (Diagnóstico 01):** Rossy operaba como cajera en Apatzingán.
+> - **Abr 2026 (v1.1):** Reasignada como Auxiliar Administrativo de Vianey.
+> - **Abr 2026 (v1.2):** Puesto formalizado como **Responsable de Logística y Cartera**, con autonomía propia en gestión de pedidos, análisis de cartera de clientes e inventarios.
 
 #### Objetivo del puesto
-Apoyar a la Gerente Administrativa en las funciones financieras, de inventario, facturación y pedidos, asegurando la continuidad operativa del área administrativa.
+Asegurar la operación logística y comercial del negocio: programar y dar seguimiento a pedidos, mantener actualizada la cartera de clientes (activos, en riesgo y vencida), y supervisar el estado del inventario en todas las sucursales. Actúa como enlace operativo entre el área administrativa y las sucursales.
 
 #### Funciones y responsabilidades
 
-**Cobranza y cuentas por cobrar/pagar:**
-- Gestionar pagos de cuentas a crédito
-- Verificar que se den de baja notas pagadas en el sistema
-- Realizar gestión de cobranza con clientes
+**Logística y programación de pedidos:**
+- Programar y coordinar los pedidos a proveedores (Purina y otros) según necesidades de inventario
+- Dar seguimiento a órdenes de compra hasta su recepción y confirmación
+- Coordinar traspasos de mercancía entre sucursales en el sistema
+- Coordinar con encargados de sucursal las necesidades de reabastecimiento
+- Apoyar en la coordinación de entregas a clientes cuando se requiera
 
-**Pedidos y compras:**
-- Realizar pedidos a Purina (proveedor principal)
-- Dar seguimiento a órdenes de compra
+**Cartera de clientes:**
+- Mantener actualizado el directorio/catálogo de clientes en el sistema
+- Identificar y reportar clientes con mayor volumen de compra (top buyers)
+- Detectar clientes que han dejado de comprar (inactivos >30 días) y alertar al DG o Gerente Comercial
+- Gestionar y reportar la cartera vencida: clientes con crédito no pagado
+- Realizar seguimiento de cobranza con clientes: llamadas, WhatsApp, acuerdos de pago
+- Verificar que las notas pagadas se den de baja en el sistema el mismo día
 
-**Inventario y traspasos:**
-- Realizar inventario físico (apoyo directo)
-- Realizar traspasos de mercancía entre sucursales en el sistema
+**Control de inventario:**
+- Revisar el estatus de inventario en todas las sucursales con frecuencia semanal
+- Detectar diferencias entre inventario físico y sistema, reportarlas a Vianey
+- Realizar o coordinar el inventario físico de apoyo
+- Registrar traspasos entre sucursales en el sistema (MyBusiness)
 
 **Facturación:**
-- Emitir facturas CFDI
+- Emitir facturas CFDI cuando se requiera
+- Coordinar con Vianey el proceso de facturación
+
+**Bitácora de trabajo diaria:**
+- Registrar diariamente las actividades realizadas: pedidos gestionados, clientes contactados, cobranzas, inventarios revisados
+- La bitácora puede llevarse en libreta o formato digital (lista sencilla)
+- Disponible para revisión por Vianey o el DG en cualquier momento
 
 **Reportes:**
-- Enviar reportes diarios al grupo de WhatsApp de la tienda (Apatzingán)
-- Reportar estatus de cobranza
+- Enviar reporte semanal de cartera: clientes activos, inactivos y vencida
+- Reportar estatus de pedidos y entregas pendientes
+- Participar en la reunión semanal de viernes
 
-#### KPIs del Auxiliar Administrativo
+#### KPIs del Responsable de Logística y Cartera
 
 | Indicador | Meta | Frecuencia |
 |-----------|------|-----------|
-| Notas pagadas dadas de baja en sistema | 100% el mismo día del pago | Diario |
-| Pedidos a Purina sin errores | 100% | Según frecuencia de pedido |
-| Traspasos registrados en sistema | 100% en el día | Diario |
-| Facturas emitidas sin error | 99%+ | Diario |
-| Reportes diarios enviados al grupo | 100% de días hábiles | Diario |
+| Pedidos a proveedores sin errores | 100% | Por pedido |
+| Traspasos registrados en sistema | 100% el mismo día | Diario |
+| Clientes inactivos >30 días identificados y reportados | 100% detectados | Semanal |
+| Cartera vencida reportada al DG | Sin rezago mayor a 1 semana | Semanal |
+| Notas pagadas dadas de baja en sistema | 100% el mismo día | Diario |
+| Bitácora de trabajo al día | 100% de días hábiles | Diario |
+| Reporte semanal de cartera entregado | 100% viernes | Semanal |
 
 #### Perfil requerido
-- Preparatoria concluida (mínimo)
-- Experiencia en funciones administrativas (deseable)
-- Manejo básico de MyBusiness Pro
-- Honestidad, responsabilidad, organización y atención al detalle
+- Preparatoria concluida (mínimo); deseable estudios en administración o contabilidad
+- Experiencia en funciones administrativas y trato con clientes
+- Manejo de MyBusiness Pro (o capacitación inmediata)
+- Capacidad de organización, seguimiento y comunicación proactiva
+- Honestidad, responsabilidad y discreción en el manejo de información de clientes
 
 #### Prohibiciones
-- No otorgar crédito a clientes sin autorización de Vianey o el DG
-- No realizar ajustes de inventario sin supervisión de Vianey
-- No compartir información financiera con personal no autorizado
+- No otorgar o ampliar crédito a clientes sin autorización de Vianey o el DG
+- No realizar ajustes de inventario sin respaldo físico y supervisión de Vianey
+- No compartir información de cartera o clientes con personal no autorizado
+- No comprometer entregas o pedidos sin verificar disponibilidad y aprobación
 
 ---
 
@@ -305,6 +327,15 @@ Registrar con exactitud todas las transacciones de venta en el sistema, cobrar c
 - Reportar faltantes de producto al encargado para reposición
 - Reportar diferencias de caja inmediatamente al encargado
 - Custodiar el efectivo del día hasta el depósito o entrega al DG
+- **Llenar la bitácora de trabajo diaria** (ver política de bitácora más abajo)
+
+**Bitácora de trabajo diaria (Cajero/a):**
+Registrar al final de cada turno, en libreta o computadora, la siguiente información básica:
+1. Fecha y turno
+2. Total de ventas del día (monto sistema)
+3. Corte de caja: resultado (cuadrado / diferencia y monto)
+4. Incidencias del día: clientes con problemas, faltantes de producto, pagos no registrados, etc.
+5. Nombre y firma del cajero/a
 
 #### KPIs del Cajero/a
 
@@ -313,6 +344,7 @@ Registrar con exactitud todas las transacciones de venta en el sistema, cobrar c
 | Diferencia en corte de caja | $0 (tolerancia: $50 por día) | Diario |
 | Ventas registradas vs cobradas | 100% coincidencia | Diario |
 | Tickets emitidos sin error | 99%+ | Diario |
+| Bitácora de trabajo al día | 100% de días con turno | Diario |
 
 #### Perfil requerido
 - Preparatoria concluida
@@ -653,7 +685,8 @@ Cada colaborador debe firmar la descripción de su puesto, indicando que ha leí
 |---------|-------|---------|---------|
 | 1.0 | 19/02/2026 | Versión inicial — basada en Diagnóstico 01 | Consultor externo |
 | 1.1 | 05/04/2026 | Actualización funciones Vianey (entrevista directa). Reasignación de Rossy de "Cajera" a "Auxiliar Administrativo". Nuevo puesto de Cajero/a genérico. Incorporación de funciones: mermas, ajuste de inventario, conciliación bancaria mensual, trámites bancarios, responsable de personal | Consultor externo |
+| 1.2 | 07/04/2026 | Formalización del puesto de Rossy como **Responsable de Logística y Cartera** (N3): nuevas funciones de programación de pedidos, análisis de cartera de clientes (activos, inactivos, vencida) y revisión de inventarios en sucursales. Incorporación de **bitácora de trabajo diaria** obligatoria para todos los puestos administrativos y cajeros. | Consultor externo |
 
 ---
 
-*NVC — Manual de Funciones v1.1 | Consultoría Externa | Confidencial*
+*NVC — Manual de Funciones v1.2 | Consultoría Externa | Confidencial*
