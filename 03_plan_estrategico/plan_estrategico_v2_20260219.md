@@ -49,11 +49,11 @@ Con base en el Diagnóstico 01 (16/02/2026), se actualiza el plan con informaci�
 | # | Actividad | Responsable | Entregable | Tiempo |
 |---|-----------|-------------|------------|--------|
 | 0.1 | Agendar y realizar Diagnóstico 02 (entrevista con preguntas pendientes) | Consultor + DG | Diagnóstico 02 completo | Sem 1 |
-| 0.2 | Levantamiento de inventario físico real en las 3 sucursales vs MyBusiness | DG + Vianey + encargados | Reporte de diferencias | Sem 1–2 |
-| 0.3 | Descarga de histórico de ventas (últimos 12–24 meses) de MyBusiness | Vianey | Archivo Excel/CSV de ventas | Sem 1 |
+| 0.2 | Levantamiento de inventario físico real en las 3 sucursales vs MyBusiness | DG + Gerente Administrativa + encargados | Reporte de diferencias | Sem 1–2 |
+| 0.3 | Descarga de histórico de ventas (últimos 12–24 meses) de MyBusiness | Gerente Administrativa | Archivo Excel/CSV de ventas | Sem 1 |
 | 0.4 | Validar misión, visión y valores con el DG | Consultor + DG | Misión/Visión/Valores oficiales | Sem 1–2 |
 | 0.5 | Levantar organigrama actual (confirmar nombres, puestos y jerarquías reales) | Consultor | Organigrama actual v1 | Sem 1 |
-| 0.6 | Verificar estatus IMSS de todo el personal | Vianey | Lista completa con situación | Sem 1 |
+| 0.6 | Revisar situación laboral del personal (como área de mejora a futuro) | Gerente Administrativa | Diagnóstico de estatus laboral | Sem 2–4 |
 | 0.7 | Recopilar información de las 2 sucursales no diagnosticadas | DG | Ficha de sucursales 4 y 5 | Sem 1–2 |
 
 ---
@@ -67,27 +67,28 @@ Con base en el Diagnóstico 01 (16/02/2026), se actualiza el plan con informaci�
 #### Organigrama propuesto (a validar con Diagnóstico 02)
 
 ```
-Director General (Ignacio)
+Director General
 │
 ├── Gerencia Administrativa
-│   ├── Vianey (Administración, Facturación, Compras)
-│   └── Auxiliar contable (por contratar)
+│   ├── Gerente Administrativa (Administración, Facturación, Compras)
+│   ├── Resp. Logística y Cartera
+│   └── Auxiliar Contable (por contratar)
 │
 ├── Gerencia Comercial
 │   ├── Encargados de Sucursal (5 sucursales)
-│   │   ├── Apatzingán: Rossy (caja) + José G. + Álvaro (bodega)
-│   │   ├── San Simón: Paola (encargada) + Pepe + Uriel
-│   │   ├── Nueva Italia: Briseida (ventas) + Julio (inventario/logística) + David
+│   │   ├── Apatzingán: Encargado/a + Bodegueros
+│   │   ├── San Simón: Encargada + Equipo operativo
+│   │   ├── Nueva Italia: Encargada + Equipo operativo
 │   │   └── Sucursales 4 y 5: (por diagnosticar)
 │   ├── Promotor de Ventas (por contratar — $400/ton)
-│   └── Rebeca / Coordinador de información (por definir)
+│   └── Coordinador de Información (por definir)
 │
 ├── Gerencia Técnica
 │   ├── Promotor Técnico: Biólogo o Médico Vet. (por contratar)
 │   └── Equipo de Vacunación (2 itinerantes)
 │
 └── Marketing (interno o externo)
-    └── Julio (Nueva Italia, Lic. Mercadotecnia — perfil para liderar)
+    └── Responsable de Marketing (Lic. Mercadotecnia — perfil para liderar)
 ```
 
 #### Líneas de reporte formales
@@ -96,7 +97,7 @@ Director General (Ignacio)
 |--------|-----------|----------------------|
 | Encargados de sucursal | Gerente Comercial | Diario (corte) + Semanal (reunión) |
 | Promotores (ventas y técnico) | Gerente Comercial | Semanal |
-| Vianey | Gerente Administrativo / DG | Diario |
+| Gerente Administrativa | Director General | Diario |
 | Gerentes | Director General | Viernes (reunión de KPIs) |
 
 ### 1.2 Política de Recursos Humanos (inmediata)
@@ -112,10 +113,10 @@ Director General (Ignacio)
 - Máximo **2 permisos especiales por trimestre** por empleado sin descuento
 - El tercero implica descuento proporcional
 
-#### Regularización IMSS
-- **Semana 2:** Levantar lista completa con estatus de cada empleado
-- **Mes 1:** Alta obligatoria de todo el personal con más de 1 mes en la empresa
-- **Responsable:** Vianey / DG
+#### Regularización laboral (mejora a considerar)
+- Revisar la situación laboral del personal como una oportunidad de mejora normativa
+- Evaluar con el contador externo las opciones y plazos disponibles
+- **Responsable:** Gerente Administrativa / DG (a definir cronograma)
 
 #### Correos institucionales
 - Crear cuenta de correo por sucursal: apatzingan@nvc.mx, sansimón@nvc.mx, nuevaitalia@nvc.mx
@@ -128,7 +129,7 @@ Puestos a formalizar de inmediato:
 2. Encargado de Sucursal (perfil genérico replicable)
 3. Cajero/a
 4. Auxiliar de Bodega/Logística
-5. Administrativo (Vianey)
+5. Gerente Administrativo/a
 6. Promotor de Ventas
 7. Promotor Técnico
 
@@ -142,15 +143,15 @@ Puestos a formalizar de inmediato:
 
 | # | Procedimiento | Responsable implementación | Semana |
 |---|--------------|--------------------------|--------|
-| P01 | Corte de caja diario (con formato y tolerancia de diferencias) | Rossy + encargados | 3 |
+| P01 | Corte de caja diario (con formato y tolerancia de diferencias) | Resp. Logística y Cartera + encargados | 3 |
 | P02 | Inventario diario (productos A) y semanal (completo) | Encargados + bodegueros | 3 |
 | P03 | Recepción de mercancía (verificar, registrar, firmar) | Bodegueros | 3 |
 | P04 | Atención al cliente en mostrador (protocolo anti-pérdida de clientes) | Encargados | 4 |
 | P05 | Seguimiento a clientes (registro post-venta, llamada semanal) | Promotor ventas + encargados | 4 |
-| P06 | Facturación y conciliación (MyBusiness vs CONTPAQ) | Vianey | 4 |
-| P07 | Pedidos y compras (faltantes → Rossy → Vianey → DG aprueba) | Vianey | 5 |
-| P08 | Logística y entregas (rutas, tiempos, cobro en campo) | Pepe + Julio + DG | 5 |
-| P09 | Gestión de permisos y asistencia | Encargados → Vianey | 3 |
+| P06 | Facturación y conciliación (MyBusiness vs CONTPAQ) | Gerente Administrativa | 4 |
+| P07 | Pedidos y compras (faltantes → Resp. Logística → Gerente Administrativa → DG aprueba) | Gerente Administrativa | 5 |
+| P08 | Logística y entregas (rutas, tiempos, cobro en campo) | Repartidores + Resp. Marketing/Logística + DG | 5 |
+| P09 | Gestión de permisos y asistencia | Encargados → Gerente Administrativa | 3 |
 | P10 | Reporte semanal de sucursal (formato unificado) | Encargados → WhatsApp Business | 4 |
 
 ### 2.2 Sistema POS
@@ -181,14 +182,14 @@ Puestos a formalizar de inmediato:
 | Toneladas vendidas | Semanal | MyBusiness |
 | Ticket promedio | Semanal | POS |
 | Margen bruto por sucursal | Mensual | MyBusiness + CONTPAQ |
-| Cartera vencida | Semanal | Vianey |
+| Cartera vencida | Semanal | Gerente Administrativa |
 | Inventario valorizado | Semanal | MyBusiness |
 | Clientes nuevos vs. perdidos | Semanal | CRM / registro manual |
 | Desempeño promotores (ventas/ton) | Semanal | Promotores |
 | Diferencias de inventario físico vs sistema | Semanal | Encargados |
 | Permisos y ausentismo | Mensual | Libro de registro |
 
-**Herramienta inicial:** Excel consolidado (Vianey) → migrar a Power BI o dashboard de ERP en mes 3.
+**Herramienta inicial:** Excel consolidado (Gerente Administrativa) → migrar a Power BI o dashboard de ERP en mes 3.
 
 **Ritmo de gobernanza:**
 - **Viernes:** Revisión de dashboard con DG + encargados (30 min vía Meet)
@@ -276,10 +277,10 @@ Puestos a formalizar de inmediato:
 | Requisito | Responsable | Estado |
 |-----------|-------------|--------|
 | Manual de Operaciones v2 implementado en todas las sucursales | Consultor + DG | Pendiente |
-| POS activo en todas las sucursales | Vianey + DG | Pendiente |
-| Dashboard gerencial activo | Vianey + Consultor | Pendiente |
+| POS activo en todas las sucursales | Gerente Administrativa + DG | Pendiente |
+| Dashboard gerencial activo | Gerente Administrativa + Consultor | Pendiente |
 | Encargado de nueva sucursal identificado y capacitado | DG | Pendiente |
-| Inventario inicial definido | Vianey | Pendiente |
+| Inventario inicial definido | Gerente Administrativa | Pendiente |
 | KPIs establecidos desde día 1 | Consultor | Pendiente |
 | Estudio de viabilidad aprobado | Omar Giovanni + DG | Pendiente |
 
@@ -326,7 +327,7 @@ Puestos a formalizar de inmediato:
 | Sucursales con POS activo | 100% (3–5 sucursales) |
 | Procedimientos documentados | 10 procedimientos implementados |
 | Dashboard activo | Sí, revisado todos los viernes |
-| Personal con IMSS | 100% regularizado |
+| Situación laboral del personal | Diagnóstico realizado + plan de mejora definido |
 | Promotor ventas activo | Sí, generando pedidos |
 
 ---
@@ -337,7 +338,7 @@ Puestos a formalizar de inmediato:
 |--------|-------------|---------|------------|
 | Resistencia al cambio del personal | Alta | Alto | Capacitación + comunicación del beneficio |
 | DG no delega funciones | Alta | Alto | Definir funciones explícitas del DG estratégico |
-| Rotación de personal clave (Vianey) | Media | Muy Alto | Documentar todo su proceso, crear respaldo |
+| Rotación de personal clave (Área Administrativa) | Media | Muy Alto | Documentar todos los procesos del área, crear respaldo |
 | POS incompatible con MyBusiness | Media | Alto | Evaluar módulo MyBusiness antes de cambiar |
 | Presupuesto insuficiente para contrataciones | Media | Alto | Priorizar promotor ventas (se paga solo con comisiones) |
 | Apertura de sucursal sin modelo listo | Alta | Muy Alto | Política: NO apertura sin requisitos cumplidos |

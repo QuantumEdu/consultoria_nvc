@@ -124,11 +124,11 @@ Referencia al documento `04_estructura_organizacional/estructura_organizacional_
 
 | Área | Función principal | Titular |
 |------|------------------|---------|
-| **Dirección General** | Estrategia, decisiones clave, representación | Ignacio |
-| **Administración** | Finanzas, RRHH, compras, contabilidad | Vianey |
+| **Dirección General** | Estrategia, decisiones clave, representación | Director General |
+| **Administración** | Finanzas, RRHH, compras, contabilidad | Gerente Administrativa |
 | **Comercial** | Ventas, sucursales, logística, clientes | Por designar |
 | **Técnica** | Asesoría, vacunación, planes de nutrición | DG (transitorio) + Promotor Técnico |
-| **Marketing** | Marca, redes sociales, campañas | Julio (por formalizar) |
+| **Marketing** | Marca, redes sociales, campañas | Responsable de Marketing (por formalizar) |
 
 ---
 
@@ -149,7 +149,7 @@ Referencia al documento `04_estructura_organizacional/estructura_organizacional_
 - Administrar el dinero y flujo de efectivo de todas las sucursales
 - Controlar el flujo de efectivo e ingresos de todas las sucursales
 - Ingresar compras y verificar/ajustar registros en el sistema
-- Gestionar la nómina y las obligaciones patronales (IMSS, SAT)
+- Gestionar la nómina y las obligaciones patronales (SAT y demás normas vigentes)
 - Ser responsable directa de la gestión de personal (RRHH)
 - Administrar el catálogo de productos, clientes y proveedores
 - Emitir y controlar la facturación (CFDI), apoyada por auxiliar administrativo
@@ -214,23 +214,23 @@ Referencia al documento `04_estructura_organizacional/estructura_organizacional_
 **Política de uso de MyBusiness:**
 - Toda venta debe ser registrada en MyBusiness el mismo día
 - No se acepta venta sin registro en sistema
-- El catálogo de productos se actualiza exclusivamente por Vianey (Administración)
+- El catálogo de productos se actualiza exclusivamente por la Gerente Administrativa (Administración)
 - Los encargados de sucursal no pueden modificar precios en el sistema
 
 ### 7.2 Sistema contable complementario: CONTPAQ
 
 - Utilizado para contabilidad formal y preparación de declaraciones fiscales
-- Coordinado por Vianey con el contador externo
+- Coordinado por la Gerente Administrativa con el contador externo
 - Conciliación con MyBusiness: semanal (mínimo)
 
 ### 7.3 Comunicación interna
 
 | Canal | Uso | Responsable |
 |-------|-----|-------------|
-| WhatsApp Business (grupo oficial) | Reportes diarios entre sucursales y matriz | Encargados / Aux. Admin. → Vianey |
+| WhatsApp Business (grupo oficial) | Reportes diarios entre sucursales y matriz | Encargados / Aux. Admin. → Gerente Administrativa |
 | Google Meet | Reunión semanal de KPIs (viernes) | DG |
 | Correo institucional | Comunicados formales, documentos | Por crear |
-| Dashboard gerencial | Seguimiento de indicadores | Vianey → DG |
+| Dashboard gerencial | Seguimiento de indicadores | Gerente Administrativa → DG |
 
 ### 7.4 Flota vehicular
 
@@ -268,7 +268,7 @@ Referencia al documento `04_estructura_organizacional/estructura_organizacional_
 - Cartera vencida > 60 días: reporte inmediato al DG, suspensión de crédito
 
 ### 8.3 Política de compras
-- Compras rutinarias (reposición de inventario): autorizadas por Vianey hasta $5,000
+- Compras rutinarias (reposición de inventario): autorizadas por la Gerente Administrativa hasta $5,000
 - Compras especiales o nuevos proveedores: autorización del DG
 - Toda compra debe tener factura del proveedor y debe ingresarse al sistema el mismo día
 
@@ -276,10 +276,10 @@ Referencia al documento `04_estructura_organizacional/estructura_organizacional_
 
 **Contratación:**
 - Toda contratación requiere aprobación del DG
-- Proceso mínimo: entrevista, verificación de documentos, alta en IMSS antes de inicio de labores
+- Proceso mínimo: entrevista, verificación de documentos, alta ante las autoridades laborales correspondientes antes de inicio de labores
 
 **Nómina:**
-- La nómina se procesa por Vianey y es aprobada por el DG
+- La nómina se procesa por la Gerente Administrativa y es aprobada por el DG
 - Pago: frecuencia y método por confirmar (quincenal o semanal)
 - Todo pago de nómina queda registrado
 
@@ -312,9 +312,9 @@ Referencia al documento `04_estructura_organizacional/estructura_organizacional_
 | Entidad | Tipo de relación | Gestiona |
 |---------|-----------------|---------|
 | **Purina (Nestlé/Land O'Lakes)** | Distribuidor autorizado, proveedor principal | DG |
-| **Contador externo** | Servicio fiscal y contable | Vianey |
-| **IMSS** | Seguridad social de trabajadores | Vianey |
-| **SAT** | Obligaciones fiscales | Contador / Vianey |
+| **Contador externo** | Servicio fiscal y contable | Gerente Administrativa |
+| **IMSS** | Seguridad social de trabajadores (a regularizar) | Gerente Administrativa |
+| **SAT** | Obligaciones fiscales | Contador / Gerente Administrativa |
 | **SENASICA** | Permisos veterinarios | DG |
 | **Clientes acuicultores** | Ventas y asesoría técnica | DG / Promotor Técnico / Encargados |
 | **Clientes ganaderos/avicultores** | Ventas y asesoría | DG / Promotor Técnico |
@@ -344,7 +344,7 @@ Referencia al documento `04_estructura_organizacional/estructura_organizacional_
 | Reunión | Frecuencia | Participantes | Medio |
 |---------|-----------|--------------|-------|
 | Revisión de KPIs y dashboard | Viernes semanal | DG + encargados | Meet / presencial |
-| Revisión financiera | Primer lunes de mes | DG + Vianey | Presencial |
+| Revisión financiera | Primer lunes de mes | DG + Gerente Administrativa | Presencial |
 | Capacitación técnica | Semestral (mínimo) | Todo el personal | Sucursal / Meet |
 | Evaluación de desempeño | Trimestral | DG + Gerentes | Presencial |
 
@@ -377,7 +377,7 @@ Referencia al documento `04_estructura_organizacional/estructura_organizacional_
 | **Versión** | 1.0 |
 | **Fecha de emisión** | 19 de febrero de 2026 |
 | **Próxima revisión** | Agosto 2026 |
-| **Custodio** | Vianey — Área Administrativa |
+| **Custodio** | Gerente Administrativa — Área Administrativa |
 | **Aprobó** | Director General |
 
 ### Historial de versiones
@@ -385,7 +385,7 @@ Referencia al documento `04_estructura_organizacional/estructura_organizacional_
 | Versión | Fecha | Cambios | Elaboró |
 |---------|-------|---------|---------|
 | 1.0 | Feb 2026 | Versión inicial — basada en Diagnóstico 01 | Consultor externo |
-| 1.1 | 05/04/2026 | Actualización de atribuciones del Área Administrativa con funciones confirmadas en entrevista directa con Vianey: mermas, conciliación bancaria mensual, trámites bancarios, responsable de personal, ajuste de inventario, políticas internas, MyBusiness Pro | Consultor externo |
+| 1.1 | 05/04/2026 | Actualización de atribuciones del Área Administrativa con funciones confirmadas en entrevista directa: mermas, conciliación bancaria mensual, trámites bancarios, responsable de personal, ajuste de inventario, políticas internas, MyBusiness Pro | Consultor externo |
 
 ---
 

@@ -1,12 +1,12 @@
 # MANUAL DE FUNCIONES — NVC
-## Versión 1.2 | Nutrición, Vacunas y Consultoría
+## Versión 1.3 | Nutrición, Vacunas y Consultoría
 
 ---
 
 | Campo              | Detalle                                         |
 |--------------------|--------------------------------------------------|
 | **Empresa**        | NVC — Nutrición, Vacunas y Consultoría          |
-| **Documento**      | Manual de Funciones v1.2                        |
+| **Documento**      | Manual de Funciones v1.3                        |
 | **Fecha**          | 7 de abril de 2026                              |
 | **Elaboró**        | Consultor Externo                                |
 | **Estatus**        | Borrador — Pendiente validación con DG          |
@@ -50,7 +50,7 @@ Aplica a todos los colaboradores de NVC: Apatzingán (matriz), San Simón, Nueva
 
 - Cada colaborador debe recibir una copia de la descripción de su puesto y firmarla de recibido
 - El encargado de sucursal conserva copia de las descripciones de todos los puestos a su cargo
-- Vianey conserva los originales firmados en el expediente de cada empleado
+- La Gerente Administrativa conserva los originales firmados en el expediente de cada empleado
 - Ante cualquier duda sobre responsabilidades, este manual es el documento de referencia
 
 ---
@@ -133,7 +133,7 @@ Dirigir la estrategia de crecimiento de NVC, asegurar la rentabilidad del negoci
 
 ---
 
-### PUESTO: GERENTE ADMINISTRATIVO (Formalizar con Vianey)
+### PUESTO: GERENTE ADMINISTRATIVO
 
 | Campo | Detalle |
 |-------|---------|
@@ -185,7 +185,7 @@ Asegurar el control financiero, administrativo y contable de la empresa, garanti
 
 **Gestión de personal (RRHH):**
 - Responsable directa del personal de la empresa
-- Procesar altas y bajas de personal ante IMSS
+- Gestionar altas y bajas de personal conforme a las obligaciones patronales vigentes
 - Gestionar nómina y presentarla al DG para aprobación
 - Supervisar el cumplimiento de horarios y asistencia
 
@@ -204,7 +204,6 @@ Asegurar el control financiero, administrativo y contable de la empresa, garanti
 | Conciliaciones al día | Sin rezago mayor a 1 semana | Semanal |
 | Cartera vencida / ventas totales | <10% | Mensual |
 | Declaraciones fiscales a tiempo | 100% | Mensual |
-| Personal con IMSS al corriente | 100% | Mensual |
 
 #### Perfil requerido
 - Licenciatura en Administración, Contabilidad, Psicología Organizacional o afín
@@ -225,14 +224,13 @@ Asegurar el control financiero, administrativo y contable de la empresa, garanti
 |-------|---------|
 | **Área** | Administrativa / Operativa |
 | **Nivel** | N3 |
-| **Reporta a** | Gerente Administrativo (Vianey) |
+| **Reporta a** | Gerente Administrativo |
 | **Supervisa a** | Coordinación con bodegueros y repartidores para logística |
-| **Titular actual** | Rossy |
 | **Horario** | Lunes a viernes, 8:00–17:00; sábado 8:00–13:00 |
 
 > **Historial del puesto:**
-> - **Feb 2026 (Diagnóstico 01):** Rossy operaba como cajera en Apatzingán.
-> - **Abr 2026 (v1.1):** Reasignada como Auxiliar Administrativo de Vianey.
+> - **Feb 2026 (Diagnóstico 01):** Titular operaba como cajera en Apatzingán.
+> - **Abr 2026 (v1.1):** Reasignada como Auxiliar Administrativo del Área Administrativa.
 > - **Abr 2026 (v1.2):** Puesto formalizado como **Responsable de Logística y Cartera**, con autonomía propia en gestión de pedidos, análisis de cartera de clientes e inventarios.
 
 #### Objetivo del puesto
@@ -257,18 +255,18 @@ Asegurar la operación logística y comercial del negocio: programar y dar segui
 
 **Control de inventario:**
 - Revisar el estatus de inventario en todas las sucursales con frecuencia semanal
-- Detectar diferencias entre inventario físico y sistema, reportarlas a Vianey
+- Detectar diferencias entre inventario físico y sistema, reportarlas a la Gerente Administrativa
 - Realizar o coordinar el inventario físico de apoyo
 - Registrar traspasos entre sucursales en el sistema (MyBusiness)
 
 **Facturación:**
 - Emitir facturas CFDI cuando se requiera
-- Coordinar con Vianey el proceso de facturación
+- Coordinar con la Gerente Administrativa el proceso de facturación
 
 **Bitácora de trabajo diaria:**
 - Registrar diariamente las actividades realizadas: pedidos gestionados, clientes contactados, cobranzas, inventarios revisados
 - La bitácora puede llevarse en libreta o formato digital (lista sencilla)
-- Disponible para revisión por Vianey o el DG en cualquier momento
+- Disponible para revisión por la Gerente Administrativa o el DG en cualquier momento
 
 **Reportes:**
 - Enviar reporte semanal de cartera: clientes activos, inactivos y vencida
@@ -295,8 +293,8 @@ Asegurar la operación logística y comercial del negocio: programar y dar segui
 - Honestidad, responsabilidad y discreción en el manejo de información de clientes
 
 #### Prohibiciones
-- No otorgar o ampliar crédito a clientes sin autorización de Vianey o el DG
-- No realizar ajustes de inventario sin respaldo físico y supervisión de Vianey
+- No otorgar o ampliar crédito a clientes sin autorización de la Gerente Administrativa o el DG
+- No realizar ajustes de inventario sin respaldo físico y supervisión de la Gerente Administrativa
 - No compartir información de cartera o clientes con personal no autorizado
 - No comprometer entregas o pedidos sin verificar disponibilidad y aprobación
 
@@ -313,7 +311,7 @@ Asegurar la operación logística y comercial del negocio: programar y dar segui
 | **Titular actual** | Por confirmar en Apatzingán (Diagnóstico 02) |
 | **Horario** | Según horario de sucursal |
 
-> **Nota (v1.1):** Con Rossy reasignada como Auxiliar Administrativo, se debe confirmar quién opera la caja en la sucursal Apatzingán. Este puesto se mantiene como perfil genérico replicable para todas las sucursales.
+> **Nota (v1.1):** Con la titular del Área Administrativa reclasificada a su nuevo puesto, se debe confirmar quién opera la caja en la sucursal Apatzingán. Este puesto se mantiene como perfil genérico replicable para todas las sucursales.
 
 #### Objetivo del puesto
 Registrar con exactitud todas las transacciones de venta en el sistema, cobrar correctamente y realizar el corte de caja diario sin diferencias.
@@ -392,14 +390,14 @@ Garantizar la operación diaria correcta de la sucursal a su cargo: control de i
 **Control de inventario:**
 - Verificar inventario diario de productos A (alta rotación)
 - Supervisar conteo semanal completo
-- Reportar diferencias inmediatamente a Vianey
+- Reportar diferencias inmediatamente a la Gerente Administrativa
 - Recibir mercancía y verificar contra factura del proveedor
 
 **Gestión del equipo:**
 - Supervisar asistencia y puntualidad (libro de registro)
 - Dirigir las actividades diarias del personal a cargo
 - Autorizar permisos de hasta 1 día; turnar al DG los de más de 1 día
-- Reportar incidencias disciplinarias a Vianey / DG
+- Reportar incidencias disciplinarias a la Gerente Administrativa / DG
 
 **Reporte diario:**
 - Enviar al grupo de WhatsApp Business: corte de caja, resumen de ventas, diferencias de inventario, novedades
@@ -428,46 +426,128 @@ Garantizar la operación diaria correcta de la sucursal a su cargo: control de i
 
 ---
 
-### PUESTO: PROMOTOR DE VENTAS
+### PUESTO: GERENTE DE TIENDA / SUCURSAL
+
+| Campo | Detalle |
+|-------|---------|
+| **Área** | Comercial |
+| **Nivel** | N2 |
+| **Reporta a** | Director General |
+| **Supervisa a** | Todo el personal de su sucursal: cajeros, vendedores, bodegueros, repartidores |
+| **Horario** | Según horario de sucursal; disponibilidad ante emergencias |
+
+> **Nota:** Este puesto representa la evolución formal del Encargado de Sucursal. Aplica cuando la sucursal tiene volumen suficiente, personal a cargo mayor a 3 personas y meta propia de ventas. Incluye mayor autonomía y esquema de bono por resultados.
+
+#### Objetivo del puesto
+Dirigir la operación completa de la sucursal a su cargo: garantizar el cumplimiento de la meta de ventas, el control de inventario, la calidad en atención al cliente, el desempeño del equipo y la rentabilidad del punto de venta.
+
+#### Funciones y responsabilidades
+
+**Liderazgo y equipo:**
+- Dirigir, motivar y supervisar a todo el personal de la sucursal
+- Autorizar permisos de hasta 2 días; turnar al DG los de mayor duración
+- Reportar incidencias disciplinarias y proponer medidas al DG
+- Garantizar que el personal cumpla horarios, uniformes y protocolos
+
+**Operación comercial:**
+- Asegurar atención de primer nivel a todos los clientes
+- Supervisar que cada venta quede registrada en sistema
+- Coordinar con el Promotor de Ventas las visitas y pedidos de campo
+- Supervisar la operación de caja: cortes, diferencias, depósitos
+- Autorizar descuentos dentro del rango aprobado por el DG
+
+**Inventario y abastecimiento:**
+- Verificar inventario diario de productos de alta rotación
+- Reportar necesidades de reabastecimiento a la Responsable de Logística y Cartera
+- Supervisar recepción de mercancía y verificación contra factura
+- Coordinar con el Logista Operativo el movimiento de mercancía
+
+**Resultados y reportes:**
+- Enviar reporte diario al grupo WhatsApp Business: ventas, caja, inventario, novedades
+- Participar en la reunión semanal de resultados (viernes)
+- Elaborar plan semanal de acciones para cumplir la meta
+- Informar al DG cualquier irregularidad: faltantes, clientes conflictivos, problemas de personal
+
+#### Compensación y bonos
+- **Sueldo base** según tabla salarial NVC
+- **Bono mensual por meta de ventas:**
+  - 100–109% de meta: bono del 5% del sueldo base
+  - 110–119% de meta: bono del 10% del sueldo base
+  - ≥120% de meta: bono del 15% del sueldo base
+- Bono sujeto a que no haya diferencias de caja no justificadas >$500 en el mes
+- Bono sujeto a que no haya advertencias escritas activas
+
+#### KPIs del Gerente de Tienda
+
+| Indicador | Meta | Frecuencia |
+|-----------|------|-----------|
+| Ventas de la sucursal vs meta | ≥100% | Mensual |
+| Diferencias en inventario | <2% del valor total | Semanal |
+| Cortes de caja sin diferencia | ≥90% de días | Mensual |
+| Reportes diarios enviados | 100% de días hábiles | Diario |
+| Rotación o ausentismo del equipo | <1 baja no planeada/trimestre | Trimestral |
+
+#### Perfil requerido
+- Preparatoria concluida; licenciatura deseable
+- Experiencia mínima 2 años en puesto de líder o encargado de tienda
+- Habilidades de liderazgo, resolución de conflictos y toma de decisiones
+- Manejo de MyBusiness (se capacita si es necesario)
+- Comunicación efectiva y orientación a resultados
+
+#### Prohibiciones
+- No otorgar crédito sin autorización del DG
+- No contratar ni despedir personal sin autorización
+- No modificar inventario en sistema sin respaldo físico
+- No autorizar descuentos fuera del rango aprobado
+
+---
+
+### PUESTO: PROMOTOR DE VENTAS / VENDEDOR
 
 | Campo | Detalle |
 |-------|---------|
 | **Área** | Comercial |
 | **Nivel** | N4 |
-| **Reporta a** | Gerente Comercial / DG |
+| **Reporta a** | Gerente de Tienda / DG |
 | **Supervisa a** | Ninguno |
 | **Horario** | Campo: lunes a viernes; reporte: viernes |
 
 #### Objetivo del puesto
-Generar nuevas ventas, visitar clientes en campo, levantar pedidos y recuperar clientes inactivos para incrementar el volumen de toneladas vendidas.
+Generar nuevas ventas, visitar clientes en campo, levantar pedidos y recuperar clientes inactivos para incrementar el volumen de ventas. Puede operar desde tienda (mostrador) o en campo según la necesidad de la sucursal.
 
 #### Funciones y responsabilidades
 - Prospectar y visitar productores (acuicultores, ganaderos, avicultores) en la zona asignada
-- Levantar pedidos en campo y registrarlos en el sistema
+- Levantar pedidos en campo y registrarlos en sistema
+- Atender clientes en mostrador cuando se requiera (modo vendedor de tienda)
 - Recuperar clientes que no han comprado en los últimos 90 días
 - Presentar el catálogo de productos y ofrecer asesoría básica
-- Coordinar con el encargado de sucursal la logística de entrega
+- Coordinar con el Gerente de Tienda / Logista la logística de entregas
 - Entregar reporte semanal de visitas, pedidos levantados y clientes prospectados
 - Apoyar en la gestión de cobranza de clientes en campo
 
-#### Compensación
-- Sueldo base + **$400 pesos por tonelada vendida** (solo ventas registradas en sistema)
+#### Compensación y bonos
+- **Sueldo base** según tabla salarial NVC
+- **Bono por tonelada vendida:** $400 pesos/tonelada registrada en sistema (ventas propias)
+- **Bono por reactivación de cliente inactivo:** $200 pesos por cada cliente inactivo (>90 días) que vuelve a comprar y registra al menos 2 compras en el mes siguiente
+- **Bono por cliente nuevo:** $300 pesos por cliente nuevo captado con al menos 1 compra registrada
+- Los bonos se pagan junto con la nómina del mes en que se confirma la venta/registro en sistema
+- Requisito para cobrar bonos: reporte semanal entregado completo y ventas 100% registradas en sistema
 
 #### KPIs del Promotor de Ventas
 
 | Indicador | Meta | Frecuencia |
 |-----------|------|-----------|
-| Visitas semanales | ≥20 visitas | Semanal |
+| Visitas semanales a campo | ≥15 visitas | Semanal |
 | Clientes nuevos captados | ≥5 por mes | Mensual |
-| Clientes inactivos reactivados | ≥5 por trimestre | Trimestral |
-| Toneladas gestionadas | Según meta por zona | Mensual |
+| Clientes inactivos reactivados | ≥3 por mes | Mensual |
+| Toneladas vendidas | Según meta por zona | Mensual |
 | Reporte semanal entregado | 100% viernes | Semanal |
 
 #### Perfil requerido
 - Preparatoria o licenciatura en ventas, administración o agropecuario
-- Experiencia en ventas de campo (sector agropecuario deseable)
+- Experiencia en ventas de campo o mostrador (sector agropecuario deseable)
 - Conocimiento de la región y zona de productores
-- Licencia de manejo vigente
+- Licencia de manejo vigente (para puesto de campo)
 - Capacidad de comunicación y persuasión
 
 #### Prohibiciones
@@ -546,7 +626,7 @@ Ejecutar procesos de vacunación animal (peces, ganado, aves) según protocolos 
 
 ---
 
-### PUESTO: RESPONSABLE DE MARKETING (Formalizar con Julio)
+### PUESTO: RESPONSABLE DE MARKETING
 
 | Campo | Detalle |
 |-------|---------|
@@ -590,7 +670,6 @@ Posicionar la marca NVC en el mercado digital y local, generar contenido de valo
 | **Área** | Operativa |
 | **Nivel** | N5 |
 | **Reporta a** | Encargado de Sucursal |
-| **Titulares actuales** | José Galván (Apatzingán), Álvaro (Apatzingán), David (Nueva Italia) |
 
 #### Objetivo del puesto
 Mantener el orden, limpieza y control del almacén, asegurar que la mercancía esté correctamente registrada y disponible para venta y entrega.
@@ -614,24 +693,83 @@ Mantener el orden, limpieza y control del almacén, asegurar que la mercancía e
 
 ---
 
-### PUESTO: REPARTIDOR / AUXILIAR DE LOGÍSTICA
+### PUESTO: LOGISTA OPERATIVO
+
+| Campo | Detalle |
+|-------|---------|
+| **Área** | Logística / Operativa |
+| **Nivel** | N4 |
+| **Reporta a** | Responsable de Logística y Cartera / Gerente de Tienda |
+| **Coordina con** | Bodegueros, Repartidores, Chofer Inter-ciudad |
+| **Horario** | Lunes a sábado según operación |
+
+> **Nota:** Este puesto cubre la coordinación física y operativa del flujo de mercancía. La Responsable de Logística y Cartera programa los pedidos desde el sistema; el Logista Operativo los ejecuta en piso: recepciones, traspasos físicos, organización de cargas y rutas de entrega.
+
+#### Objetivo del puesto
+Coordinar el movimiento físico de la mercancía: recepciones de proveedor, traspasos entre sucursales, carga de rutas de reparto y organización del almacén. Garantizar que el inventario físico coincida con el sistema y que las entregas salgan en tiempo.
+
+#### Funciones y responsabilidades
+
+**Recepción de mercancía:**
+- Recibir mercancía de proveedores y verificar contra orden de compra y factura
+- Reportar diferencias, faltantes o mermas al Gerente de Tienda y a la Responsable de Logística y Cartera
+- Organizar el ingreso de producto al almacén con rotación correcta (PEPS)
+
+**Traspasos entre sucursales:**
+- Ejecutar los traspasos físicos de mercancía entre sucursales programados por la Responsable de Logística y Cartera
+- Confirmar recepción en destino y reportar al sistema
+- Asegurar que cada traspaso salga con remisión firmada
+
+**Coordinación de entregas:**
+- Preparar y cargar los pedidos para rutas de reparto diario
+- Coordinar con los repartidores la salida y el orden de la ruta
+- Verificar que cada pedido salga completo y con su documentación
+
+**Control físico de inventario:**
+- Participar en el conteo físico diario (productos A) y semanal (completo)
+- Reportar diferencias físicas vs sistema a la Responsable de Logística y Cartera y al Gerente de Tienda
+- Mantener el almacén ordenado, limpio y con rotulado correcto
+
+#### KPIs del Logista Operativo
+
+| Indicador | Meta | Frecuencia |
+|-----------|------|-----------|
+| Recepciones verificadas contra factura | 100% | En cada recepción |
+| Traspasos físicos ejecutados en el día programado | 100% | Diario |
+| Pedidos de reparto preparados sin errores | ≥98% | Diario |
+| Diferencias de inventario detectadas y reportadas | 100% de casos | Diario/Semanal |
+
+#### Perfil requerido
+- Secundaria o preparatoria concluida
+- Experiencia en almacén, logística o distribución (deseable)
+- Capacidad física para carga y descarga de producto
+- Organización, responsabilidad y trabajo en equipo
+- Manejo básico de documentación (remisiones, órdenes de compra)
+
+#### Prohibiciones
+- No liberar mercancía sin orden de despacho o remisión autorizada
+- No realizar traspasos no programados sin autorización de la Responsable de Logística y Cartera
+- No registrar recepciones en sistema sin verificación física previa
+
+---
+
+### PUESTO: REPARTIDOR / AUXILIAR DE ENTREGA LOCAL
 
 | Campo | Detalle |
 |-------|---------|
 | **Área** | Logística |
 | **Nivel** | N5 |
-| **Reporta a** | Encargado de Sucursal |
-| **Titulares actuales** | Pepe (San Simón), Uriel (San Simón), Julio (Nueva Italia — también inventarios) |
+| **Reporta a** | Logista Operativo / Gerente de Tienda |
 
 #### Objetivo del puesto
-Ejecutar las entregas de producto a clientes en campo de manera puntual y ordenada, cobrar y reportar al encargado o cajero.
+Ejecutar las entregas de producto a clientes dentro de la zona local de cada sucursal, cobrar en campo y reportar al encargado o cajero.
 
 #### Funciones y responsabilidades
-- Cargar el vehículo según la ruta del día
+- Cargar el vehículo según la ruta del día (coordinado con Logista Operativo)
 - Entregar pedidos en tiempo y en condiciones acordadas
 - Cobrar en campo (efectivo o confirmar transferencia)
 - Emitir o entregar nota de remisión firmada por el cliente
-- Reportar al encargado o cajero el resultado de cada entrega y cobro
+- Reportar al Logista / Gerente de Tienda el resultado de cada entrega y cobro
 - Mantener el vehículo en buen estado y reportar cualquier falla mecánica
 
 #### Prohibiciones
@@ -641,7 +779,75 @@ Ejecutar las entregas de producto a clientes en campo de manera puntual y ordena
 
 ---
 
-## 10. POLÍTICA DE EVALUACIÓN DEL DESEMPEÑO
+### PUESTO: CHOFER INTER-CIUDAD / OPERADOR DE ABASTECIMIENTO
+
+| Campo | Detalle |
+|-------|---------|
+| **Área** | Logística / Compras |
+| **Nivel** | N4 |
+| **Reporta a** | Director General / Responsable de Logística y Cartera |
+| **Coordina con** | Logista Operativo, Bodegueros |
+| **Horario** | Según rutas programadas; puede incluir salidas nocturnas o fines de semana |
+
+#### Objetivo del puesto
+Realizar los viajes inter-ciudad para el abastecimiento de forrajes y materias primas (alfalfa, avena, rastrojo, pacas de arroz, trigo, cebada, entre otros), asegurando que el producto llegue en tiempo, cantidad y condiciones acordadas.
+
+#### Funciones y responsabilidades
+
+**Abastecimiento y viajes:**
+- Realizar viajes programados a las ciudades o zonas de origen de los productos
+- Coordinar con proveedores la carga y el horario de salida
+- Verificar que el producto cargado corresponde a lo pedido (cantidad, calidad, variedad)
+- Regresar en tiempo para garantizar la disponibilidad del producto en tienda
+
+**Documentación:**
+- Solicitar factura o remisión al proveedor en cada carga
+- Entregar documentación completa al Logista Operativo o a la Responsable de Logística y Cartera al regreso
+- Reportar cualquier diferencia, daño o problema con el producto comprado
+
+**Vehículo y seguridad:**
+- Mantener el vehículo en condiciones óptimas: revisar aceite, llantas, frenos antes de cada viaje
+- Reportar fallas mecánicas inmediatamente al DG
+- Cumplir todas las normas de tránsito y seguridad vial
+- No transportar personas no autorizadas
+
+**Coordinación logística:**
+- Informar a la Responsable de Logística y Cartera la fecha de salida y llegada estimada de cada viaje
+- Avisar al Logista Operativo para que organice la recepción del producto
+- Reportar al DG cualquier imprevisto: retrasos, cambios de precio, faltantes del proveedor
+
+#### Compensación y bonos
+- **Sueldo base** según tabla salarial NVC
+- **Viáticos de viaje:** monto aprobado por el DG antes de cada salida (combustible, alimentación, peaje)
+- **Bono por eficiencia:** si el viaje se realiza en menor tiempo al estimado sin afectar calidad de la carga, el DG puede reconocer un bono discrecional
+- Los viáticos siempre deben comprobarse con tickets; no se pagan viáticos sin comprobante
+
+#### KPIs del Chofer Inter-ciudad
+
+| Indicador | Meta | Frecuencia |
+|-----------|------|-----------|
+| Viajes realizados según programa | 100% | Por viaje |
+| Documentación entregada completa al regreso | 100% | Por viaje |
+| Diferencias de producto reportadas | 100% de casos | Por viaje |
+| Vehículo sin fallas por falta de mantenimiento | 0 fallas evitables | Mensual |
+| Viáticos comprobados correctamente | 100% | Por viaje |
+
+#### Perfil requerido
+- Licencia de manejo tipo C o superior (carga) vigente
+- Experiencia mínima 2 años conduciendo vehículos de carga
+- Conocimiento de rutas en la región (Michoacán y zonas productoras)
+- Responsabilidad, puntualidad y honestidad
+- Capacidad para manejar documentación básica (remisiones, facturas)
+
+#### Prohibiciones
+- No realizar compras o cargas no autorizadas previamente por el DG o la Responsable de Logística y Cartera
+- No transportar personas ajenas a la empresa
+- No manejar bajo efectos de alcohol o sustancias
+- No comprometer fechas de entrega sin confirmar con el DG
+
+---
+
+## 10. POLÍTICA DE EVALUACIÓN DEL DESEMPEÑO Y BONOS
 
 ### Frecuencia de evaluaciones
 - **Mensual:** Revisión de KPIs por encargado y gerencia
@@ -656,6 +862,31 @@ Ejecutar las entregas de producto a clientes en campo de manera puntual y ordena
 | Bueno (75–89%) | Cumple la mayoría de metas | Reconocimiento verbal |
 | Regular (60–74%) | Cumple parcialmente | Plan de mejora 30 días |
 | Insuficiente (<60%) | No cumple metas | Advertencia escrita / proceso disciplinario |
+
+### Política general de bonos por resultados
+
+Los bonos son un componente variable de la compensación, vinculados directamente a resultados medibles y registrados en sistema. **No son un derecho fijo sino un reconocimiento al desempeño superior.**
+
+#### Reglas generales para cobrar cualquier bono:
+1. Las ventas o actividades que generan el bono deben estar **100% registradas en el sistema** (MyBusiness)
+2. El colaborador no debe tener **advertencias escritas activas** en el período
+3. El bono se paga junto con la **nómina del mes siguiente** al período evaluado
+4. Ante cualquier duda sobre montos, el **DG o la Gerente Administrativa tienen la última palabra**
+5. Los bonos se **suspenden automáticamente** si se detecta manipulación de datos, ventas no registradas o irregularidades
+
+#### Tabla de bonos por puesto
+
+| Puesto | Tipo de bono | Monto / Condición |
+|--------|-------------|-------------------|
+| Gerente de Tienda | Meta de ventas 100–109% | +5% del sueldo base |
+| Gerente de Tienda | Meta de ventas 110–119% | +10% del sueldo base |
+| Gerente de Tienda | Meta de ventas ≥120% | +15% del sueldo base |
+| Promotor de Ventas | Bono por tonelada vendida | $400/ton registrada |
+| Promotor de Ventas | Cliente inactivo reactivado | $200 por cliente |
+| Promotor de Ventas | Cliente nuevo captado | $300 por cliente |
+| Chofer Inter-ciudad | Eficiencia en viaje | Discrecional por DG |
+
+> **Nota para el DG:** se recomienda revisar y validar los montos de bono con la contadora, especialmente para determinar el tratamiento fiscal (ISR) de los bonos variables.
 
 ### Proceso disciplinario básico
 1. Primera falta leve: llamada de atención verbal
@@ -674,7 +905,7 @@ Cada colaborador debe firmar la descripción de su puesto, indicando que ha leí
 | | | | | |
 | | | | | |
 
-**Custodio del documento:** Vianey — Área Administrativa
+**Custodio del documento:** Gerente Administrativa — Área Administrativa
 **Siguiente revisión:** Agosto 2026
 
 ---
@@ -684,9 +915,10 @@ Cada colaborador debe firmar la descripción de su puesto, indicando que ha leí
 | Versión | Fecha | Cambios | Elaboró |
 |---------|-------|---------|---------|
 | 1.0 | 19/02/2026 | Versión inicial — basada en Diagnóstico 01 | Consultor externo |
-| 1.1 | 05/04/2026 | Actualización funciones Vianey (entrevista directa). Reasignación de Rossy de "Cajera" a "Auxiliar Administrativo". Nuevo puesto de Cajero/a genérico. Incorporación de funciones: mermas, ajuste de inventario, conciliación bancaria mensual, trámites bancarios, responsable de personal | Consultor externo |
-| 1.2 | 07/04/2026 | Formalización del puesto de Rossy como **Responsable de Logística y Cartera** (N3): nuevas funciones de programación de pedidos, análisis de cartera de clientes (activos, inactivos, vencida) y revisión de inventarios en sucursales. Incorporación de **bitácora de trabajo diaria** obligatoria para todos los puestos administrativos y cajeros. | Consultor externo |
+| 1.1 | 05/04/2026 | Actualización funciones del Área Administrativa (entrevista directa). Reasignación de la titular de Cajera a Auxiliar Administrativo. Nuevo puesto de Cajero/a genérico. Incorporación de funciones: mermas, ajuste de inventario, conciliación bancaria mensual, trámites bancarios, responsable de personal | Consultor externo |
+| 1.2 | 07/04/2026 | Formalización del puesto de **Responsable de Logística y Cartera** (N3): nuevas funciones de programación de pedidos, análisis de cartera de clientes (activos, inactivos, vencida) y revisión de inventarios en sucursales. Incorporación de **bitácora de trabajo diaria** obligatoria para todos los puestos administrativos y cajeros. | Consultor externo |
+| 1.3 | 07/04/2026 | Incorporación de 3 puestos nuevos: **Gerente de Tienda/Sucursal** (N2, con bono por meta de ventas), **Logista Operativo** (N4, coordinación física de mercancía) y **Chofer Inter-ciudad** (N4, abastecimiento inter-ciudad: alfalfa, avena, rastrojo, etc.). Actualización del **Promotor de Ventas** con esquema de bonos expandido (por tonelada, cliente nuevo, cliente reactivado). Nueva **Política General de Bonos por Resultados** en sección 10. | Consultor externo |
 
 ---
 
-*NVC — Manual de Funciones v1.2 | Consultoría Externa | Confidencial*
+*NVC — Manual de Funciones v1.3 | Consultoría Externa | Confidencial*
