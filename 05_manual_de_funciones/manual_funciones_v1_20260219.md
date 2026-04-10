@@ -1,13 +1,13 @@
 # MANUAL DE FUNCIONES — NVC
-## Versión 1.3 | Nutrición, Vacunas y Consultoría
+## Versión 1.4 | Nutrición, Vacunas y Consultoría
 
 ---
 
 | Campo              | Detalle                                         |
 |--------------------|--------------------------------------------------|
 | **Empresa**        | NVC — Nutrición, Vacunas y Consultoría          |
-| **Documento**      | Manual de Funciones v1.3                        |
-| **Fecha**          | 7 de abril de 2026                              |
+| **Documento**      | Manual de Funciones v1.4                        |
+| **Fecha**          | 10 de abril de 2026                             |
 | **Elaboró**        | Consultor Externo                                |
 | **Estatus**        | Borrador — Pendiente validación con DG          |
 | **Revisión**       | Cada 6 meses o ante cambios organizacionales    |
@@ -20,8 +20,8 @@
 2. [Instrucciones de uso](#2-instrucciones-de-uso)
 3. [Estructura de cada descripción de puesto](#3-estructura-de-cada-descripción-de-puesto)
 4. [Puestos — Nivel Dirección](#4-puestos--nivel-dirección)
-5. [Puestos — Gerencia Administrativa](#5-puestos--gerencia-administrativa)
-6. [Puestos — Gerencia Comercial](#6-puestos--gerencia-comercial)
+5. [Puestos — Gerencia Administrativa](#5-puestos--gerencia-administrativa) *(Gerente Administrativo, Auxiliar Contable, Cajero/a, Responsable de Logística y Cartera)*
+6. [Puestos — Gerencia Comercial](#6-puestos--gerencia-comercial) *(Gerente Comercial, Encargado/a de Sucursal, Gerente de Tienda/Sucursal, Promotor de Ventas)*
 7. [Puestos — Gerencia Técnica](#7-puestos--gerencia-técnica)
 8. [Puestos — Marketing](#8-puestos--marketing)
 9. [Puestos — Operativos (bodega y logística)](#9-puestos--operativos-bodega-y-logística)
@@ -300,6 +300,64 @@ Asegurar la operación logística y comercial del negocio: programar y dar segui
 
 ---
 
+### PUESTO: AUXILIAR CONTABLE / ADMINISTRATIVO
+
+| Campo | Detalle |
+|-------|---------|
+| **Área** | Administrativa |
+| **Nivel** | N4 |
+| **Reporta a** | Gerente Administrativo |
+| **Supervisa a** | Ninguno |
+| **Horario** | Lunes a viernes, 8:00–17:00; sábado 8:00–13:00 |
+
+#### Objetivo del puesto
+Apoyar al Gerente Administrativo en las operaciones contables, de facturación y captura de datos, garantizando que los registros en sistema estén actualizados y libres de errores.
+
+#### Funciones y responsabilidades
+
+**Facturación y registros:**
+- Emitir facturas CFDI a clientes según las instrucciones del Gerente Administrativo
+- Registrar compras y gastos en MyBusiness según los documentos recibidos
+- Archivar física y digitalmente todas las facturas de compra y venta del día
+- Verificar que cada venta de sucursal tenga su soporte documental correspondiente
+
+**Apoyo contable:**
+- Apoyar en la conciliación semanal MyBusiness vs CONTPAQ
+- Preparar reportes de gastos por categoría para el contador externo
+- Capturar datos en CONTPAQ bajo supervisión de la Gerente Administrativa
+- Reportar inmediatamente cualquier diferencia o error detectado en registros
+
+**Control de documentos:**
+- Mantener el archivo físico de facturas ordenado por proveedor, fecha y sucursal
+- Gestionar el directorio de clientes y proveedores en el sistema (altas, actualizaciones)
+- Custodiar los comprobantes de pago de servicios y nómina
+
+**Bitácora de trabajo diaria:**
+- Registrar las actividades realizadas: facturas emitidas, registros capturados, incidencias
+- Disponible para revisión por la Gerente Administrativa o el DG en cualquier momento
+
+#### KPIs del Auxiliar Contable
+
+| Indicador | Meta | Frecuencia |
+|-----------|------|-----------|
+| Facturas CFDI emitidas sin error | 100% | Diario |
+| Registros capturados en sistema el mismo día | 100% | Diario |
+| Archivo de documentos al día (sin rezago) | Sin rezago mayor a 1 día | Diario |
+| Bitácora de trabajo al día | 100% de días hábiles | Diario |
+
+#### Perfil requerido
+- Preparatoria concluida; deseable estudios en contabilidad o administración
+- Manejo básico de Excel y computadora
+- Manejo de MyBusiness Pro (o capacitación inmediata)
+- Orden, precisión numérica y discreción en manejo de información financiera
+
+#### Prohibiciones
+- No emitir facturas sin instrucción de la Gerente Administrativa
+- No realizar ajustes de inventario o precios en sistema
+- No compartir información financiera con personal no autorizado
+
+---
+
 ### PUESTO: CAJERO/A *(por confirmar titular en Apatzingán — Diagnóstico 02)*
 
 | Campo | Detalle |
@@ -358,6 +416,70 @@ Registrar al final de cada turno, en libreta o computadora, la siguiente informa
 ---
 
 ## 6. PUESTOS — GERENCIA COMERCIAL
+
+---
+
+### PUESTO: GERENTE COMERCIAL
+
+| Campo | Detalle |
+|-------|---------|
+| **Área** | Comercial |
+| **Nivel** | N2 |
+| **Reporta a** | Director General |
+| **Supervisa a** | Encargados/Gerentes de Sucursal, Promotor de Ventas |
+| **Titular actual** | Por designar |
+| **Horario** | Lunes a sábado; disponibilidad ante emergencias |
+
+> **Nota:** Puesto estratégico para la etapa de expansión a 10 sucursales. En tanto no exista titular, sus funciones son asumidas directamente por el Director General (rol transitorio).
+
+#### Objetivo del puesto
+Dirigir la operación comercial de toda la red de sucursales: garantizar el cumplimiento de metas de venta, el desarrollo de clientes, la eficiencia logística y la ejecución de la estrategia comercial definida por la Dirección General.
+
+#### Funciones y responsabilidades
+
+**Dirección comercial:**
+- Establecer y comunicar las metas de venta mensuales por sucursal
+- Supervisar el desempeño comercial de todos los Encargados/Gerentes de Sucursal
+- Realizar visitas periódicas a sucursales para acompañamiento y supervisión
+- Identificar oportunidades de mejora en la operación de cada punto de venta
+
+**Desarrollo de clientes:**
+- Coordinar la estrategia de retención y recuperación de clientes inactivos
+- Apoyar al Promotor de Ventas en la apertura de cuentas clave
+- Resolver escalonamiento de problemas con clientes de alto valor
+- Mantener relación directa con los principales clientes de la red
+
+**Logística y abastecimiento:**
+- Supervisar que el abastecimiento de todas las sucursales se realice sin quiebres de inventario
+- Coordinar con la Responsable de Logística y Cartera el calendario de pedidos y traspasos
+- Validar rutas de reparto y optimizar la flota vehicular
+
+**Reportes y gobernanza:**
+- Presidir o apoyar la reunión semanal de resultados (viernes)
+- Elaborar reporte comercial mensual para el Director General
+- Proponer ajustes de precios, promociones o campañas a la Dirección
+
+#### KPIs del Gerente Comercial
+
+| Indicador | Meta | Frecuencia |
+|-----------|------|-----------|
+| Ventas totales de la red vs meta | ≥100% | Mensual |
+| Sucursales con meta cumplida | ≥80% de la red | Mensual |
+| Clientes activos en la red | Crecimiento ≥5% | Mensual |
+| Clientes inactivos reactivados | ≥10 por mes (red total) | Mensual |
+| Reportes mensuales entregados a DG | 100% puntual | Mensual |
+
+#### Perfil requerido
+- Licenciatura en Administración, Negocios, Agropecuario o afín
+- Experiencia mínima 3 años liderando equipos comerciales o de ventas
+- Conocimiento del sector agropecuario y/o veterinario (deseable)
+- Habilidades de liderazgo, análisis de resultados y toma de decisiones
+- Disponibilidad para visitar sucursales en campo
+
+#### Prohibiciones
+- No modificar listas de precios sin autorización del Director General
+- No contratar o despedir personal sin aprobación del DG
+- No comprometer inversiones o gastos no presupuestados
 
 ---
 
@@ -790,7 +912,7 @@ Ejecutar las entregas de producto a clientes dentro de la zona local de cada suc
 | **Horario** | Según rutas programadas; puede incluir salidas nocturnas o fines de semana |
 
 #### Objetivo del puesto
-Realizar los viajes inter-ciudad para el abastecimiento de forrajes y materias primas (alfalfa, avena, rastrojo, pacas de arroz, trigo, cebada, entre otros), asegurando que el producto llegue en tiempo, cantidad y condiciones acordadas.
+Realizar viajes inter-ciudad para el abastecimiento de forrajes y materias primas (alfalfa, avena, rastrojo, pacas de arroz, trigo, cebada, entre otros), así como ejecutar entregas de producto a clientes fuera de la zona local, asegurando que la carga llegue en tiempo, cantidad y condiciones acordadas.
 
 #### Funciones y responsabilidades
 
@@ -799,6 +921,12 @@ Realizar los viajes inter-ciudad para el abastecimiento de forrajes y materias p
 - Coordinar con proveedores la carga y el horario de salida
 - Verificar que el producto cargado corresponde a lo pedido (cantidad, calidad, variedad)
 - Regresar en tiempo para garantizar la disponibilidad del producto en tienda
+
+**Entregas a clientes:**
+- Ejecutar entregas de producto a clientes ubicados fuera de la zona local de cada sucursal
+- Confirmar la recepción del pedido con el cliente o responsable del rancho / unidad productiva
+- Cobrar en campo cuando aplique (efectivo o confirmación de transferencia) y emitir comprobante
+- Reportar al Logista Operativo y a la Responsable de Logística y Cartera el resultado de cada entrega
 
 **Documentación:**
 - Solicitar factura o remisión al proveedor en cada carga
@@ -827,6 +955,7 @@ Realizar los viajes inter-ciudad para el abastecimiento de forrajes y materias p
 | Indicador | Meta | Frecuencia |
 |-----------|------|-----------|
 | Viajes realizados según programa | 100% | Por viaje |
+| Entregas a clientes completadas en fecha acordada | ≥95% | Por ruta |
 | Documentación entregada completa al regreso | 100% | Por viaje |
 | Diferencias de producto reportadas | 100% de casos | Por viaje |
 | Vehículo sin fallas por falta de mantenimiento | 0 fallas evitables | Mensual |
@@ -918,6 +1047,7 @@ Cada colaborador debe firmar la descripción de su puesto, indicando que ha leí
 | 1.1 | 05/04/2026 | Actualización funciones del Área Administrativa (entrevista directa). Reasignación de la titular de Cajera a Auxiliar Administrativo. Nuevo puesto de Cajero/a genérico. Incorporación de funciones: mermas, ajuste de inventario, conciliación bancaria mensual, trámites bancarios, responsable de personal | Consultor externo |
 | 1.2 | 07/04/2026 | Formalización del puesto de **Responsable de Logística y Cartera** (N3): nuevas funciones de programación de pedidos, análisis de cartera de clientes (activos, inactivos, vencida) y revisión de inventarios en sucursales. Incorporación de **bitácora de trabajo diaria** obligatoria para todos los puestos administrativos y cajeros. | Consultor externo |
 | 1.3 | 07/04/2026 | Incorporación de 3 puestos nuevos: **Gerente de Tienda/Sucursal** (N2, con bono por meta de ventas), **Logista Operativo** (N4, coordinación física de mercancía) y **Chofer Inter-ciudad** (N4, abastecimiento inter-ciudad: alfalfa, avena, rastrojo, etc.). Actualización del **Promotor de Ventas** con esquema de bonos expandido (por tonelada, cliente nuevo, cliente reactivado). Nueva **Política General de Bonos por Resultados** en sección 10. | Consultor externo |
+| 1.4 | 10/04/2026 | Correcciones críticas: eliminación de nombre propio del Director General (reemplazado por título de puesto). Incorporación de **Auxiliar Contable** (N4, área administrativa) y **Gerente Comercial** (N2, por designar). Actualización del **Chofer Inter-ciudad**: función de entregas a clientes inter-ciudad agregada al objetivo, funciones y KPIs. | Consultor externo |
 
 ---
 

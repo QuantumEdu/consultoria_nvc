@@ -1,20 +1,20 @@
 # MANUAL DE ORGANIZACIÓN — NVC
-## Versión 1.1 | Nutrición, Vacunas y Consultoría
+## Versión 1.2 | Nutrición, Vacunas y Consultoría
 
 ---
 
 | Campo              | Detalle                                         |
 |--------------------|--------------------------------------------------|
 | **Empresa**        | NVC — Nutrición, Vacunas y Consultoría          |
-| **Documento**      | Manual de Organización v1.1                     |
-| **Fecha**          | 5 de abril de 2026                              |
+| **Documento**      | Manual de Organización v1.2                     |
+| **Fecha**          | 10 de abril de 2026                             |
 | **Elaboró**        | Consultor Externo                                |
 | **Estatus**        | Borrador — Pendiente validación con DG          |
 | **Revisión**       | Cada 6 meses                                    |
 
 ---
 
-## ÍNDICE
+## ÍNDICE — Manual de Organización v1.2
 
 1. [Marco Legal y Datos Generales](#1-marco-legal-y-datos-generales)
 2. [Antecedentes Históricos](#2-antecedentes-históricos)
@@ -43,13 +43,13 @@
 | **Domicilio matriz** | Apatzingán, Michoacán (México) |
 | **Sucursales activas** | 5 (Apatzingán + 4 sucursales en el estado) |
 | **Objetivo de expansión** | 10 sucursales |
-| **Director General** | Ignacio ________ |
+| **Director General** | Información reservada |
 
 ---
 
 ## 2. ANTECEDENTES HISTÓRICOS
 
-NVC fue fundada por el Director General Ignacio, quien ha construido la empresa a partir de su especialización técnica en vacunación y nutrición animal. Durante más de 8 años de operación, la empresa ha crecido de manera orgánica hasta contar con 5 puntos de venta.
+NVC fue fundada por el Director General, quien ha construido la empresa a partir de su especialización técnica en vacunación y nutrición animal. Durante más de 8 años de operación, la empresa ha crecido de manera orgánica hasta contar con 5 puntos de venta.
 
 El crecimiento ha sido impulsado principalmente por:
 - El reconocimiento personal del DG como experto técnico en la región
@@ -374,7 +374,7 @@ Referencia al documento `04_estructura_organizacional/estructura_organizacional_
 
 | Campo | Detalle |
 |-------|---------|
-| **Versión** | 1.0 |
+| **Versión** | 1.2 |
 | **Fecha de emisión** | 19 de febrero de 2026 |
 | **Próxima revisión** | Agosto 2026 |
 | **Custodio** | Gerente Administrativa — Área Administrativa |
@@ -386,6 +386,7 @@ Referencia al documento `04_estructura_organizacional/estructura_organizacional_
 |---------|-------|---------|---------|
 | 1.0 | Feb 2026 | Versión inicial — basada en Diagnóstico 01 | Consultor externo |
 | 1.1 | 05/04/2026 | Actualización de atribuciones del Área Administrativa con funciones confirmadas en entrevista directa: mermas, conciliación bancaria mensual, trámites bancarios, responsable de personal, ajuste de inventario, políticas internas, MyBusiness Pro | Consultor externo |
+| 1.2 | 10/04/2026 | Eliminación de nombre propio del Director General en datos generales y antecedentes históricos (reemplazado por título de puesto). Actualización de número de versión del documento. | Consultor externo |
 
 ---
 
