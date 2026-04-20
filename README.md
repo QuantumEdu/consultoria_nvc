@@ -9,7 +9,7 @@
 | **Director General** | Ignacio (apellido pendiente)                   |
 | **Consultor**      | Externo                                          |
 | **Inicio**         | Febrero 2026                                     |
-| **Última actualización** | 5 de abril de 2026                       |
+| **Última actualización** | 19 de abril de 2026                      |
 | **Objetivo**       | Profesionalizar operación y escalar a 10 sucursales |
 
 ---
@@ -100,7 +100,9 @@ Todos los documentos siguen la notación: `nombre_vN_AAAAMMDD.md`
 
 | Archivo | Versión | Estado | Descripción |
 |---------|---------|--------|-------------|
-| `manual_organizacion_v1_20260219.md` | v1.1 | Borrador — validar con DG | **v1.1:** Atribuciones del área administrativa ampliadas con funciones confirmadas de Vianey (mermas, conciliación bancaria mensual, trámites bancarios, responsable de personal, políticas). **Pendiente v1.2:** política de uniforme y gafete a detalle |
+| `manual_organizacion_v1_20260219.md` | v1.3 | Borrador — validar con DG | **v1.3:** incorpora referencia formal al manual de procedimientos P01-P10 y enfoque administrativo ligero inspirado en ISO 9001:2015. Incluye historial de cambios previos (v1.1 y v1.2) |
+| `manual_integral_procesos_competitividad_v1_20260419.md` | v1.0 | Borrador — pendiente validación | **v1.0:** Manual integral que integra ISO 9001 ligera + modelo de competitividad de 4 niveles y 8 ejes. Mapea procesos P01-P10 y S1, incluye ficha estándar de procedimiento, checklist 12 puntos, sistema de evaluación 0-3 con semáforos, roadmap 30-60-90 días y gobernanza semanal/mensual/trimestral |
+| `procedimientos_operativos_v1_20260419.md` | v2.0 | Borrador operativo — listo para piloto | Manual de Procedimientos Operativos Ligeros v2.0: P01-P10, matriz RACI, KPIs con fórmulas/metas/frecuencia/acción correctiva, tiempos máximos por paso, controles preventivos, escalas de acción, evidencia mínima. Fortalecimiento especial en P01, P02, P06 para pilotos 30-60-90 |
 
 ---
 
@@ -118,6 +120,7 @@ Todos los documentos siguen la notación: `nombre_vN_AAAAMMDD.md`
 | Archivo | Descripción |
 |---------|-------------|
 | `resumen01_20260219.md` | **Primer resumen ejecutivo para el Director General.** Contiene: mapa de todos los documentos generados, hallazgos críticos del Diagnóstico 01, resumen del plan estratégico por fases, estado de manuales, hallazgos de Purina, próximos pasos (Diagnóstico 02, análisis de inventarios/ventas históricos), cronograma próximas 4 semanas, compromisos pendientes del DG |
+| `resumen02_manual_integral_competitividad_v1_20260419.md` | **Versión ejecutiva de 2 páginas para el Director General sobre el nuevo manual integral.** Contiene: diagnóstico ejecutivo (fortalezas/brechas), semáforo global (4 niveles de competitividad), top 5 decisiones inmediatas, plan 30-60-90 días con gobernanza semanal/mensual, riesgos de no actuar, solicitud de aprobación hoy |
 
 ---
 
@@ -251,6 +254,7 @@ Plan de trabajo y tiempos             → 03_plan_estrategico/plan_estrategico_v
 Quién reporta a quién / organigrama   → 04_estructura_organizacional/estructura_organizacional_v1_20260219.md
 Qué hace cada puesto / KPIs           → 05_manual_de_funciones/manual_funciones_v1_20260219.md
 Políticas, sistemas, calendario       → 06_manual_de_organizacion/manual_organizacion_v1_20260219.md
+Procedimientos troncales + enfoque administrativo → 06_manual_de_organizacion/procedimientos_operativos_v1_20260419.md
 Investigación sobre Purina            → 07_purina_investigacion/purina_prospectivo_20260219.md
 Resumen para el Director General      → 08_resumen_ejecutivo/resumen01_20260219.md
 Propuesta inicial al cliente          → documentos/
@@ -271,9 +275,12 @@ Calcular ROI / business case          → .antigravity/skills/analysis/business_
 | Estructura Organizacional v1.1 | ✅ Actualizado | Rossy reclasificada; confirmar cajero/a Apatzingán |
 | Manual de Funciones v1.1 | ✅ Actualizado | Funciones Vianey ampliadas, Rossy como Aux. Admin |
 | Manual de Organización v1.1 | ✅ Actualizado | Atribuciones área admin. ampliadas |
+| Manual Integral de Procesos y Competitividad | ✅ Completado v1.0 | Integración ISO 9001 ligera + modelo de competitividad 4 niveles/8 ejes |
+| Manual de Procedimientos Operativos v2.0 | ✅ Completado | P01-P10 fortalecidos para pilotos 30-60-90 (tiempos, controles, escalas, KPIs) |
 | Investigación Purina | ✅ Completado | Presentar al DG |
 | Análisis MyBusiness | ✅ Completado v2.0 | Hallazgos de uso real integrados |
 | Presentación general (5 módulos) | ✅ Completado | En `10_presentations/` |
+| Resumen Ejecutivo 02 (Manual Integral) | ✅ Completado | Versión 2 páginas para el Director General |
 | Diagnóstico 02 | ⏳ Pendiente | Agendar entrevista |
 | Dashboard Gerencial v1 | ⏳ Pendiente | Semana 3 |
 | Análisis inventarios/ventas | ⏳ Pendiente | Descargar MyBusiness |

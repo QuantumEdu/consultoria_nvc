@@ -1,20 +1,20 @@
 # MANUAL DE ORGANIZACIÓN — NVC
-## Versión 1.2 | Nutrición, Vacunas y Consultoría
+## Versión 1.3 | Nutrición, Vacunas y Consultoría
 
 ---
 
 | Campo              | Detalle                                         |
 |--------------------|--------------------------------------------------|
 | **Empresa**        | NVC — Nutrición, Vacunas y Consultoría          |
-| **Documento**      | Manual de Organización v1.2                     |
-| **Fecha**          | 10 de abril de 2026                             |
+| **Documento**      | Manual de Organización v1.3                     |
+| **Fecha**          | 19 de abril de 2026                             |
 | **Elaboró**        | Consultor Externo                                |
 | **Estatus**        | Borrador — Pendiente validación con DG          |
 | **Revisión**       | Cada 6 meses                                    |
 
 ---
 
-## ÍNDICE — Manual de Organización v1.2
+## ÍNDICE — Manual de Organización v1.3
 
 1. [Marco Legal y Datos Generales](#1-marco-legal-y-datos-generales)
 2. [Antecedentes Históricos](#2-antecedentes-históricos)
@@ -28,6 +28,7 @@
 10. [Calendario Institucional](#10-calendario-institucional)
 11. [Gestión del Cambio y Mejora Continua](#11-gestión-del-cambio-y-mejora-continua)
 12. [Vigencia y Actualización](#12-vigencia-y-actualización)
+13. [Procedimientos Operativos y Enfoque Administrativo Ligero](#13-procedimientos-operativos-y-enfoque-administrativo-ligero)
 
 ---
 
@@ -374,8 +375,8 @@ Referencia al documento `04_estructura_organizacional/estructura_organizacional_
 
 | Campo | Detalle |
 |-------|---------|
-| **Versión** | 1.2 |
-| **Fecha de emisión** | 19 de febrero de 2026 |
+| **Versión** | 1.3 |
+| **Fecha de emisión** | 19 de abril de 2026 |
 | **Próxima revisión** | Agosto 2026 |
 | **Custodio** | Gerente Administrativa — Área Administrativa |
 | **Aprobó** | Director General |
@@ -387,7 +388,27 @@ Referencia al documento `04_estructura_organizacional/estructura_organizacional_
 | 1.0 | Feb 2026 | Versión inicial — basada en Diagnóstico 01 | Consultor externo |
 | 1.1 | 05/04/2026 | Actualización de atribuciones del Área Administrativa con funciones confirmadas en entrevista directa: mermas, conciliación bancaria mensual, trámites bancarios, responsable de personal, ajuste de inventario, políticas internas, MyBusiness Pro | Consultor externo |
 | 1.2 | 10/04/2026 | Eliminación de nombre propio del Director General en datos generales y antecedentes históricos (reemplazado por título de puesto). Actualización de número de versión del documento. | Consultor externo |
+| 1.3 | 19/04/2026 | Se agrega la referencia formal al Manual de Procedimientos Operativos Ligeros (P01-P10) y al enfoque administrativo inspirado en ISO 9001:2015 en formato práctico para pyme. | Consultor externo |
 
 ---
 
-*NVC — Manual de Organización v1.1 | Consultoría Externa | Confidencial*
+## 13. PROCEDIMIENTOS OPERATIVOS Y ENFOQUE ADMINISTRATIVO LIGERO
+
+Como parte de la modernización administrativa de NVC, se integra el documento:
+
+`06_manual_de_organizacion/manual_integral_procesos_competitividad_v1_20260419.md`
+
+Este manual **unifica** dos capas de evaluación de procesos:
+1. **ISO 9001 ligera:** criterios administrativos, documentación mínima, responsabilidad clara, trazabilidad, control de riesgos
+2. **Modelo de competitividad 4 niveles / 8 ejes:** reflexión estratégica, liderazgo con propósito, colaboradores, clientes, sostenibilidad, procesos, innovación, resultados
+
+Principios del enfoque aplicado:
+- Control por procesos críticos, no por exceso documental
+- Indicadores mínimos para tomar decisiones semanales
+- Responsabilidades claras (RACI)
+- Mejora continua práctica (ajustes mensuales)
+- Sistema de evaluación 0-3 con semáforos para priorizar mejoras
+
+Manual de procedimientos ligeros (P01-P10) aplicado sobre este manual integral.
+
+*NVC — Manual de Organización v1.3 | Consultoría Externa | Confidencial*
